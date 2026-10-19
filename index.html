@@ -1,305 +1,219 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shayari Studio</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  padding: 18px;
-  font-family: Arial, sans-serif;
-  background: #10121b;
-  color: white;
+*{box-sizing:border-box}
+body{
+  margin:0;padding:16px;
+  background:#10121b;color:#fff;
+  font-family:Arial,sans-serif
 }
-
-header {
-  text-align: center;
-  padding: 18px 0;
+main{max-width:700px;margin:auto}
+header{text-align:center;padding:12px}
+header h1{color:#ffbd69}
+.panel{
+  background:#1d2030;padding:16px;
+  border-radius:14px;margin-bottom:18px
 }
-
-header h1 {
-  color: #ffbd69;
-  margin-bottom: 8px;
+label{display:block;margin:14px 0 7px;color:#ffcf91}
+textarea,select,input,button{
+  width:100%;padding:12px;border-radius:8px;
+  font-size:16px
 }
-
-.container {
-  max-width: 850px;
-  margin: auto;
+textarea,select,input{
+  background:#111522;color:white;
+  border:1px solid #50546a
 }
-
-.panel {
-  background: #1d2030;
-  padding: 18px;
-  border-radius: 16px;
-  margin-bottom: 18px;
+textarea{min-height:120px;resize:vertical}
+button{
+  border:0;background:#ffbd69;color:#181818;
+  font-weight:bold;margin-top:12px;cursor:pointer
 }
-
-label {
-  display: block;
-  margin: 14px 0 7px;
-  color: #ffcf91;
+#poster{
+  width:100%;aspect-ratio:4/5;min-height:300px;
+  padding:25px;display:flex;align-items:center;
+  justify-content:center;text-align:center;
+  white-space:pre-wrap;overflow:hidden;
+  overflow-wrap:anywhere;line-height:1.6;
+  border:2px solid #ffffff35;border-radius:10px;
+  background:linear-gradient(135deg,#182848,#4b6cb7);
+  color:white
 }
-
-textarea, select, input, button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 9px;
-  border: 1px solid #45495c;
-  font-size: 16px;
-}
-
-textarea, select, input {
-  background: #111522;
-  color: white;
-}
-
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-button {
-  border: none;
-  margin-top: 12px;
-  background: #ffbd69;
-  color: #171717;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#poster {
-  width: 100%;
-  min-height: 330px;
-  aspect-ratio: 4 / 5;
-  padding: 28px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  font-size: 27px;
-  line-height: 1.7;
-  background: linear-gradient(135deg,#492b55,#171b38);
-  color: white;
-  border: 2px solid #ffffff30;
-}
-
-#poster.classic {
-  font-family: Georgia, serif;
-  font-style: italic;
-}
-
-#poster.bold {
-  font-family: Impact, sans-serif;
-  font-weight: bold;
-}
-
-#poster.simple {
-  font-family: Arial, sans-serif;
-}
-
-#poster.love {
-  background: linear-gradient(135deg,#8e244d,#30102d);
-}
-
-#poster.nature {
-  background: linear-gradient(135deg,#164e35,#0b1821);
-}
-
-#poster.sunset {
-  background: linear-gradient(135deg,#f7974e,#822d58,#241d48);
-}
-
-#poster.night {
-  background: linear-gradient(135deg,#101a35,#030509);
-}
-
-#poster.paper {
-  background: linear-gradient(135deg,#f7e7c6,#d6b98b);
-  color: #382719;
-}
-
-.note {
-  color: #bfc4d6;
-  font-size: 13px;
-  text-align: center;
-}
-
-@media (max-width: 480px) {
-  body { padding: 10px; }
-  #poster { min-height: 300px; padding: 20px; }
-}
+.night{background:linear-gradient(135deg,#101a35,#030509)!important}
+.love{background:linear-gradient(135deg,#8e244d,#30102d)!important}
+.nature{background:linear-gradient(135deg,#164e35,#0b1821)!important}
+.sunset{background:linear-gradient(135deg,#f7974e,#822d58,#241d48)!important}
+.paper{background:linear-gradient(135deg,#f7e7c6,#d6b98b)!important;color:#382719!important}
+.small{font-size:13px;color:#bbc1d2;text-align:center}
 </style>
 </head>
 
 <body>
-<div class="container">
-
+<main>
 <header>
-  <h1>✍️ Shayari Studio</h1>
-  <p>अपने शब्दों को खूबसूरत पोस्टर में बदलें</p>
+<h1>✍️ Shayari Studio</h1>
+<p>अपने शब्दों को खूबसूरत पोस्टर में बदलें</p>
 </header>
 
-<div class="panel">
-  <label for="text">अपनी शायरी, कविता या कोई भी टेक्स्ट लिखें</label>
-  <textarea id="text" placeholder="यहाँ अपनी शायरी लिखें...">कुछ बातें लफ्ज़ों में नहीं आतीं,
+<section class="panel">
+<label for="words">अपनी शायरी या टेक्स्ट लिखें</label>
+<textarea id="words" placeholder="यहाँ लिखें...">कुछ बातें लफ्ज़ों में नहीं आतीं,
 कुछ यादें दिल से नहीं जातीं।</textarea>
 
-  <label for="background">बैकग्राउंड डिजाइन चुनें</label>
-  <select id="background">
-    <option value="night">🌌 रात का आसमान</option>
-    <option value="love">❤️ लव / सैड</option>
-    <option value="nature">🌿 प्रकृति</option>
-    <option value="sunset">🌅 सनसेट</option>
-    <option value="paper">📜 पेपर</option>
-    <option value="classic">🎨 क्लासिक ग्रेडिएंट</option>
-  </select>
+<label for="bg">बैकग्राउंड चुनें</label>
+<select id="bg">
+<option value="night">रात</option>
+<option value="love">लव / सैड</option>
+<option value="nature">प्रकृति</option>
+<option value="sunset">सनसेट</option>
+<option value="paper">पेपर</option>
+</select>
 
-  <label for="font">फॉन्ट स्टाइल चुनें</label>
-  <select id="font">
-    <option value="simple">सिंपल</option>
-    <option value="classic">क्लासिक इटैलिक</option>
-    <option value="bold">बोल्ड</option>
-  </select>
+<label for="font">फॉन्ट चुनें</label>
+<select id="font">
+<option value="Arial, sans-serif">सिंपल</option>
+<option value="Georgia, serif">क्लासिक</option>
+<option value="sans-serif">बोल्ड</option>
+</select>
 
-  <label for="size">टेक्स्ट का साइज</label>
-  <input id="size" type="range" min="18" max="42" value="27">
+<label for="size">टेक्स्ट साइज</label>
+<input id="size" type="range" min="18" max="38" value="27">
 
-  <label for="color">टेक्स्ट का रंग</label>
-  <select id="color">
-    <option value="#ffffff">सफेद</option>
-    <option value="#ffcf91">गोल्डन</option>
-    <option value="#ff9eb5">पिंक</option>
-    <option value="#bdeaff">हल्का नीला</option>
-    <option value="#171717">काला</option>
-  </select>
+<label for="colour">टेक्स्ट का रंग</label>
+<select id="colour">
+<option value="#ffffff">सफेद</option>
+<option value="#ffcf91">गोल्डन</option>
+<option value="#ff9eb5">पिंक</option>
+<option value="#bdeaff">हल्का नीला</option>
+<option value="#171717">काला</option>
+</select>
 
-  <button id="update">✨ डिजाइन अपडेट करें</button>
-</div>
+<button type="button" id="refresh">डिजाइन अपडेट करें</button>
+</section>
 
-<div class="panel">
-  <h3 style="text-align:center">आपका पोस्टर प्रीव्यू</h3>
-
-  <div id="poster" class="night">कुछ बातें लफ्ज़ों में नहीं आतीं,
+<section class="panel">
+<h3 style="text-align:center">पोस्टर प्रीव्यू</h3>
+<div id="poster" class="night">कुछ बातें लफ्ज़ों में नहीं आतीं,
 कुछ यादें दिल से नहीं जातीं।</div>
-
-  <button id="download">⬇️ PNG इमेज डाउनलोड करें</button>
-  <p class="note">
-    डाउनलोड की गई इमेज आप अपनी स्टोरी या पोस्ट में लगा सकते हैं।
-  </p>
-</div>
-
-</div>
+<button type="button" id="save">PNG इमेज डाउनलोड करें</button>
+<p class="small">डाउनलोड करने के लिए बटन दबाएँ।</p>
+</section>
+</main>
 
 <script>
-const textInput = document.getElementById("text");
-const background = document.getElementById("background");
-const font = document.getElementById("font");
-const size = document.getElementById("size");
-const color = document.getElementById("color");
-const poster = document.getElementById("poster");
+(function(){
+  const words = document.getElementById("words");
+  const bg = document.getElementById("bg");
+  const font = document.getElementById("font");
+  const size = document.getElementById("size");
+  const colour = document.getElementById("colour");
+  const poster = document.getElementById("poster");
 
-function updatePoster() {
-  poster.textContent = textInput.value || "यहाँ आपका टेक्स्ट दिखेगा";
-  poster.className = background.value;
-
-  if (font.value === "classic") poster.classList.add("classic");
-  if (font.value === "bold") poster.classList.add("bold");
-  if (font.value === "simple") poster.classList.add("simple");
-
-  poster.style.fontSize = size.value + "px";
-  poster.style.color = color.value;
-}
-
-document.getElementById("update").addEventListener("click", updatePoster);
-
-[textInput, background, font, size, color].forEach(element => {
-  element.addEventListener("input", updatePoster);
-});
-
-document.getElementById("download").addEventListener("click", () => {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = 800;
-  canvas.height = 1000;
-
-  const themes = {
-    night: ["#101a35", "#030509"],
-    love: ["#8e244d", "#30102d"],
-    nature: ["#164e35", "#0b1821"],
-    sunset: ["#f7974e", "#241d48"],
-    paper: ["#f7e7c6", "#d6b98b"],
-    classic: ["#492b55", "#171b38"]
-  };
-
-  const gradient = ctx.createLinearGradient(0, 0, 800, 1000);
-  const colors = themes[background.value];
-  gradient.addColorStop(0, colors[0]);
-  gradient.addColorStop(1, colors[1]);
-
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 800, 1000);
-
-  const textColor = color.value;
-  const text = textInput.value || "आपका टेक्स्ट";
-  const fontFamily = font.value === "classic"
-    ? "Georgia"
-    : font.value === "bold" ? "sans-serif" : "Arial";
-
-  let fontSize = Number(size.value) * 1.5;
-  ctx.font = `${font.value === "bold" ? "bold " : ""}${fontSize}px ${fontFamily}`;
-
-  const maxWidth = 680;
-  const lines = [];
-
-  text.split("\n").forEach(paragraph => {
-    const words = paragraph.split(" ");
-    let line = "";
-
-    words.forEach(word => {
-      const testLine = line ? line + " " + word : word;
-
-      if (ctx.measureText(testLine).width > maxWidth && line) {
-        lines.push(line);
-        line = word;
-      } else {
-        line = testLine;
-      }
-    });
-
-    lines.push(line);
-  });
-
-  while (lines.length * fontSize * 1.8 > 850 && fontSize > 18) {
-    fontSize -= 2;
-    ctx.font = `${font.value === "bold" ? "bold " : ""}${fontSize}px ${fontFamily}`;
+  function update(){
+    poster.textContent = words.value || "अपनी शायरी यहाँ लिखें";
+    poster.className = bg.value;
+    poster.style.fontFamily = font.value;
+    poster.style.fontSize = size.value + "px";
+    poster.style.color = colour.value;
   }
 
-  ctx.fillStyle = textColor;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
+  [words,bg,font,size,colour].forEach(function(el){
+    el.addEventListener("input",update);
+    el.addEventListener("change",update);
+  });
+  document.getElementById("refresh").addEventListener("click",update);
 
-  const lineHeight = fontSize * 1.8;
-  const startY = 500 - ((lines.length - 1) * lineHeight) / 2;
+  document.getElementById("save").addEventListener("click",function(){
+    try{
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      if(!ctx) throw new Error("Canvas उपलब्ध नहीं है");
 
-  lines.forEach((line, index) => {
-    ctx.fillText(line, 400, startY + index * lineHeight, maxWidth);
+      canvas.width = 800;
+      canvas.height = 1000;
+
+      const themes = {
+        night:["#101a35","#030509"],
+        love:["#8e244d","#30102d"],
+        nature:["#164e35","#0b1821"],
+        sunset:["#f7974e","#241d48"],
+        paper:["#f7e7c6","#d6b98b"]
+      };
+
+      const grad = ctx.createLinearGradient(0,0,800,1000);
+      themes[bg.value].forEach(function(c,i){
+        grad.addColorStop(i, c);
+      });
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,800,1000);
+
+      const isPaper = bg.value === "paper";
+      const textColour = isPaper && colour.value === "#ffffff"
+        ? "#382719" : colour.value;
+
+      const lines = [];
+      const paragraphs = (words.value || "अपनी शायरी यहाँ लिखें").split("\n");
+      let fontSize = Number(size.value) * 1.35;
+
+      function wrapText(){
+        lines.length = 0;
+        ctx.font = fontSize + "px " + font.value;
+        paragraphs.forEach(function(paragraph){
+          if(paragraph === ""){
+            lines.push("");
+            return;
+          }
+          let line = "";
+          for(const char of paragraph){
+            const test = line + char;
+            if(ctx.measureText(test).width > 680 && line){
+              lines.push(line);
+              line = char;
+            }else{
+              line = test;
+            }
+          }
+          lines.push(line);
+        });
+      }
+
+      wrapText();
+      while(lines.length * fontSize * 1.7 > 850 && fontSize > 16){
+        fontSize -= 1;
+        wrapText();
+      }
+
+      ctx.fillStyle = textColour;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = fontSize + "px " + font.value;
+
+      const lineHeight = fontSize * 1.7;
+      const startY = 500 - (lines.length - 1) * lineHeight / 2;
+
+      lines.forEach(function(line,i){
+        ctx.fillText(line,400,startY+i*lineHeight,680);
+      });
+
+      const link = document.createElement("a");
+      link.download = "shayari-poster.png";
+      link.href = canvas.toDataURL("image/png");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }catch(error){
+      alert("इमेज डाउनलोड नहीं हो पाई। कृपया पेज रिफ्रेश करके दोबारा कोशिश करें।");
+      console.error(error);
+    }
   });
 
-  const link = document.createElement("a");
-  link.download = "shayari-poster.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-});
-
-updatePoster();
+  update();
+})();
 </script>
 </body>
 </html>
