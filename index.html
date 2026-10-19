@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mool-AI - AI Smart Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin: 30px 0;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+        }
+        header p {
+            font-size: 1rem;
+            color: #cfd9df;
+            margin-top: 8px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4facfe;
+        }
+        select, input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .output-section {
+            margin-top: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px dashed #4facfe;
+            display: none;
+        }
+        .output-section h3 {
+            color: #00f2fe;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        #resultText {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ Mool-AI</h1>
+        <p>Apna Smart AI Content & Shayari Generator</p>
+    </header>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="topicType">Topic Chunein:</label>
+            <select id="topicType">
+                <option value="shayari">Romantic / Sad Shayari</option>
+                <option value="motivation">Motivational Quotes</option>
+                <option value="joke">Funny Jokes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="keyword">Key-word ya Naam Likhein:</label>
+            <input type="text" id="keyword" placeholder="Jaise: Dosti, Success, Ya apna naam...">
+        </div>
+
+        <button onclick="generateContent()">✨ AI Generate Karein</button>
+
+        <div class="output-section" id="outputSection">
+            <h3>🤖 AI Response:</h3>
+            <p id="resultText">Yahan output dikhega...</p>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            shayari: [
+                "Samandar ki tarah behna sseekho, kinare par baithne se gham nahi mit te!",
+                "Rabb se kya maangu tere vaste, tu sath ho toh har manzil aasaan lagti hai.",
+                "Dil ke armaan aansuon mein beh gaye, hum wafa karke bhi tanha reh gaye."
+            ],
+            motivation: [
+                "Raahein kitni bhi kathin ho, hausla rakhne walon ki kabhi haar nahi hoti!",
+                "Sapne wo nahi jo sote waqt dekhein, sapne wo hain jo sone na dein.",
+                "Mehnat itni khamoshi se karo ki safalta shor macha de."
+            ],
+            joke: [
+                "Teacher: Beta 'Waterloo' kahan hai? Student: Sir, map ke upar! 😂",
+                "Pati: Tum jab gaana gaati ho toh padosi kyun rone lagte hain? Patni: Shayad meri awaz unhe rula deti hai!",
+                "Santa: Yaar, doctor ne subah ki sair karne ko kaha tha, par main toh raat ko sota hoon!"
+            ]
+        };
+
+        function generateContent() {
+            const type = document.getElementById('topicType').value;
+            const keyword = document.getElementById('keyword').value.trim();
+            const outputSection = document.getElementById('outputSection');
+            const resultText = document.getElementById('resultText');
+
+            const list = data[type];
+            const randomIndex = Math.floor(Math.random() * list.length);
+            let selectedText = list[randomIndex];
+
+            if(keyword) {
+                selectedText = `(Special for: ${keyword}) <br><br> "${selectedText}"`;
+            } else {
+                selectedText = `"${selectedText}"`;
+            }
+
+            outputSection.style.display = 'block';
+            resultText.innerHTML = selectedText;
+        }
+    </script>
+
+</body>
+</html>
