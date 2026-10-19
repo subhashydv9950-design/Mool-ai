@@ -23,17 +23,17 @@
         }
         header {
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #00f2fe;
             text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
         }
         header p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #cfd9df;
-            margin-top: 8px;
+            margin-top: 5px;
         }
         .container {
             background: rgba(255, 255, 255, 0.05);
@@ -41,22 +41,22 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
             max-width: 600px;
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: #4facfe;
         }
         select, input {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(0, 0, 0, 0.3);
@@ -66,7 +66,7 @@
         }
         button {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background: linear-gradient(45deg, #4facfe, #00f2fe);
             border: none;
             border-radius: 10px;
@@ -82,22 +82,22 @@
             opacity: 0.9;
         }
         .output-section {
-            margin-top: 25px;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px dashed #4facfe;
+            margin-top: 20px;
+            text-align: center;
             display: none;
         }
-        .output-section h3 {
-            color: #00f2fe;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+        canvas {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 12px;
+            border: 2px dashed #4facfe;
+            margin-bottom: 15px;
+            background: #000;
         }
-        #resultText {
-            font-size: 1.05rem;
-            line-height: 1.6;
+        .download-btn {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             color: #fff;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -105,7 +105,7 @@
 
     <header>
         <h1>⚡ Mool-AI</h1>
-        <p>Apna Smart AI Content & Shayari Generator</p>
+        <p>Shayari & Jokes Image Generator</p>
     </header>
 
     <div class="container">
@@ -119,55 +119,118 @@
         </div>
 
         <div class="form-group">
-            <label for="keyword">Key-word ya Naam Likhein:</label>
-            <input type="text" id="keyword" placeholder="Jaise: Dosti, Success, Ya apna naam...">
+            <label for="keyword">Key-word ya Naam Likhein (Optional):</label>
+            <input type="text" id="keyword" placeholder="Jaise: Dosti, Success, ya apna naam...">
         </div>
 
-        <button onclick="generateContent()">✨ AI Generate Karein</button>
+        <button onclick="generateImage()">✨ Image Generate Karein</button>
 
         <div class="output-section" id="outputSection">
-            <h3>🤖 AI Response:</h3>
-            <p id="resultText">Yahan output dikhega...</p>
+            <canvas id="imageCanvas" width="800" height="800"></canvas>
+            <button class="download-btn" onclick="downloadImage()">📥 Image Download Karein</button>
         </div>
     </div>
 
     <script>
         const data = {
             shayari: [
-                "Samandar ki tarah behna sseekho, kinare par baithne se gham nahi mit te!",
-                "Rabb se kya maangu tere vaste, tu sath ho toh har manzil aasaan lagti hai.",
-                "Dil ke armaan aansuon mein beh gaye, hum wafa karke bhi tanha reh gaye."
+                "Samandar ki tarah behna seekho,\nkinare par baithne se gham nahi mit te!",
+                "Rabb se kya maangu tere vaste,\ntu sath ho toh har manzil aasaan lagti hai.",
+                "Dil ke armaan aansuon mein beh gaye,\nhum wafa karke bhi tanha reh gaye."
             ],
             motivation: [
-                "Raahein kitni bhi kathin ho, hausla rakhne walon ki kabhi haar nahi hoti!",
-                "Sapne wo nahi jo sote waqt dekhein, sapne wo hain jo sone na dein.",
-                "Mehnat itni khamoshi se karo ki safalta shor macha de."
+                "Raahein kitni bhi kathin ho,\nhausla rakhne walon ki kabhi haar nahi hoti!",
+                "Sapne wo nahi jo sote waqt dekhein,\nsapne wo hain jo sone na dein.",
+                "Mehnat itni khamoshi se karo\nki safalta shor macha de."
             ],
             joke: [
-                "Teacher: Beta 'Waterloo' kahan hai? Student: Sir, map ke upar! 😂",
-                "Pati: Tum jab gaana gaati ho toh padosi kyun rone lagte hain? Patni: Shayad meri awaz unhe rula deti hai!",
-                "Santa: Yaar, doctor ne subah ki sair karne ko kaha tha, par main toh raat ko sota hoon!"
+                "Teacher: Beta 'Waterloo' kahan hai?\nStudent: Sir, map ke upar! 😂",
+                "Pati: Tum jab gaana gaati ho toh padosi kyun rone lagte hain?\nPatni: Shayad meri awaz unhe rula deti hai!",
+                "Santa: Yaar, doctor ne subah ki sair karne ko kaha tha,\npar main toh raat ko sota hoon!"
             ]
         };
 
-        function generateContent() {
+        function generateImage() {
             const type = document.getElementById('topicType').value;
             const keyword = document.getElementById('keyword').value.trim();
             const outputSection = document.getElementById('outputSection');
-            const resultText = document.getElementById('resultText');
+            const canvas = document.getElementById('imageCanvas');
+            const ctx = canvas.getContext('2d');
 
             const list = data[type];
             const randomIndex = Math.floor(Math.random() * list.length);
             let selectedText = list[randomIndex];
 
             if(keyword) {
-                selectedText = `(Special for: ${keyword}) <br><br> "${selectedText}"`;
-            } else {
-                selectedText = `"${selectedText}"`;
+                selectedText = `- ${keyword} -\n\n` + selectedText;
             }
 
+            // Background Gradient Design
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#0f2027');
+            gradient.addColorStop(0.5, '#203a43');
+            gradient.addColorStop(1, '#2c5364');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Border Design
+            ctx.strokeStyle = '#00f2fe';
+            ctx.lineWidth = 15;
+            ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+            // Title Header inside Image
+            ctx.fillStyle = '#00f2fe';
+            ctx.font = 'bold 40px Poppins';
+            ctx.textAlign = 'center';
+            ctx.fillText("~ Mool-AI Creation ~", canvas.width / 2, 120);
+
+            // Main Text Styling & Wrapping
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '36px Poppins';
+            
+            wrapText(ctx, selectedText, canvas.width / 2, 280, canvas.width - 160, 55);
+
+            // Footer Branding
+            ctx.fillStyle = '#cfd9df';
+            ctx.font = '24px Poppins';
+            ctx.fillText("Downloaded from Mool-AI Web", canvas.width / 2, canvas.height - 80);
+
             outputSection.style.display = 'block';
-            resultText.innerHTML = selectedText;
+        }
+
+        // Helper function to break long lines inside canvas
+        function wrapText(context, text, x, y, maxWidth, lineHeight) {
+            const lines = text.split('\n');
+            let currentY = y;
+            
+            for (let i = 0; i < lines.length; i++) {
+                const words = lines[i].split(' ');
+                let line = '';
+                
+                for (let n = 0; n < words.length; n++) {
+                    const testLine = line + words[n] + ' ';
+                    const metrics = context.measureText(testLine);
+                    const testWidth = metrics.width;
+                    
+                    if (testWidth > maxWidth && n > 0) {
+                        context.fillText(line, x, currentY);
+                        line = words[n] + ' ';
+                        currentY += lineHeight;
+                    } else {
+                        line = testLine;
+                    }
+                }
+                context.fillText(line, x, currentY);
+                currentY += lineHeight;
+            }
+        }
+
+        function downloadImage() {
+            const canvas = document.getElementById('imageCanvas');
+            const link = document.createElement('a');
+            link.download = 'mool-ai-post.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
         }
     </script>
 
