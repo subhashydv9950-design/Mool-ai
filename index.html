@@ -3,216 +3,387 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shayari Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Rachna Studio</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;padding:16px;
-  background:#10121b;color:#fff;
-  font-family:Arial,sans-serif
+  margin:0;background:#10111b;color:#fff;
+  font-family:Arial,sans-serif;padding:15px
 }
-main{max-width:700px;margin:auto}
-header{text-align:center;padding:12px}
-header h1{color:#ffbd69}
+main{max-width:760px;margin:auto}
+header{text-align:center;padding:15px 0}
+header h1{color:#f9c784;margin-bottom:5px}
+header p{color:#c8c8d8}
 .panel{
-  background:#1d2030;padding:16px;
-  border-radius:14px;margin-bottom:18px
+  background:#1d2030;padding:17px;
+  border-radius:16px;margin-bottom:18px
 }
-label{display:block;margin:14px 0 7px;color:#ffcf91}
-textarea,select,input,button{
-  width:100%;padding:12px;border-radius:8px;
+label{display:block;margin:15px 0 8px;color:#f9c784}
+select,input,textarea,button{
+  width:100%;padding:12px;border-radius:9px;
   font-size:16px
 }
-textarea,select,input{
-  background:#111522;color:white;
-  border:1px solid #50546a
+select,input,textarea{
+  background:#111522;color:white;border:1px solid #44495f
 }
-textarea{min-height:120px;resize:vertical}
+textarea{min-height:130px;resize:vertical;line-height:1.7}
+.options{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px
+}
+.choice{
+  padding:12px 5px;border:1px solid #4c5065;
+  background:#131624;border-radius:10px;text-align:center;
+  cursor:pointer;font-size:14px
+}
+.choice.active{border-color:#ffca85;background:#403044;color:#fff}
 button{
-  border:0;background:#ffbd69;color:#181818;
-  font-weight:bold;margin-top:12px;cursor:pointer
+  margin-top:12px;background:#ffca85;color:#17131b;
+  border:0;font-weight:bold;cursor:pointer
 }
+button.secondary{background:#35394d;color:white}
 #poster{
   width:100%;aspect-ratio:4/5;min-height:300px;
   padding:25px;display:flex;align-items:center;
   justify-content:center;text-align:center;
-  white-space:pre-wrap;overflow:hidden;
-  overflow-wrap:anywhere;line-height:1.6;
-  border:2px solid #ffffff35;border-radius:10px;
-  background:linear-gradient(135deg,#182848,#4b6cb7);
-  color:white
+  white-space:pre-wrap;overflow-wrap:anywhere;
+  border-radius:12px;line-height:1.65;
+  font-size:27px;background:linear-gradient(135deg,#172554,#6d315d);
+  color:white;overflow:hidden
 }
-.night{background:linear-gradient(135deg,#101a35,#030509)!important}
-.love{background:linear-gradient(135deg,#8e244d,#30102d)!important}
-.nature{background:linear-gradient(135deg,#164e35,#0b1821)!important}
-.sunset{background:linear-gradient(135deg,#f7974e,#822d58,#241d48)!important}
-.paper{background:linear-gradient(135deg,#f7e7c6,#d6b98b)!important;color:#382719!important}
-.small{font-size:13px;color:#bbc1d2;text-align:center}
+#poster.night{background:linear-gradient(135deg,#101a35,#030509)}
+#poster.love{background:linear-gradient(135deg,#9c2853,#30102d)}
+#poster.nature{background:linear-gradient(135deg,#164e35,#0b1821)}
+#poster.sunset{background:linear-gradient(135deg,#f7974e,#822d58,#241d48)}
+#poster.paper{background:linear-gradient(135deg,#f7e7c6,#d6b98b);color:#382719}
+#poster.rose{background:linear-gradient(135deg,#b76e79,#f3c8c8,#6c4352)}
+#poster.blue{background:linear-gradient(135deg,#164e83,#10152e)}
+#poster.poetry{font-family:Georgia,serif;font-style:italic}
+#poster.bold{font-weight:bold}
+#poster.simple{font-family:Arial,sans-serif}
+.status{font-size:13px;color:#c8c8d8;line-height:1.6}
+.hidden{display:none}
+@media(max-width:420px){
+  body{padding:9px}
+  .panel{padding:13px}
+  .options{grid-template-columns:repeat(2,1fr)}
+  #poster{padding:18px}
+}
 </style>
 </head>
 
 <body>
 <main>
 <header>
-<h1>✍️ Shayari Studio</h1>
-<p>अपने शब्दों को खूबसूरत पोस्टर में बदलें</p>
+  <h1>✍️ AI रचना स्टूडियो</h1>
+  <p>अपने विचारों को शब्दों और खूबसूरत पोस्टर में बदलें</p>
 </header>
 
 <section class="panel">
-<label for="words">अपनी शायरी या टेक्स्ट लिखें</label>
-<textarea id="words" placeholder="यहाँ लिखें...">कुछ बातें लफ्ज़ों में नहीं आतीं,
-कुछ यादें दिल से नहीं जातीं।</textarea>
+  <label>1. क्या बनवाना है?</label>
+  <div class="options" id="types">
+    <div class="choice active" data-value="शायरी">❤️ शायरी</div>
+    <div class="choice" data-value="कविता">📖 कविता</div>
+    <div class="choice" data-value="ग़ज़ल">🎶 ग़ज़ल</div>
+    <div class="choice" data-value="दोहा">🪶 दोहा</div>
+    <div class="choice" data-value="डायलॉग">🎬 डायलॉग</div>
+    <div class="choice" data-value="कहानी">📚 कहानी</div>
+    <div class="choice" data-value="कोट्स">💭 कोट्स</div>
+    <div class="choice" data-value="लव लेटर">💌 लव लेटर</div>
+    <div class="choice" data-value="कुछ और">✨ कुछ और</div>
+  </div>
+  <input id="customType" class="hidden" placeholder="क्या लिखवाना है? यहाँ लिखें">
 
-<label for="bg">बैकग्राउंड चुनें</label>
-<select id="bg">
-<option value="night">रात</option>
-<option value="love">लव / सैड</option>
-<option value="nature">प्रकृति</option>
-<option value="sunset">सनसेट</option>
-<option value="paper">पेपर</option>
-</select>
+  <label>2. कैसा भाव चाहिए?</label>
+  <select id="mood">
+    <option>सैड / दर्द भरा</option>
+    <option>रोमांटिक / प्यार</option>
+    <option>मोटिवेशनल</option>
+    <option>मजेदार / कॉमेडी</option>
+    <option>रहस्यमय / डरावना</option>
+    <option>दोस्ती</option>
+    <option>देशभक्ति</option>
+    <option>जिंदगी की सच्चाई</option>
+  </select>
 
-<label for="font">फॉन्ट चुनें</label>
-<select id="font">
-<option value="Arial, sans-serif">सिंपल</option>
-<option value="Georgia, serif">क्लासिक</option>
-<option value="sans-serif">बोल्ड</option>
-</select>
+  <label>3. रचना कितनी लंबी हो?</label>
+  <select id="length">
+    <option value="छोटी, 2 से 4 लाइन">छोटी — 2 से 4 लाइन</option>
+    <option value="मध्यम, 4 से 10 लाइन" selected>मध्यम — 4 से 10 लाइन</option>
+    <option value="लंबी, विस्तार से">लंबी — पूरी कविता या कहानी</option>
+  </select>
 
-<label for="size">टेक्स्ट साइज</label>
-<input id="size" type="range" min="18" max="38" value="27">
+  <label>4. पोस्टर किस तरह का हो?</label>
+  <select id="visual">
+    <option value="auto">ऑटोमैटिक — AI चुने</option>
+    <option value="text">सिर्फ टेक्स्ट डिजाइन</option>
+    <option value="photo">फोटो बैकग्राउंड</option>
+  </select>
 
-<label for="colour">टेक्स्ट का रंग</label>
-<select id="colour">
-<option value="#ffffff">सफेद</option>
-<option value="#ffcf91">गोल्डन</option>
-<option value="#ff9eb5">पिंक</option>
-<option value="#bdeaff">हल्का नीला</option>
-<option value="#171717">काला</option>
-</select>
+  <label>5. डिजाइन कैसा हो?</label>
+  <select id="design">
+    <option value="auto">रचना के अनुसार ऑटोमैटिक</option>
+    <option value="classic">क्लासिक / किताब जैसा</option>
+    <option value="modern">मॉडर्न / सोशल मीडिया</option>
+  </select>
 
-<button type="button" id="refresh">डिजाइन अपडेट करें</button>
+  <label>6. बैकग्राउंड चुनें</label>
+  <select id="background">
+    <option value="auto">ऑटोमैटिक चुनाव</option>
+    <option value="night">रात / डार्क</option>
+    <option value="love">लव / सैड</option>
+    <option value="nature">प्रकृति / जंगल</option>
+    <option value="sunset">सनसेट</option>
+    <option value="paper">पेपर / किताब</option>
+    <option value="rose">फूल / गुलाब</option>
+    <option value="blue">आसमान / नीला</option>
+  </select>
+
+  <label>7. टेक्स्ट फॉन्ट</label>
+  <select id="font">
+    <option value="auto">ऑटोमैटिक</option>
+    <option value="simple">सिंपल</option>
+    <option value="poetry">क्लासिक</option>
+    <option value="bold">बोल्ड</option>
+  </select>
+
+  <label>8. रचना का विषय (वैकल्पिक)</label>
+  <textarea id="topic" style="min-height:75px"
+    placeholder="जैसे: एकतरफा प्यार, बारिश में पुरानी यादें..."></textarea>
+
+  <button type="button" id="generate">✨ AI से रचना बनवाएँ</button>
+  <p class="status" id="status">
+    यह डेमो इंटरफेस है। असली AI लेखन के लिए सुरक्षित AI API कनेक्शन जरूरी है।
+  </p>
 </section>
 
 <section class="panel">
-<h3 style="text-align:center">पोस्टर प्रीव्यू</h3>
-<div id="poster" class="night">कुछ बातें लफ्ज़ों में नहीं आतीं,
-कुछ यादें दिल से नहीं जातीं।</div>
-<button type="button" id="save">PNG इमेज डाउनलोड करें</button>
-<p class="small">डाउनलोड करने के लिए बटन दबाएँ।</p>
+  <h3>तुम्हारी रचना</h3>
+  <textarea id="result" placeholder="AI से बनी रचना यहाँ दिखाई देगी..."></textarea>
+  <button type="button" id="copy">📋 टेक्स्ट कॉपी करें</button>
+  <button type="button" class="secondary" id="txt">⬇️ TXT फाइल डाउनलोड करें</button>
+</section>
+
+<section class="panel">
+  <h3 style="text-align:center">पोस्टर प्रीव्यू</h3>
+
+  <div id="poster" class="night">तुम्हारी रचना यहाँ दिखाई देगी</div>
+
+  <label>पोस्टर का टेक्स्ट साइज</label>
+  <input id="fontSize" type="range" min="16" max="38" value="27">
+
+  <label>टेक्स्ट का रंग</label>
+  <select id="textColor">
+    <option value="#ffffff">सफेद</option>
+    <option value="#ffcf91">गोल्डन</option>
+    <option value="#ff9eb5">पिंक</option>
+    <option value="#bdeaff">हल्का नीला</option>
+    <option value="#171717">काला</option>
+  </select>
+
+  <button type="button" id="refresh">पोस्टर अपडेट करें</button>
+  <button type="button" id="png">🖼️ PNG पोस्टर डाउनलोड करें</button>
+  <p class="status">नोट: इस डेमो में बैकग्राउंड ग्रेडिएंट हैं, असली फोटो नहीं।</p>
 </section>
 </main>
 
 <script>
 (function(){
-  const words = document.getElementById("words");
-  const bg = document.getElementById("bg");
-  const font = document.getElementById("font");
-  const size = document.getElementById("size");
-  const colour = document.getElementById("colour");
-  const poster = document.getElementById("poster");
+  let selectedType = "शायरी";
 
-  function update(){
-    poster.textContent = words.value || "अपनी शायरी यहाँ लिखें";
-    poster.className = bg.value;
-    poster.style.fontFamily = font.value;
-    poster.style.fontSize = size.value + "px";
-    poster.style.color = colour.value;
+  document.querySelectorAll("#types .choice").forEach(function(item){
+    item.addEventListener("click",function(){
+      document.querySelectorAll("#types .choice").forEach(function(el){
+        el.classList.remove("active");
+      });
+      item.classList.add("active");
+      selectedType = item.dataset.value;
+      document.getElementById("customType").classList.toggle(
+        "hidden", selectedType !== "कुछ और"
+      );
+    });
+  });
+
+  const $ = id => document.getElementById(id);
+  const result = $("result");
+  const poster = $("poster");
+
+  function updatePoster(){
+    poster.textContent = result.value || "तुम्हारी रचना यहाँ दिखाई देगी";
+
+    let bg = $("background").value;
+    const mood = $("mood").value;
+
+    if(bg === "auto"){
+      if(mood.includes("सैड") || mood.includes("रहस्यमय")) bg = "night";
+      else if(mood.includes("प्यार")) bg = "love";
+      else if(mood.includes("मोटिवेशनल")) bg = "sunset";
+      else bg = "nature";
+    }
+
+    poster.className = bg;
+
+    let font = $("font").value;
+    if(font === "auto"){
+      font = ["शायरी","कविता","ग़ज़ल","दोहा"].includes(selectedType)
+        ? "poetry" : "simple";
+    }
+
+    if(font === "poetry") poster.classList.add("poetry");
+    if(font === "bold") poster.classList.add("bold");
+    if(font === "simple") poster.classList.add("simple");
+
+    poster.style.fontSize = $("fontSize").value + "px";
+    poster.style.color = $("textColor").value;
+
+    if(bg === "paper" && $("textColor").value === "#ffffff"){
+      poster.style.color = "#382719";
+    }
   }
 
-  [words,bg,font,size,colour].forEach(function(el){
-    el.addEventListener("input",update);
-    el.addEventListener("change",update);
+  $("generate").addEventListener("click",function(){
+    if(selectedType === "कुछ और" && !$("customType").value.trim()){
+      $("status").textContent = "कृपया बताएं कि क्या लिखवाना है।";
+      return;
+    }
+
+    const type = selectedType === "कुछ और"
+      ? $("customType").value.trim() : selectedType;
+
+    const prompt = [
+      "मुझे "+type+" लिखकर दो।",
+      "भाव: "+$("mood").value,
+      "लंबाई: "+$("length").value,
+      "विषय: "+($("topic").value.trim() || "अपने अनुसार चुनें"),
+      "भाषा: हिंदी। रचना मौलिक, स्वाभाविक और प्रभावशाली हो।",
+      "केवल रचना दो, अनावश्यक व्याख्या नहीं।"
+    ].join("\n");
+
+    $("status").textContent =
+      "AI अभी कनेक्ट नहीं है। चुने गए विकल्पों को AI सेवा से जोड़ने के लिए सुरक्षित बैकएंड बनाना होगा।";
+    console.log("AI prompt:",prompt);
   });
-  document.getElementById("refresh").addEventListener("click",update);
 
-  document.getElementById("save").addEventListener("click",function(){
+  $("refresh").addEventListener("click",updatePoster);
+  result.addEventListener("input",updatePoster);
+  $("background").addEventListener("change",updatePoster);
+  $("font").addEventListener("change",updatePoster);
+  $("fontSize").addEventListener("input",updatePoster);
+  $("textColor").addEventListener("change",updatePoster);
+  $("mood").addEventListener("change",updatePoster);
+
+  $("copy").addEventListener("click",async function(){
+    if(!result.value.trim()){
+      alert("पहले रचना लिखें या AI से बनवाएँ।");
+      return;
+    }
     try{
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      if(!ctx) throw new Error("Canvas उपलब्ध नहीं है");
-
-      canvas.width = 800;
-      canvas.height = 1000;
-
-      const themes = {
-        night:["#101a35","#030509"],
-        love:["#8e244d","#30102d"],
-        nature:["#164e35","#0b1821"],
-        sunset:["#f7974e","#241d48"],
-        paper:["#f7e7c6","#d6b98b"]
-      };
-
-      const grad = ctx.createLinearGradient(0,0,800,1000);
-      themes[bg.value].forEach(function(c,i){
-        grad.addColorStop(i, c);
-      });
-      ctx.fillStyle = grad;
-      ctx.fillRect(0,0,800,1000);
-
-      const isPaper = bg.value === "paper";
-      const textColour = isPaper && colour.value === "#ffffff"
-        ? "#382719" : colour.value;
-
-      const lines = [];
-      const paragraphs = (words.value || "अपनी शायरी यहाँ लिखें").split("\n");
-      let fontSize = Number(size.value) * 1.35;
-
-      function wrapText(){
-        lines.length = 0;
-        ctx.font = fontSize + "px " + font.value;
-        paragraphs.forEach(function(paragraph){
-          if(paragraph === ""){
-            lines.push("");
-            return;
-          }
-          let line = "";
-          for(const char of paragraph){
-            const test = line + char;
-            if(ctx.measureText(test).width > 680 && line){
-              lines.push(line);
-              line = char;
-            }else{
-              line = test;
-            }
-          }
-          lines.push(line);
-        });
-      }
-
-      wrapText();
-      while(lines.length * fontSize * 1.7 > 850 && fontSize > 16){
-        fontSize -= 1;
-        wrapText();
-      }
-
-      ctx.fillStyle = textColour;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.font = fontSize + "px " + font.value;
-
-      const lineHeight = fontSize * 1.7;
-      const startY = 500 - (lines.length - 1) * lineHeight / 2;
-
-      lines.forEach(function(line,i){
-        ctx.fillText(line,400,startY+i*lineHeight,680);
-      });
-
-      const link = document.createElement("a");
-      link.download = "shayari-poster.png";
-      link.href = canvas.toDataURL("image/png");
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }catch(error){
-      alert("इमेज डाउनलोड नहीं हो पाई। कृपया पेज रिफ्रेश करके दोबारा कोशिश करें।");
-      console.error(error);
+      await navigator.clipboard.writeText(result.value);
+      alert("टेक्स्ट कॉपी हो गया!");
+    }catch(e){
+      result.focus();
+      result.select();
+      alert("टेक्स्ट चुना गया है। अब Copy दबाएँ।");
     }
   });
 
-  update();
+  $("txt").addEventListener("click",function(){
+    if(!result.value.trim()){
+      alert("पहले रचना लिखें या AI से बनवाएँ।");
+      return;
+    }
+    const blob = new Blob(["\uFEFF"+result.value],{
+      type:"text/plain;charset=utf-8"
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "meri-rachna.txt";
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+
+  $("png").addEventListener("click",function(){
+    const text = result.value.trim();
+    if(!text){
+      alert("पहले रचना तैयार करें।");
+      return;
+    }
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = 800;
+    canvas.height = 1000;
+
+    const backgrounds = {
+      night:["#101a35","#030509"],
+      love:["#9c2853","#30102d"],
+      nature:["#164e35","#0b1821"],
+      sunset:["#f7974e","#241d48"],
+      paper:["#f7e7c6","#d6b98b"],
+      rose:["#b76e79","#6c4352"],
+      blue:["#164e83","#10152e"]
+    };
+
+    const bg = backgrounds[$("background").value] ||
+      backgrounds.night;
+    const gradient = ctx.createLinearGradient(0,0,800,1000);
+    gradient.addColorStop(0,bg[0]);
+    gradient.addColorStop(1,bg[1]);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0,0,800,1000);
+
+    let fontSize = Number($("fontSize").value)*1.35;
+    const fontValue = $("font").value;
+    const family = fontValue === "poetry" ? "Georgia" : "Arial";
+    const paragraphs = text.split("\n");
+    let lines = [];
+
+    function wrap(){
+      lines = [];
+      ctx.font = fontSize+"px "+family;
+      paragraphs.forEach(function(p){
+        if(p === ""){lines.push("");return;}
+        let line = "";
+        for(const ch of p){
+          if(ctx.measureText(line+ch).width > 680 && line){
+            lines.push(line);
+            line = ch;
+          }else line += ch;
+        }
+        lines.push(line);
+      });
+    }
+
+    wrap();
+    while(lines.length*fontSize*1.7 > 850 && fontSize > 12){
+      fontSize--;
+      wrap();
+    }
+
+    ctx.font = fontSize+"px "+family;
+    ctx.fillStyle = $("textColor").value;
+    if($("background").value === "paper" &&
+       $("textColor").value === "#ffffff"){
+      ctx.fillStyle = "#382719";
+    }
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const lineHeight = fontSize*1.7;
+    const startY = 500-(lines.length-1)*lineHeight/2;
+    lines.forEach((line,i)=>{
+      ctx.fillText(line,400,startY+i*lineHeight,680);
+    });
+
+    const a = document.createElement("a");
+    a.download = "rachna-poster.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  });
+
+  updatePoster();
 })();
 </script>
 </body>
