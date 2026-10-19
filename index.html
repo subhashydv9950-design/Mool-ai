@@ -1,351 +1,390 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI रचना स्टूडियो - Poster Generator</title>
+<title>AI Rachna Studio</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  padding: 15px;
-  font-family: Arial, sans-serif;
-  background: #0b0f19;
-  color: #fff;
+*{box-sizing:border-box}
+body{
+  margin:0;background:#10111b;color:#fff;
+  font-family:Arial,sans-serif;padding:15px
 }
-
-.container {
-  max-width: 650px;
-  margin: auto;
+main{max-width:760px;margin:auto}
+header{text-align:center;padding:15px 0}
+header h1{color:#f9c784;margin-bottom:5px}
+header p{color:#c8c8d8}
+.panel{
+  background:#1d2030;padding:17px;
+  border-radius:16px;margin-bottom:18px
 }
-
-header {
-  text-align: center;
-  margin-bottom: 20px;
+label{display:block;margin:15px 0 8px;color:#f9c784}
+select,input,textarea,button{
+  width:100%;padding:12px;border-radius:9px;
+  font-size:16px
 }
-
-header h1 {
-  color: #ffbd69;
-  font-size: 1.8rem;
-  margin-bottom: 5px;
+select,input,textarea{
+  background:#111522;color:white;border:1px solid #44495f
 }
-
-header p {
-  color: #94a3b8;
-  font-size: 0.85rem;
+textarea{min-height:130px;resize:vertical;line-height:1.7}
+.options{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px
 }
-
-.panel {
-  background: #131827;
-  border: 1px solid #1e293b;
-  padding: 18px;
-  border-radius: 16px;
-  margin-bottom: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+.choice{
+  padding:12px 5px;border:1px solid #4c5065;
+  background:#131624;border-radius:10px;text-align:center;
+  cursor:pointer;font-size:14px
 }
-
-label {
-  display: block;
-  margin: 12px 0 6px;
-  color: #cbd5e1;
-  font-size: 0.9rem;
-  font-weight: 600;
+.choice.active{border-color:#ffca85;background:#403044;color:#fff}
+button{
+  margin-top:12px;background:#ffca85;color:#17131b;
+  border:0;font-weight:bold;cursor:pointer
 }
-
-/* Category Grid Buttons */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 12px;
+button.secondary{background:#35394d;color:white}
+#poster{
+  width:100%;aspect-ratio:4/5;min-height:300px;
+  padding:25px;display:flex;align-items:center;
+  justify-content:center;text-align:center;
+  white-space:pre-wrap;overflow-wrap:anywhere;
+  border-radius:12px;line-height:1.65;
+  font-size:27px;background:linear-gradient(135deg,#172554,#6d315d);
+  color:white;overflow:hidden
 }
-
-.cat-btn {
-  background: #1e293b;
-  border: 1px solid #334155;
-  color: #94a3b8;
-  padding: 10px 6px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  text-align: center;
-  transition: 0.2s;
-}
-
-.cat-btn.active {
-  background: linear-gradient(135deg, #492b55, #8e244d);
-  border-color: #ffbd69;
-  color: #fff;
-  font-weight: bold;
-}
-
-select, input, textarea {
-  width: 100%;
-  padding: 11px;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background: #0b0f19;
-  color: white;
-  font-size: 0.95rem;
-  outline: none;
-}
-
-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
-.action-btn {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #ffbd69, #ff9e42);
-  color: #111;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 15px;
-  box-shadow: 0 4px 15px rgba(255, 189, 105, 0.3);
-}
-
-.action-btn:hover {
-  opacity: 0.9;
-}
-
-.secondary-btn {
-  background: #1e293b;
-  color: #cbd5e1;
-  border: 1px solid #334155;
-  margin-top: 8px;
-}
-
-/* Poster Preview Box */
-#poster {
-  width: 100%;
-  min-height: 350px;
-  aspect-ratio: 4 / 5;
-  padding: 30px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  font-size: 24px;
-  line-height: 1.6;
-  background: linear-gradient(135deg, #101a35, #030509);
-  color: white;
-  border: 2px solid rgba(255,255,255,0.1);
-  margin-top: 10px;
-}
-
-#poster.love { background: linear-gradient(135deg, #8e244d, #30102d); }
-#poster.nature { background: linear-gradient(135deg, #164e35, #0b1821); }
-#poster.sunset { background: linear-gradient(135deg, #f7974e, #241d48); }
-#poster.night { background: linear-gradient(135deg, #101a35, #030509); }
-#poster.paper { background: linear-gradient(135deg, #f7e7c6, #d6b98b); color: #382719; }
-
-.note {
-  color: #64748b;
-  font-size: 0.75rem;
-  text-align: center;
-  margin-top: 8px;
-}
-
-@media(max-width: 480px) {
-  .category-grid { grid-template-columns: repeat(2, 1fr); }
+#poster.night{background:linear-gradient(135deg,#101a35,#030509)}
+#poster.love{background:linear-gradient(135deg,#9c2853,#30102d)}
+#poster.nature{background:linear-gradient(135deg,#164e35,#0b1821)}
+#poster.sunset{background:linear-gradient(135deg,#f7974e,#822d58,#241d48)}
+#poster.paper{background:linear-gradient(135deg,#f7e7c6,#d6b98b);color:#382719}
+#poster.rose{background:linear-gradient(135deg,#b76e79,#f3c8c8,#6c4352)}
+#poster.blue{background:linear-gradient(135deg,#164e83,#10152e)}
+#poster.poetry{font-family:Georgia,serif;font-style:italic}
+#poster.bold{font-weight:bold}
+#poster.simple{font-family:Arial,sans-serif}
+.status{font-size:13px;color:#c8c8d8;line-height:1.6}
+.hidden{display:none}
+@media(max-width:420px){
+  body{padding:9px}
+  .panel{padding:13px}
+  .options{grid-template-columns:repeat(2,1fr)}
+  #poster{padding:18px}
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-
+<main>
 <header>
   <h1>✍️ AI रचना स्टूडियो</h1>
   <p>अपने विचारों को शब्दों और खूबसूरत पोस्टर में बदलें</p>
 </header>
 
-<!-- Panel 1: Controls & AI Generator -->
-<div class="panel">
+<section class="panel">
   <label>1. क्या बनवाना है?</label>
-  <div class="category-grid" id="catGrid">
-    <div class="cat-btn active" data-cat="shayari">❤️ शायरी</div>
-    <div class="cat-btn" data-cat="kavita">📜 कविता</div>
-    <div class="cat-btn" data-cat="ghazal">🎶 गज़ल</div>
-    <div class="cat-btn" data-cat="doha">📖 दोहा</div>
-    <div class="cat-btn" data-cat="lines">⚡ दो लाइनें</div>
-    <div class="cat-btn" data-cat="story">📖 कहानी</div>
-    <div class="cat-btn" data-cat="quote">💬 कोट्स</div>
-    <div class="cat-btn" data-cat="loveletter">💌 लव लेटर</div>
-    <div class="cat-btn" data-cat="other">✨ कुछ और</div>
+  <div class="options" id="types">
+    <div class="choice active" data-value="शायरी">❤️ शायरी</div>
+    <div class="choice" data-value="कविता">📖 कविता</div>
+    <div class="choice" data-value="ग़ज़ल">🎶 ग़ज़ल</div>
+    <div class="choice" data-value="दोहा">🪶 दोहा</div>
+    <div class="choice" data-value="डायलॉग">🎬 डायलॉग</div>
+    <div class="choice" data-value="कहानी">📚 कहानी</div>
+    <div class="choice" data-value="कोट्स">💭 कोट्स</div>
+    <div class="choice" data-value="लव लेटर">💌 लव लेटर</div>
+    <div class="choice" data-value="कुछ और">✨ कुछ और</div>
   </div>
+  <input id="customType" class="hidden" placeholder="क्या लिखवाना है? यहाँ लिखें">
 
-  <label for="mood">2. कैसा भाव चाहिए?</label>
+  <label>2. कैसा भाव चाहिए?</label>
   <select id="mood">
-    <option value="sad">सैड / दर्द भरा</option>
-    <option value="romantic">रोमांटिक / प्यार</option>
-    <option value="motivation">मोटिवेशनल / जोश</option>
-    <option value="attitude">एटिट्यूड / अकड़</option>
+    <option>सैड / दर्द भरा</option>
+    <option>रोमांटिक / प्यार</option>
+    <option>मोटिवेशनल</option>
+    <option>मजेदार / कॉमेडी</option>
+    <option>रहस्यमय / डरावना</option>
+    <option>दोस्ती</option>
+    <option>देशभक्ति</option>
+    <option>जिंदगी की सच्चाई</option>
   </select>
 
-  <label for="bgTheme">3. बैकग्राउंड डिजाइन चुनें</label>
-  <select id="bgTheme">
-    <option value="night">🌌 रात का आसमान</option>
-    <option value="love">❤️ लव / सैड</option>
-    <option value="sunset">🌅 सनसेट</option>
-    <option value="nature">🌿 प्रकृति</option>
-    <option value="paper">📜 पेपर स्टाइल</option>
+  <label>3. रचना कितनी लंबी हो?</label>
+  <select id="length">
+    <option value="छोटी, 2 से 4 लाइन">छोटी — 2 से 4 लाइन</option>
+    <option value="मध्यम, 4 से 10 लाइन" selected>मध्यम — 4 से 10 लाइन</option>
+    <option value="लंबी, विस्तार से">लंबी — पूरी कविता या कहानी</option>
   </select>
 
-  <label for="customPrompt">4. रचना का विषय (वैकल्पिक)</label>
-  <textarea id="customPrompt" placeholder="जैसे: एकतरफा प्यार, बारिश में पुरानी यादें..."></textarea>
+  <label>4. पोस्टर किस तरह का हो?</label>
+  <select id="visual">
+    <option value="auto">ऑटोमैटिक — AI चुने</option>
+    <option value="text">सिर्फ टेक्स्ट डिजाइन</option>
+    <option value="photo">फोटो बैकग्राउंड</option>
+  </select>
 
-  <button class="action-btn" id="generateAi">✨ AI से रचना बनवाएं</button>
-  <p class="note">यह डेमो वर्जन है। AI से बेहतरीन शायरी तुरंत जनरेट होगी।</p>
-</div>
+  <label>5. डिजाइन कैसा हो?</label>
+  <select id="design">
+    <option value="auto">रचना के अनुसार ऑटोमैटिक</option>
+    <option value="classic">क्लासिक / किताब जैसा</option>
+    <option value="modern">मॉडर्न / सोशल मीडिया</option>
+  </select>
 
-<!-- Panel 2: Output Text & Copy -->
-<div class="panel">
-  <label for="resultText">तुम्हारी रचना</label>
-  <textarea id="resultText">तलाश करोगे तो कोई मिल ही जाएगा,
-मगर हमारी तरह कौन तुम्हें चाहेगा।</textarea>
+  <label>6. बैकग्राउंड चुनें</label>
+  <select id="background">
+    <option value="auto">ऑटोमैटिक चुनाव</option>
+    <option value="night">रात / डार्क</option>
+    <option value="love">लव / सैड</option>
+    <option value="nature">प्रकृति / जंगल</option>
+    <option value="sunset">सनसेट</option>
+    <option value="paper">पेपर / किताब</option>
+    <option value="rose">फूल / गुलाब</option>
+    <option value="blue">आसमान / नीला</option>
+  </select>
 
-  <button class="action-btn secondary-btn" id="copyText">📋 टेक्स्ट कॉपी करें</button>
-</div>
+  <label>7. टेक्स्ट फॉन्ट</label>
+  <select id="font">
+    <option value="auto">ऑटोमैटिक</option>
+    <option value="simple">सिंपल</option>
+    <option value="poetry">क्लासिक</option>
+    <option value="bold">बोल्ड</option>
+  </select>
 
-<!-- Panel 3: Poster Preview & Download -->
-<div class="panel">
-  <h3 style="text-align:center; color:#ffbd69; font-size: 1.1rem; margin-bottom: 12px;">पोस्टर प्रीव्यू</h3>
+  <label>8. रचना का विषय (वैकल्पिक)</label>
+  <textarea id="topic" style="min-height:75px"
+    placeholder="जैसे: एकतरफा प्यार, बारिश में पुरानी यादें..."></textarea>
 
-  <div id="poster" class="night">तलाश करोगे तो कोई मिल ही जाएगा,
-मगर हमारी तरह कौन तुम्हें चाहेगा।</div>
+  <button type="button" id="generate">✨ AI से रचना बनवाएँ</button>
+  <p class="status" id="status">
+    यह डेमो इंटरफेस है। असली AI लेखन के लिए सुरक्षित AI API कनेक्शन जरूरी है।
+  </p>
+</section>
 
-  <button class="action-btn" id="downloadPoster" style="background: linear-gradient(135deg, #10b981, #059669); color:#fff;">⬇️ PNG इमेज डाउनलोड करें</button>
-</div>
+<section class="panel">
+  <h3>तुम्हारी रचना</h3>
+  <textarea id="result" placeholder="AI से बनी रचना यहाँ दिखाई देगी..."></textarea>
+  <button type="button" id="copy">📋 टेक्स्ट कॉपी करें</button>
+  <button type="button" class="secondary" id="txt">⬇️ TXT फाइल डाउनलोड करें</button>
+</section>
 
-</div>
+<section class="panel">
+  <h3 style="text-align:center">पोस्टर प्रीव्यू</h3>
+
+  <div id="poster" class="night">तुम्हारी रचना यहाँ दिखाई देगी</div>
+
+  <label>पोस्टर का टेक्स्ट साइज</label>
+  <input id="fontSize" type="range" min="16" max="38" value="27">
+
+  <label>टेक्स्ट का रंग</label>
+  <select id="textColor">
+    <option value="#ffffff">सफेद</option>
+    <option value="#ffcf91">गोल्डन</option>
+    <option value="#ff9eb5">पिंक</option>
+    <option value="#bdeaff">हल्का नीला</option>
+    <option value="#171717">काला</option>
+  </select>
+
+  <button type="button" id="refresh">पोस्टर अपडेट करें</button>
+  <button type="button" id="png">🖼️ PNG पोस्टर डाउनलोड करें</button>
+  <p class="status">नोट: इस डेमो में बैकग्राउंड ग्रेडिएंट हैं, असली फोटो नहीं।</p>
+</section>
+</main>
 
 <script>
-let selectedCategory = "shayari";
-const catButtons = document.querySelectorAll(".cat-btn");
-const resultText = document.getElementById("resultText");
-const poster = document.getElementById("poster");
-const moodSelect = document.getElementById("mood");
-const bgTheme = document.getElementById("bgTheme");
-const customPrompt = document.getElementById("customPrompt");
+(function(){
+  let selectedType = "शायरी";
 
-// Category selection handling
-catButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    catButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    selectedCategory = btn.getAttribute("data-cat");
+  document.querySelectorAll("#types .choice").forEach(function(item){
+    item.addEventListener("click",function(){
+      document.querySelectorAll("#types .choice").forEach(function(el){
+        el.classList.remove("active");
+      });
+      item.classList.add("active");
+      selectedType = item.dataset.value;
+      document.getElementById("customType").classList.toggle(
+        "hidden", selectedType !== "कुछ और"
+      );
+    });
   });
-});
 
-// Live update poster when text or background changes
-function updatePosterDisplay() {
-  poster.textContent = resultText.value || "यहाँ आपका टेक्स्ट दिखेगा";
-  poster.className = bgTheme.value;
-}
+  const $ = id => document.getElementById(id);
+  const result = $("result");
+  const poster = $("poster");
 
-resultText.addEventListener("input", updatePosterDisplay);
-bgTheme.addEventListener("change", updatePosterDisplay);
+  function updatePoster(){
+    poster.textContent = result.value || "तुम्हारी रचना यहाँ दिखाई देगी";
 
-// Free Smart AI Generation based on category and mood
-document.getElementById("generateAi").addEventListener("click", () => {
-  const btn = document.getElementById("generateAi");
-  btn.textContent = "⏳ AI रचना लिख रहा है...";
+    let bg = $("background").value;
+    const mood = $("mood").value;
 
-  setTimeout(() => {
-    const database = {
-      sad: "खामोशियां ही बेहतर हैं, शब्दों से लोग रूठते बहुत हैं,\nयहाँ दिल से चाहने वालों को, दर्द ही मिलता है बहुत।",
-      romantic: "तेरी आँखों के जादू से खुद को बचाऊँ कैसे,\nतू सामने हो तो दुनिया को भूल जाऊँ कैसे।",
-      motivation: "ख्वाबों के परिंदों को उड़ान देनी है,\nमुश्किलों से लड़कर अपनी पहचान देनी है।",
-      attitude: "हम आग है जो दिल mein nahi,\nsidhe dimaag mein utarte hain!"
+    if(bg === "auto"){
+      if(mood.includes("सैड") || mood.includes("रहस्यमय")) bg = "night";
+      else if(mood.includes("प्यार")) bg = "love";
+      else if(mood.includes("मोटिवेशनल")) bg = "sunset";
+      else bg = "nature";
+    }
+
+    poster.className = bg;
+
+    let font = $("font").value;
+    if(font === "auto"){
+      font = ["शायरी","कविता","ग़ज़ल","दोहा"].includes(selectedType)
+        ? "poetry" : "simple";
+    }
+
+    if(font === "poetry") poster.classList.add("poetry");
+    if(font === "bold") poster.classList.add("bold");
+    if(font === "simple") poster.classList.add("simple");
+
+    poster.style.fontSize = $("fontSize").value + "px";
+    poster.style.color = $("textColor").value;
+
+    if(bg === "paper" && $("textColor").value === "#ffffff"){
+      poster.style.color = "#382719";
+    }
+  }
+
+  $("generate").addEventListener("click",function(){
+    if(selectedType === "कुछ और" && !$("customType").value.trim()){
+      $("status").textContent = "कृपया बताएं कि क्या लिखवाना है।";
+      return;
+    }
+
+    const type = selectedType === "कुछ और"
+      ? $("customType").value.trim() : selectedType;
+
+    const prompt = [
+      "मुझे "+type+" लिखकर दो।",
+      "भाव: "+$("mood").value,
+      "लंबाई: "+$("length").value,
+      "विषय: "+($("topic").value.trim() || "अपने अनुसार चुनें"),
+      "भाषा: हिंदी। रचना मौलिक, स्वाभाविक और प्रभावशाली हो।",
+      "केवल रचना दो, अनावश्यक व्याख्या नहीं।"
+    ].join("\n");
+
+    $("status").textContent =
+      "AI अभी कनेक्ट नहीं है। चुने गए विकल्पों को AI सेवा से जोड़ने के लिए सुरक्षित बैकएंड बनाना होगा।";
+    console.log("AI prompt:",prompt);
+  });
+
+  $("refresh").addEventListener("click",updatePoster);
+  result.addEventListener("input",updatePoster);
+  $("background").addEventListener("change",updatePoster);
+  $("font").addEventListener("change",updatePoster);
+  $("fontSize").addEventListener("input",updatePoster);
+  $("textColor").addEventListener("change",updatePoster);
+  $("mood").addEventListener("change",updatePoster);
+
+  $("copy").addEventListener("click",async function(){
+    if(!result.value.trim()){
+      alert("पहले रचना लिखें या AI से बनवाएँ।");
+      return;
+    }
+    try{
+      await navigator.clipboard.writeText(result.value);
+      alert("टेक्स्ट कॉपी हो गया!");
+    }catch(e){
+      result.focus();
+      result.select();
+      alert("टेक्स्ट चुना गया है। अब Copy दबाएँ।");
+    }
+  });
+
+  $("txt").addEventListener("click",function(){
+    if(!result.value.trim()){
+      alert("पहले रचना लिखें या AI से बनवाएँ।");
+      return;
+    }
+    const blob = new Blob(["\uFEFF"+result.value],{
+      type:"text/plain;charset=utf-8"
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "meri-rachna.txt";
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+
+  $("png").addEventListener("click",function(){
+    const text = result.value.trim();
+    if(!text){
+      alert("पहले रचना तैयार करें।");
+      return;
+    }
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = 800;
+    canvas.height = 1000;
+
+    const backgrounds = {
+      night:["#101a35","#030509"],
+      love:["#9c2853","#30102d"],
+      nature:["#164e35","#0b1821"],
+      sunset:["#f7974e","#241d48"],
+      paper:["#f7e7c6","#d6b98b"],
+      rose:["#b76e79","#6c4352"],
+      blue:["#164e83","#10152e"]
     };
 
-    const mood = moodSelect.value;
-    resultText.value = database[mood] || database.romantic;
-    updatePosterDisplay();
-    btn.textContent = "✨ AI से रचना बनवाएं";
-  }, 700);
-});
+    const bg = backgrounds[$("background").value] ||
+      backgrounds.night;
+    const gradient = ctx.createLinearGradient(0,0,800,1000);
+    gradient.addColorStop(0,bg[0]);
+    gradient.addColorStop(1,bg[1]);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0,0,800,1000);
 
-// Copy text feature
-document.getElementById("copyText").addEventListener("click", () => {
-  resultText.select();
-  navigator.clipboard.writeText(resultText.value);
-  alert("टेक्स्ट कॉपी हो गया है!");
-});
+    let fontSize = Number($("fontSize").value)*1.35;
+    const fontValue = $("font").value;
+    const family = fontValue === "poetry" ? "Georgia" : "Arial";
+    const paragraphs = text.split("\n");
+    let lines = [];
 
-// Canvas Download feature
-document.getElementById("downloadPoster").addEventListener("click", () => {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = 800;
-  canvas.height = 1000;
-
-  const themes = {
-    night: ["#101a35", "#030509"],
-    love: ["#8e244d", "#30102d"],
-    sunset: ["#f7974e", "#241d48"],
-    nature: ["#164e35", "#0b1821"],
-    paper: ["#f7e7c6", "#d6b98b"]
-  };
-
-  const gradient = ctx.createLinearGradient(0, 0, 800, 1000);
-  const colors = themes[bgTheme.value] || themes.night;
-  gradient.addColorStop(0, colors[0]);
-  gradient.addColorStop(1, colors[1]);
-
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 800, 1000);
-
-  ctx.fillStyle = bgTheme.value === "paper" ? "#382719" : "#ffffff";
-  ctx.font = "bold 38px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-
-  const text = resultText.value || "आपका टेक्स्ट";
-  const maxWidth = 680;
-  const lines = [];
-
-  text.split("\n").forEach(paragraph => {
-    const words = paragraph.split(" ");
-    let line = "";
-    words.forEach(word => {
-      const testLine = line ? line + " " + word : word;
-      if (ctx.measureText(testLine).width > maxWidth && line) {
+    function wrap(){
+      lines = [];
+      ctx.font = fontSize+"px "+family;
+      paragraphs.forEach(function(p){
+        if(p === ""){lines.push("");return;}
+        let line = "";
+        for(const ch of p){
+          if(ctx.measureText(line+ch).width > 680 && line){
+            lines.push(line);
+            line = ch;
+          }else line += ch;
+        }
         lines.push(line);
-        line = word;
-      } else {
-        line = testLine;
-      }
+      });
+    }
+
+    wrap();
+    while(lines.length*fontSize*1.7 > 850 && fontSize > 12){
+      fontSize--;
+      wrap();
+    }
+
+    ctx.font = fontSize+"px "+family;
+    ctx.fillStyle = $("textColor").value;
+    if($("background").value === "paper" &&
+       $("textColor").value === "#ffffff"){
+      ctx.fillStyle = "#382719";
+    }
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const lineHeight = fontSize*1.7;
+    const startY = 500-(lines.length-1)*lineHeight/2;
+    lines.forEach((line,i)=>{
+      ctx.fillText(line,400,startY+i*lineHeight,680);
     });
-    lines.push(line);
+
+    const a = document.createElement("a");
+    a.download = "rachna-poster.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
   });
 
-  const lineHeight = 60;
-  const startY = 500 - ((lines.length - 1) * lineHeight) / 2;
-
-  lines.forEach((line, index) => {
-    ctx.fillText(line, 400, startY + index * lineHeight, maxWidth);
-  });
-
-  const link = document.createElement("a");
-  link.download = "ai-rachna-poster.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-});
-
-updatePosterDisplay();
+  updatePoster();
+})();
 </script>
 </body>
 </html>
