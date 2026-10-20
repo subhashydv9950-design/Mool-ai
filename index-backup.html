@@ -5,407 +5,326 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Rachna Studio</title>
-
 <style>
+:root {
+  --bg:#06121b;
+  --panel:#0d202c;
+  --gold:#f5bd68;
+  --text:#f7f1e7;
+  --muted:#bdcbd4;
+  --border:#314958;
+}
 *{box-sizing:border-box}
 body{
-  margin:0;background:#10111b;color:#fff;
-  font-family:Arial,sans-serif;padding:15px
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Georgia,"Noto Sans Devanagari",serif;
 }
-main{max-width:760px;margin:auto}
-header{text-align:center;padding:15px 0}
-header h1{color:#f9c784;margin-bottom:5px}
-header p{color:#c8c8d8}
-.panel{
-  background:#1d2030;padding:17px;
-  border-radius:16px;margin-bottom:18px
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;padding:16px 5%;border-bottom:1px solid var(--border);
+  background:#08151f;position:sticky;top:0;z-index:5;
 }
-label{display:block;margin:15px 0 8px;color:#f9c784}
-select,input,textarea,button{
-  width:100%;padding:12px;border-radius:9px;
-  font-size:16px
+.brand{font-size:clamp(19px,3vw,28px);font-weight:bold}
+.brand span{color:var(--gold)}
+.tagline{font-size:12px;color:var(--muted);margin-top:5px}
+select,button,textarea{font:inherit}
+select{
+  background:var(--panel);color:var(--text);border:1px solid var(--border);
+  padding:10px;border-radius:10px;max-width:100%;
 }
-select,input,textarea{
-  background:#111522;color:white;border:1px solid #44495f
+.hero{
+  padding:45px 5%;min-height:300px;
+  background:linear-gradient(100deg,#07131d 5%,#102938 65%,#33251b);
+  border-bottom:2px solid #b98546;
 }
-textarea{min-height:130px;resize:vertical;line-height:1.7}
-.options{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px
+.eyebrow{color:var(--gold);letter-spacing:1px}
+h1{font-size:clamp(32px,6vw,56px);margin:12px 0}
+h1 span{color:var(--gold)}
+.hero p{max-width:650px;line-height:1.8;color:var(--muted)}
+main{max-width:1200px;margin:auto;padding:30px 5%}
+h2{font-size:clamp(23px,4vw,32px);margin-bottom:8px}
+.sub{color:var(--muted);line-height:1.7}
+.cards{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;margin:25px 0;
 }
-.choice{
-  padding:12px 5px;border:1px solid #4c5065;
-  background:#131624;border-radius:10px;text-align:center;
-  cursor:pointer;font-size:14px
+.card{
+  min-height:120px;padding:17px 12px;text-align:left;
+  color:var(--text);background:linear-gradient(145deg,#112b3a,#0a1822);
+  border:1px solid var(--border);border-radius:15px;cursor:pointer;
+  transition:.2s;
 }
-.choice.active{border-color:#ffca85;background:#403044;color:#fff}
-button{
-  margin-top:12px;background:#ffca85;color:#17131b;
-  border:0;font-weight:bold;cursor:pointer
+.card:hover,.card.active{
+  border-color:var(--gold);transform:translateY(-2px);
+  background:linear-gradient(145deg,#263326,#122330);
 }
-button.secondary{background:#35394d;color:white}
-#poster{
-  width:100%;aspect-ratio:4/5;min-height:300px;
-  padding:25px;display:flex;align-items:center;
-  justify-content:center;text-align:center;
-  white-space:pre-wrap;overflow-wrap:anywhere;
-  border-radius:12px;line-height:1.65;
-  font-size:27px;background:linear-gradient(135deg,#172554,#6d315d);
-  color:white;overflow:hidden
+.emoji{font-size:26px;display:block;margin-bottom:10px}
+.card strong{display:block;font-size:16px;margin-bottom:6px}
+.card small{color:var(--muted);line-height:1.5}
+.idea{
+  border:1px solid #a47745;border-radius:18px;padding:22px;
+  background:linear-gradient(135deg,#102330,#0a1720);
 }
-#poster.night{background:linear-gradient(135deg,#101a35,#030509)}
-#poster.love{background:linear-gradient(135deg,#9c2853,#30102d)}
-#poster.nature{background:linear-gradient(135deg,#164e35,#0b1821)}
-#poster.sunset{background:linear-gradient(135deg,#f7974e,#822d58,#241d48)}
-#poster.paper{background:linear-gradient(135deg,#f7e7c6,#d6b98b);color:#382719}
-#poster.rose{background:linear-gradient(135deg,#b76e79,#f3c8c8,#6c4352)}
-#poster.blue{background:linear-gradient(135deg,#164e83,#10152e)}
-#poster.poetry{font-family:Georgia,serif;font-style:italic}
-#poster.bold{font-weight:bold}
-#poster.simple{font-family:Arial,sans-serif}
-.status{font-size:13px;color:#c8c8d8;line-height:1.6}
-.hidden{display:none}
-@media(max-width:420px){
-  body{padding:9px}
-  .panel{padding:13px}
-  .options{grid-template-columns:repeat(2,1fr)}
-  #poster{padding:18px}
+.idea h2{color:var(--gold);margin-top:0}
+textarea{
+  width:100%;min-height:115px;resize:vertical;padding:14px;
+  border-radius:12px;border:1px solid #496172;
+  background:#07151f;color:white;line-height:1.7;
+}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.primary,.secondary{
+  border:0;border-radius:25px;padding:12px 20px;cursor:pointer;
+}
+.primary{background:var(--gold);color:#20160b;font-weight:bold}
+.secondary{background:#173244;color:white;border:1px solid var(--border)}
+.examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.example{
+  background:#102634;border:1px solid var(--border);color:var(--muted);
+  border-radius:20px;padding:8px 12px;cursor:pointer;font-size:13px;
+}
+#workspace{display:none;margin-top:24px}
+#status{color:var(--gold);margin-top:14px;white-space:pre-wrap}
+#result{min-height:170px;margin-top:12px}
+footer{
+  border-top:1px solid var(--border);padding:25px 5%;color:var(--muted);
+  text-align:center;line-height:1.8;margin-top:35px;
+}
+@media(max-width:850px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){
+  header{padding:13px 4%}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{padding:32px 5%}main{padding:25px 4%}
+  .card{min-height:112px;padding:13px 10px}
 }
 </style>
 </head>
-
 <body>
-<main>
+
 <header>
-  <h1>✍️ AI रचना स्टूडियो</h1>
-  <p>अपने विचारों को शब्दों और खूबसूरत पोस्टर में बदलें</p>
+  <div>
+    <div class="brand">✒ AI <span>Rachna</span> Studio</div>
+    <div class="tagline" id="tagline">सोचें • लिखें • सजाएँ • अपनी दुनिया बनाएँ</div>
+  </div>
+  <select id="language" aria-label="Choose language">
+    <option value="hi">🇮🇳 हिंदी</option>
+    <option value="en">🇬🇧 English</option>
+  </select>
 </header>
 
-<section class="panel">
-  <label>1. क्या बनवाना है?</label>
-  <div class="options" id="types">
-    <div class="choice active" data-value="शायरी">❤️ शायरी</div>
-    <div class="choice" data-value="कविता">📖 कविता</div>
-    <div class="choice" data-value="ग़ज़ल">🎶 ग़ज़ल</div>
-    <div class="choice" data-value="दोहा">🪶 दोहा</div>
-    <div class="choice" data-value="डायलॉग">🎬 डायलॉग</div>
-    <div class="choice" data-value="कहानी">📚 कहानी</div>
-    <div class="choice" data-value="कोट्स">💭 कोट्स</div>
-    <div class="choice" data-value="लव लेटर">💌 लव लेटर</div>
-    <div class="choice" data-value="कुछ और">✨ कुछ और</div>
+<section class="hero">
+  <div class="eyebrow" id="welcome">आपकी कल्पना, हमारी AI शक्ति</div>
+  <h1>AI <span>Rachna</span> Studio</h1>
+  <p id="heroText">शायरी, कविता, ग़ज़ल, कहानियाँ, सवाल-जवाब और सुंदर डिज़ाइन — अपनी कल्पना को शब्दों में बदलें।</p>
+  <p id="heroNote">बस बताइए कि आप क्या बनाना चाहते हैं। शुरुआत करना आसान है।</p>
+</section>
+
+<main>
+  <h2 id="chooseTitle">आप क्या बनाना चाहते हैं?</h2>
+  <p class="sub" id="chooseSub">कोई विकल्प चुनें या नीचे अपना आइडिया अपने शब्दों में लिखें।</p>
+
+  <div class="cards" id="cards">
+    <button class="card" data-type="शायरी"><span class="emoji">✒️</span><strong data-hi="शायरी" data-en="Poetry">शायरी</strong><small data-hi="दिल की बात शब्दों में" data-en="Express your feelings">दिल की बात शब्दों में</small></button>
+    <button class="card" data-type="कविता"><span class="emoji">📖</span><strong data-hi="कविता" data-en="Poem">कविता</strong><small data-hi="भावनाओं की अभिव्यक्ति" data-en="Express your imagination">भावनाओं की अभिव्यक्ति</small></button>
+    <button class="card" data-type="ग़ज़ल"><span class="emoji">🎼</span><strong data-hi="ग़ज़ल" data-en="Ghazal">ग़ज़ल</strong><small data-hi="लफ़्ज़ों में एहसास" data-en="Feelings in verse">लफ़्ज़ों में एहसास</small></button>
+    <button class="card" data-type="शेर"><span class="emoji">❝</span><strong data-hi="शेर" data-en="Couplet">शेर</strong><small data-hi="कम शब्द, गहरी बात" data-en="Few words, deep meaning">कम शब्द, गहरी बात</small></button>
+    <button class="card" data-type="डायलॉग"><span class="emoji">🎭</span><strong data-hi="डायलॉग" data-en="Dialogue">डायलॉग</strong><small data-hi="दमदार संवाद" data-en="Powerful lines">दमदार संवाद</small></button>
+    <button class="card" data-type="लव लेटर"><span class="emoji">💌</span><strong data-hi="लव लेटर" data-en="Love Letter">लव लेटर</strong><small data-hi="दिल से लिखें" data-en="Write from the heart">दिल से लिखें</small></button>
+    <button class="card" data-type="कहानी"><span class="emoji">📚</span><strong data-hi="कहानी" data-en="Story">कहानी</strong><small data-hi="एक नई दुनिया" data-en="Create a new world">एक नई दुनिया</small></button>
+    <button class="card" data-type="रेसिपी"><span class="emoji">🍲</span><strong data-hi="रेसिपी" data-en="Recipe">रेसिपी</strong><small data-hi="आसान खाना बनाने की विधि" data-en="Cooking ideas and recipes">आसान खाना बनाने की विधि</small></button>
+    <button class="card" data-type="सवाल-जवाब"><span class="emoji">🎓</span><strong data-hi="सवाल-जवाब" data-en="Q&A">सवाल-जवाब</strong><small data-hi="पढ़ाई और सामान्य जानकारी" data-en="Learning and general knowledge">पढ़ाई और सामान्य जानकारी</small></button>
+    <button class="card" data-type="कुछ और"><span class="emoji">✨</span><strong data-hi="More / कुछ और" data-en="More / Anything">More / कुछ और</strong><small data-hi="अपना काम खुद बताएँ" data-en="Describe anything you need">अपना काम खुद बताएँ</small></button>
   </div>
-  <input id="customType" class="hidden" placeholder="क्या लिखवाना है? यहाँ लिखें">
 
-  <label>2. कैसा भाव चाहिए?</label>
-  <select id="mood">
-    <option>सैड / दर्द भरा</option>
-    <option>रोमांटिक / प्यार</option>
-    <option>मोटिवेशनल</option>
-    <option>मजेदार / कॉमेडी</option>
-    <option>रहस्यमय / डरावना</option>
-    <option>दोस्ती</option>
-    <option>देशभक्ति</option>
-    <option>जिंदगी की सच्चाई</option>
-  </select>
+  <section class="idea">
+    <h2 id="ideaTitle">✨ अपना आइडिया बताइए</h2>
+    <p class="sub" id="ideaSub">सामान्य बातचीत की तरह लिखें। आप क्या बनवाना, पूछना या डिज़ाइन करवाना चाहते हैं?</p>
+    <textarea id="idea" placeholder="जैसे: मुझे बारिश पर एक सैड शायरी चाहिए..."></textarea>
+    <div class="actions">
+      <button class="primary" id="go">AI के साथ शुरू करें →</button>
+      <button class="secondary" id="clear">साफ़ करें</button>
+    </div>
+    <div class="examples">
+      <button class="example" data-idea-hi="मुझे एक सैड शायरी लिखकर दो।" data-idea-en="Write a sad poem for me.">सैड शायरी</button>
+      <button class="example" data-idea-hi="मुझे एक आसान रेसिपी बताओ।" data-idea-en="Suggest an easy recipe.">आसान रेसिपी</button>
+      <button class="example" data-idea-hi="मुझे एक प्रेरणादायक कहानी चाहिए।" data-idea-en="Write an inspiring story.">प्रेरणादायक कहानी</button>
+      <button class="example" data-idea-hi="मुझे किसी विषय के बारे में समझाओ।" data-idea-en="Explain a topic to me.">कुछ भी पूछें</button>
+    </div>
 
-  <label>3. रचना कितनी लंबी हो?</label>
-  <select id="length">
-    <option value="छोटी, 2 से 4 लाइन">छोटी — 2 से 4 लाइन</option>
-    <option value="मध्यम, 4 से 10 लाइन" selected>मध्यम — 4 से 10 लाइन</option>
-    <option value="लंबी, विस्तार से">लंबी — पूरी कविता या कहानी</option>
-  </select>
-
-  <label>4. पोस्टर किस तरह का हो?</label>
-  <select id="visual">
-    <option value="auto">ऑटोमैटिक — AI चुने</option>
-    <option value="text">सिर्फ टेक्स्ट डिजाइन</option>
-    <option value="photo">फोटो बैकग्राउंड</option>
-  </select>
-
-  <label>5. डिजाइन कैसा हो?</label>
-  <select id="design">
-    <option value="auto">रचना के अनुसार ऑटोमैटिक</option>
-    <option value="classic">क्लासिक / किताब जैसा</option>
-    <option value="modern">मॉडर्न / सोशल मीडिया</option>
-  </select>
-
-  <label>6. बैकग्राउंड चुनें</label>
-  <select id="background">
-    <option value="auto">ऑटोमैटिक चुनाव</option>
-    <option value="night">रात / डार्क</option>
-    <option value="love">लव / सैड</option>
-    <option value="nature">प्रकृति / जंगल</option>
-    <option value="sunset">सनसेट</option>
-    <option value="paper">पेपर / किताब</option>
-    <option value="rose">फूल / गुलाब</option>
-    <option value="blue">आसमान / नीला</option>
-  </select>
-
-  <label>7. टेक्स्ट फॉन्ट</label>
-  <select id="font">
-    <option value="auto">ऑटोमैटिक</option>
-    <option value="simple">सिंपल</option>
-    <option value="poetry">क्लासिक</option>
-    <option value="bold">बोल्ड</option>
-  </select>
-
-  <label>8. रचना का विषय (वैकल्पिक)</label>
-  <textarea id="topic" style="min-height:75px"
-    placeholder="जैसे: एकतरफा प्यार, बारिश में पुरानी यादें..."></textarea>
-
-  <button type="button" id="generate">✨ AI से रचना बनवाएँ</button>
-  <p class="status" id="status">
-    यह डेमो इंटरफेस है। असली AI लेखन के लिए सुरक्षित AI API कनेक्शन जरूरी है।
-  </p>
-</section>
-
-<section class="panel">
-  <h3>तुम्हारी रचना</h3>
-  <textarea id="result" placeholder="AI से बनी रचना यहाँ दिखाई देगी..."></textarea>
-  <button type="button" id="copy">📋 टेक्स्ट कॉपी करें</button>
-  <button type="button" class="secondary" id="txt">⬇️ TXT फाइल डाउनलोड करें</button>
-</section>
-
-<section class="panel">
-  <h3 style="text-align:center">पोस्टर प्रीव्यू</h3>
-
-  <div id="poster" class="night">तुम्हारी रचना यहाँ दिखाई देगी</div>
-
-  <label>पोस्टर का टेक्स्ट साइज</label>
-  <input id="fontSize" type="range" min="16" max="38" value="27">
-
-  <label>टेक्स्ट का रंग</label>
-  <select id="textColor">
-    <option value="#ffffff">सफेद</option>
-    <option value="#ffcf91">गोल्डन</option>
-    <option value="#ff9eb5">पिंक</option>
-    <option value="#bdeaff">हल्का नीला</option>
-    <option value="#171717">काला</option>
-  </select>
-
-  <button type="button" id="refresh">पोस्टर अपडेट करें</button>
-  <button type="button" id="png">🖼️ PNG पोस्टर डाउनलोड करें</button>
-  <p class="status">नोट: इस डेमो में बैकग्राउंड ग्रेडिएंट हैं, असली फोटो नहीं।</p>
-</section>
+    <section id="workspace">
+      <h2 id="resultTitle">आपका परिणाम</h2>
+      <textarea id="result" placeholder="आपकी रचना या जवाब यहाँ दिखाई देगा..."></textarea>
+      <div class="actions">
+        <button class="secondary" id="copy">कॉपी करें</button>
+        <button class="secondary" id="download">TXT डाउनलोड</button>
+      </div>
+    </section>
+    <div id="status" role="status"></div>
+  </section>
 </main>
 
+<footer>
+  <strong>✒ AI Rachna Studio</strong>
+  <div id="footerLine">हर आइडिया में एक नई दुनिया।</div>
+  <div>सोचें • लिखें • सजाएँ</div>
+</footer>
+
 <script>
-(function(){
-  let selectedType = "शायरी";
+const API_URL = "https://script.google.com/macros/s/AKfycbyhPNAuNQIxXD_3lEG62kfoU8_trQ3lCNdOXVlYFeyP_AUP5XKPxHYkVmzIJWE7-qbt/exec";
 
-  document.querySelectorAll("#types .choice").forEach(function(item){
-    item.addEventListener("click",function(){
-      document.querySelectorAll("#types .choice").forEach(function(el){
-        el.classList.remove("active");
-      });
-      item.classList.add("active");
-      selectedType = item.dataset.value;
-      document.getElementById("customType").classList.toggle(
-        "hidden", selectedType !== "कुछ और"
-      );
+const translations = {
+  hi: {
+    tagline:"सोचें • लिखें • सजाएँ • अपनी दुनिया बनाएँ",
+    welcome:"आपकी कल्पना, हमारी AI शक्ति",
+    heroText:"शायरी, कविता, ग़ज़ल, कहानियाँ, सवाल-जवाब और सुंदर डिज़ाइन — अपनी कल्पना को शब्दों में बदलें।",
+    heroNote:"बस बताइए कि आप क्या बनाना चाहते हैं। शुरुआत करना आसान है।",
+    chooseTitle:"आप क्या बनाना चाहते हैं?",
+    chooseSub:"कोई विकल्प चुनें या नीचे अपना आइडिया अपने शब्दों में लिखें।",
+    ideaTitle:"✨ अपना आइडिया बताइए",
+    ideaSub:"सामान्य बातचीत की तरह लिखें। आप क्या बनवाना, पूछना या डिज़ाइन करवाना चाहते हैं?",
+    placeholder:"जैसे: मुझे बारिश पर एक सैड शायरी चाहिए...",
+    go:"AI के साथ शुरू करें →", clear:"साफ़ करें",
+    resultTitle:"आपका परिणाम", resultPlaceholder:"आपकी रचना या जवाब यहाँ दिखाई देगा...",
+    copy:"कॉपी करें", download:"TXT डाउनलोड", footer:"हर आइडिया में एक नई दुनिया।",
+    loading:"AI से जवाब तैयार हो रहा है...", ready:"जवाब तैयार है!",
+    copied:"कॉपी हो गया!", empty:"पहले अपना आइडिया लिखें या कोई विकल्प चुनें।",
+    error:"जवाब नहीं बन पाया। कृपया दोबारा कोशिश करें।"
+  },
+  en: {
+    tagline:"Think • Write • Design • Create Your World",
+    welcome:"Your imagination, powered by AI",
+    heroText:"Poetry, stories, questions, answers and beautiful designs — turn your imagination into words.",
+    heroNote:"Tell us what you want to create. Getting started is easy.",
+    chooseTitle:"What would you like to create?",
+    chooseSub:"Choose a category or describe your idea in your own words.",
+    ideaTitle:"✨ Tell us your idea",
+    ideaSub:"Talk naturally. Tell us what you want to create, ask, or design.",
+    placeholder:"For example: Write a sad poem about rain...",
+    go:"Create with AI →", clear:"Clear",
+    resultTitle:"Your Result", resultPlaceholder:"Your creation or answer will appear here...",
+    copy:"Copy", download:"Download TXT", footer:"Every idea opens a new world.",
+    loading:"Preparing your response...", ready:"Response ready!",
+    copied:"Copied!", empty:"Write your idea or choose a category first.",
+    error:"Could not generate a response. Please try again."
+  }
+};
+
+let lang = "hi";
+let selectedType = "";
+const $ = id => document.getElementById(id);
+
+function setLanguage(next) {
+  lang = next;
+  document.documentElement.lang = lang;
+  const t = translations[lang];
+  ["tagline","welcome","heroText","heroNote","chooseTitle","chooseSub",
+   "ideaTitle","ideaSub","go","clear","resultTitle","copy","download","footerLine"]
+    .forEach(id => {
+      const el = $(id);
+      if (el) el.textContent = t[id];
     });
+  $("idea").placeholder = t.placeholder;
+  $("result").placeholder = t.resultPlaceholder;
+  document.querySelectorAll("[data-hi][data-en]").forEach(el => {
+    el.textContent = el.dataset[lang];
   });
+  document.querySelectorAll(".example").forEach(el => {
+    el.textContent = lang === "hi" ?
+      el.dataset.ideaHi : el.dataset.ideaEn;
+  });
+}
 
-  const $ = id => document.getElementById(id);
-  const result = $("result");
-  const poster = $("poster");
+$("language").addEventListener("change", e => setLanguage(e.target.value));
 
-  function updatePoster(){
-    poster.textContent = result.value || "तुम्हारी रचना यहाँ दिखाई देगी";
-
-    let bg = $("background").value;
-    const mood = $("mood").value;
-
-    if(bg === "auto"){
-      if(mood.includes("सैड") || mood.includes("रहस्यमय")) bg = "night";
-      else if(mood.includes("प्यार")) bg = "love";
-      else if(mood.includes("मोटिवेशनल")) bg = "sunset";
-      else bg = "nature";
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    selectedType = card.dataset.type;
+    const idea = $("idea");
+    if (!idea.value.trim()) {
+      idea.value = lang === "hi"
+        ? selectedType + " बनाकर दो।"
+        : "Create " + selectedType + " for me.";
     }
-
-    poster.className = bg;
-
-    let font = $("font").value;
-    if(font === "auto"){
-      font = ["शायरी","कविता","ग़ज़ल","दोहा"].includes(selectedType)
-        ? "poetry" : "simple";
-    }
-
-    if(font === "poetry") poster.classList.add("poetry");
-    if(font === "bold") poster.classList.add("bold");
-    if(font === "simple") poster.classList.add("simple");
-
-    poster.style.fontSize = $("fontSize").value + "px";
-    poster.style.color = $("textColor").value;
-
-    if(bg === "paper" && $("textColor").value === "#ffffff"){
-      poster.style.color = "#382719";
-    }
-  }
-
-  $("generate").addEventListener("click",function(){
-    if(selectedType === "कुछ और" && !$("customType").value.trim()){
-      $("status").textContent = "कृपया बताएं कि क्या लिखवाना है।";
-      return;
-    }
-
-    const type = selectedType === "कुछ और"
-      ? $("customType").value.trim() : selectedType;
-
-    const prompt = [
-      "मुझे "+type+" लिखकर दो।",
-      "भाव: "+$("mood").value,
-      "लंबाई: "+$("length").value,
-      "विषय: "+($("topic").value.trim() || "अपने अनुसार चुनें"),
-      "भाषा: हिंदी। रचना मौलिक, स्वाभाविक और प्रभावशाली हो।",
-      "केवल रचना दो, अनावश्यक व्याख्या नहीं।"
-    ].join("\n");
-
-    $("status").textContent = "AI से रचना बन रही है...";
-fetch("https://script.google.com/macros/s/AKfycbyhPNAuNQIxXD_3lEG62kfoU8_trQ3lCNdOXVlYFeyP_AUP5XKPxHYkVmzIJWE7-qbt/exec", {
-  method: "POST",
-  body: JSON.stringify({
-    type: type,
-    mood: $("mood").value,
-    length: $("length").value,
-    topic: $("topic").value.trim() || "अपने अनुसार चुनें"
-  })
-})
-.then(response => response.json())
-.then(data => {
-  if (data.success) {
-    result.value = data.text;
-    $("status").textContent = "रचना तैयार है!";
-    updatePoster();
-  } else {
-    $("status").textContent = "त्रुटि: " + data.error;
-  }
-})
-.catch(error => {
-  $("status").textContent = "कनेक्शन नहीं हुआ। URL और Deployment जाँचें।";
-  console.log(error);
+    idea.focus();
+  });
 });
+
+document.querySelectorAll(".example").forEach(button => {
+  button.addEventListener("click", () => {
+    $("idea").value = lang === "hi" ?
+      button.dataset.ideaHi : button.dataset.ideaEn;
+    $("idea").focus();
   });
+});
 
-  $("refresh").addEventListener("click",updatePoster);
-  result.addEventListener("input",updatePoster);
-  $("background").addEventListener("change",updatePoster);
-  $("font").addEventListener("change",updatePoster);
-  $("fontSize").addEventListener("input",updatePoster);
-  $("textColor").addEventListener("change",updatePoster);
-  $("mood").addEventListener("change",updatePoster);
+$("clear").addEventListener("click", () => {
+  $("idea").value = "";
+  $("status").textContent = "";
+  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+  selectedType = "";
+});
 
-  $("copy").addEventListener("click",async function(){
-    if(!result.value.trim()){
-      alert("पहले रचना लिखें या AI से बनवाएँ।");
-      return;
-    }
-    try{
-      await navigator.clipboard.writeText(result.value);
-      alert("टेक्स्ट कॉपी हो गया!");
-    }catch(e){
-      result.focus();
-      result.select();
-      alert("टेक्स्ट चुना गया है। अब Copy दबाएँ।");
-    }
-  });
+$("go").addEventListener("click", async () => {
+  const idea = $("idea").value.trim();
+  const t = translations[lang];
+  if (!idea) {
+    $("status").textContent = t.empty;
+    return;
+  }
 
-  $("txt").addEventListener("click",function(){
-    if(!result.value.trim()){
-      alert("पहले रचना लिखें या AI से बनवाएँ।");
-      return;
-    }
-    const blob = new Blob(["\uFEFF"+result.value],{
-      type:"text/plain;charset=utf-8"
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "meri-rachna.txt";
-    a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-  });
+  $("workspace").style.display = "block";
+  $("status").textContent = t.loading;
+  $("go").disabled = true;
 
-  $("png").addEventListener("click",function(){
-    const text = result.value.trim();
-    if(!text){
-      alert("पहले रचना तैयार करें।");
-      return;
-    }
-
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = 800;
-    canvas.height = 1000;
-
-    const backgrounds = {
-      night:["#101a35","#030509"],
-      love:["#9c2853","#30102d"],
-      nature:["#164e35","#0b1821"],
-      sunset:["#f7974e","#241d48"],
-      paper:["#f7e7c6","#d6b98b"],
-      rose:["#b76e79","#6c4352"],
-      blue:["#164e83","#10152e"]
-    };
-
-    const bg = backgrounds[$("background").value] ||
-      backgrounds.night;
-    const gradient = ctx.createLinearGradient(0,0,800,1000);
-    gradient.addColorStop(0,bg[0]);
-    gradient.addColorStop(1,bg[1]);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0,0,800,1000);
-
-    let fontSize = Number($("fontSize").value)*1.35;
-    const fontValue = $("font").value;
-    const family = fontValue === "poetry" ? "Georgia" : "Arial";
-    const paragraphs = text.split("\n");
-    let lines = [];
-
-    function wrap(){
-      lines = [];
-      ctx.font = fontSize+"px "+family;
-      paragraphs.forEach(function(p){
-        if(p === ""){lines.push("");return;}
-        let line = "";
-        for(const ch of p){
-          if(ctx.measureText(line+ch).width > 680 && line){
-            lines.push(line);
-            line = ch;
-          }else line += ch;
-        }
-        lines.push(line);
-      });
-    }
-
-    wrap();
-    while(lines.length*fontSize*1.7 > 850 && fontSize > 12){
-      fontSize--;
-      wrap();
-    }
-
-    ctx.font = fontSize+"px "+family;
-    ctx.fillStyle = $("textColor").value;
-    if($("background").value === "paper" &&
-       $("textColor").value === "#ffffff"){
-      ctx.fillStyle = "#382719";
-    }
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    const lineHeight = fontSize*1.7;
-    const startY = 500-(lines.length-1)*lineHeight/2;
-    lines.forEach((line,i)=>{
-      ctx.fillText(line,400,startY+i*lineHeight,680);
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        type: selectedType || "सवाल-जवाब",
+        mood: "सामान्य",
+        length: "medium",
+        topic: idea,
+        language: lang
+      })
     });
 
-    const a = document.createElement("a");
-    a.download = "rachna-poster.png";
-    a.href = canvas.toDataURL("image/png");
-    a.click();
-  });
+    const data = await response.json();
+    if (!data.success) throw new Error(data.error || "Request failed");
 
-  updatePoster();
-})();
+    $("result").value = data.text;
+    $("status").textContent = t.ready;
+  } catch (error) {
+    console.error(error);
+    $("status").textContent = t.error;
+  } finally {
+    $("go").disabled = false;
+  }
+});
+
+$("copy").addEventListener("click", async () => {
+  if (!$("result").value) return;
+  try {
+    await navigator.clipboard.writeText($("result").value);
+    $("status").textContent = translations[lang].copied;
+  } catch {
+    $("result").select();
+    document.execCommand("copy");
+    $("status").textContent = translations[lang].copied;
+  }
+});
+
+$("download").addEventListener("click", () => {
+  const blob = new Blob([$("result").value], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ai-rachna.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+setLanguage("hi");
 </script>
 </body>
-</html>
+  </html>
+      
