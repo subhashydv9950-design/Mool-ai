@@ -260,9 +260,30 @@ button.secondary{background:#35394d;color:white}
       "केवल रचना दो, अनावश्यक व्याख्या नहीं।"
     ].join("\n");
 
-    $("status").textContent =
-      "AI अभी कनेक्ट नहीं है। चुने गए विकल्पों को AI सेवा से जोड़ने के लिए सुरक्षित बैकएंड बनाना होगा।";
-    console.log("AI prompt:",prompt);
+    $("status").textContent = "AI से रचना बन रही है...";
+fetch("https://script.google.com/macros/s/AKfycbwY6wUFr922J4-u694yoHhbx397riO32SHHpNbN-Ib_YJqabkQSavs206RHKkUr82bH/exec", {
+  method: "POST",
+  body: JSON.stringify({
+    type: type,
+    mood: $("mood").value,
+    length: $("length").value,
+    topic: $("topic").value.trim() || "अपने अनुसार चुनें"
+  })
+})
+.then(response => response.json())
+.then(data => {
+  if (data.success) {
+    result.value = data.text;
+    $("status").textContent = "रचना तैयार है!";
+    updatePoster();
+  } else {
+    $("status").textContent = "त्रुटि: " + data.error;
+  }
+})
+.catch(error => {
+  $("status").textContent = "कनेक्शन नहीं हुआ। URL और Deployment जाँचें।";
+  console.log(error);
+});
   });
 
   $("refresh").addEventListener("click",updatePoster);
