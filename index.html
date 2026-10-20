@@ -5,628 +5,391 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#17251f">
-<meta name="description" content="AI Rachna Studio — अपनी शायरी, कविता, कहानी और रचनाएँ बनाएँ।">
-<title>AI Rachna Studio | शब्दों की खूबसूरत दुनिया</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
+<title>AI Rachna Studio | खूबसूरत अल्फ़ाज़</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
 :root {
-  --ink: #24352d;
+  --green: #17251f;
+  --green2: #253a2f;
   --gold: #b18b4c;
-  --cream: #f8f4eb;
-  --paper: #fffdf7;
-  --muted: #77796d;
-  --line: #e7decd;
+  --cream: #f5eedf;
+  --paper: #fffaf0;
+  --ink: #30291f;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
+  background: var(--cream);
   color: var(--ink);
-  background: #f5f2ea;
-  font-family: "Noto Sans Devanagari", sans-serif;
+  font-family: 'Noto Serif Devanagari', serif;
 }
-button, input, select, textarea { font: inherit; }
-button { cursor: pointer; }
-button:disabled { opacity: .55; cursor: wait; }
-.topbar {
-  background: #17251f;
-  color: #fff9ed;
-  padding: 17px 20px;
+header {
+  background: var(--green);
+  color: var(--cream);
   border-bottom: 3px solid var(--gold);
+  padding: 18px 5%;
 }
-.top-inner {
-  max-width: 1080px;
+.nav {
+  max-width: 1100px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
-.brand { display:flex; align-items:center; gap:11px; }
-.brand-icon {
-  width: 43px; height: 43px;
-  display:grid; place-items:center;
-  border:1px solid #b99a62;
-  border-radius:50%;
-  color:#e4c68b; font-size:23px;
+.brand { font-size: 22px; font-weight: 700; color: #e0bd7d; }
+nav { display: flex; gap: 18px; flex-wrap: wrap; }
+nav a { color: var(--cream); text-decoration: none; font-size: 14px; }
+nav a:hover { color: #e0bd7d; }
+.hero {
+  text-align: center;
+  padding: 45px 16px 30px;
+  background: linear-gradient(135deg,#17251f,#304637);
+  color: var(--cream);
+  border-bottom: 1px solid var(--gold);
 }
-.brand h1 { margin:0; font-family:"Playfair Display",serif; font-size:22px; }
-.brand p { margin:4px 0 0; color:#d4cbb8; font-size:11px; }
-.lang {
-  padding:9px; border:1px solid #827452; border-radius:8px;
-  background:#24352d; color:white; max-width:130px;
-}
-main { max-width:1080px; margin: auto; padding:24px 16px 48px; }
-.hero { text-align:center; padding:17px 8px 27px; }
-.eyebrow { color:#99753d; letter-spacing:2px; font-size:11px; font-weight:700; }
-.hero h2 {
-  font-family:"Noto Serif Devanagari",serif;
-  font-size:clamp(27px,5vw,40px);
-  margin:12px 0 8px; line-height:1.45;
-}
-.hero p { margin:0; color:#74766b; font-size:14px; line-height:1.8; }
-.grid { display:grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap:20px; align-items:start; }
+.eyebrow { color: #dfbd80; letter-spacing: 2px; font-size: 12px; }
+h1 { font-size: clamp(27px,5vw,44px); margin: 12px 0; }
+.hero p { max-width: 620px; margin: auto; line-height: 1.9; color: #e4dccb; }
+main { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
+.layout { display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr); gap: 22px; }
 .panel {
-  background:#fffdf8; border:1px solid var(--line);
-  border-radius:15px; padding:20px;
-  box-shadow:0 8px 25px #43351a0a;
+  background: var(--paper);
+  border: 1px solid #d7c6a5;
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 6px 20px #392c1410;
 }
-.panel h3 { margin:0 0 6px; font-family:"Noto Serif Devanagari",serif; font-size:20px; }
-.sub { color:var(--muted); font-size:12px; line-height:1.7; margin:0 0 20px; }
-.field { margin-bottom:16px; }
-label { display:block; font-size:13px; font-weight:600; margin-bottom:7px; }
-input, select, textarea {
-  width:100%; border:1px solid #ded7c9; background:#fffefa;
-  border-radius:9px; padding:11px 12px; color:var(--ink);
-  outline:none;
+h2 { color: var(--green); margin-top: 0; font-size: 22px; }
+label { display: block; margin: 14px 0 6px; font-weight: 600; font-size: 14px; }
+input,select,textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1c1a2;
+  border-radius: 5px;
+  background: #fffdf8;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
 }
-input:focus, select:focus, textarea:focus { border-color:var(--gold); }
-textarea { resize:vertical; min-height:94px; line-height:1.7; }
-.two { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
-.btn {
-  border:1px solid var(--gold); border-radius:9px; padding:11px 14px;
-  font-weight:600; font-size:13px; background:#fffdf8; color:var(--ink);
+textarea { min-height: 85px; resize: vertical; }
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  padding: 10px 14px;
 }
-.btn.primary { background:#263b30; color:#fff8e9; border-color:#263b30; }
-.btn.gold { background:#b18b4c; color:white; border-color:#b18b4c; }
-.btn:hover { filter:brightness(.97); }
-.generate { width:100%; padding:14px; font-size:15px; }
-.status { font-size:12px; color:#6e705f; line-height:1.7; margin-top:12px; white-space:pre-wrap; }
-.toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
-.toolbar .btn { flex:1; min-width:95px; }
-.preview-wrap { min-width:0; }
+.primary {
+  background: var(--green);
+  color: #f9e8c2;
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  font-weight: 700;
+}
+.primary:hover { background: var(--green2); }
+.secondary { background: #fffaf0; color: var(--green); }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+#status { font-size: 13px; line-height: 1.7; margin-top: 12px; }
 .artwork {
-  --art-ink:#fff8ec;
-  --art-accent:#e2c68e;
-  position:relative; overflow:hidden;
-  min-height:420px; padding:32px 22px;
-  display:flex; align-items:center; justify-content:center;
-  border-radius:12px; color:var(--art-ink);
-  background-color:#26372f;
-  background-size:cover; background-position:center;
-  isolation:isolate;
+  min-height: 300px;
+  padding: 28px 22px;
+  border: 1px solid var(--gold);
+  background-color: #f7edd7;
+  background-image: radial-gradient(#b18b4c22 1px,transparent 1px);
+  background-size: 14px 14px;
+  text-align: center;
+  position: relative;
 }
 .artwork::before {
-  content:""; position:absolute; inset:0; z-index:-1;
-  background:linear-gradient(180deg,#111b19a6,#111b19c9);
+  content: "❦  ✦  ❦";
+  color: var(--gold);
+  letter-spacing: 8px;
 }
-.artwork.paper {
-  --art-ink:#343329; --art-accent:#a57b3f;
-  color:var(--art-ink);
-  background:
-    radial-gradient(ellipse at 15% 12%,#e5d5b2 0,transparent 38%),
-    radial-gradient(ellipse at 90% 90%,#eee0c2 0,transparent 40%),
-    #faf3e2;
+.artwork h3 { color: #8a682f; margin: 15px 0; }
+#result {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 2;
+  font-size: 17px;
+  min-height: 100px;
 }
-.artwork.paper::before {
-  background:repeating-linear-gradient(0deg,#aa8c4510 0,#aa8c4510 1px,transparent 1px,transparent 5px);
-}
-.artwork.photo { background-image:url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85"); }
-.artwork.auto { background-image:linear-gradient(140deg,#182a2b,#3b4b40 48%,#755d42); }
-.artwork.frame::after {
-  content:""; position:absolute; inset:12px; border:1px solid var(--art-accent);
-  pointer-events:none; z-index:0; opacity:.8;
-}
-.art-inner {
-  width:100%; max-width:560px; text-align:center;
-  position:relative; z-index:1; overflow-wrap:anywhere;
-}
-.ornament { color:var(--art-accent); font-size:20px; margin:0 0 14px; }
-.art-label {
-  color:var(--art-accent); font-size:10px; font-weight:700;
-  letter-spacing:2px; margin-bottom:17px; text-transform:uppercase;
-}
-.art-title {
-  font-family:"Noto Serif Devanagari",serif;
-  font-size:26px; line-height:1.55; font-weight:700;
-  margin:0 auto 16px; white-space:pre-wrap;
-}
-.art-body {
-  font-family:"Noto Serif Devanagari",serif;
-  font-size:17px; line-height:1.8; font-weight:400;
-  white-space:pre-wrap; overflow-wrap:anywhere;
-}
-.art-body.story { text-align:start; }
-.art-footer { color:var(--art-accent); font-size:17px; margin-top:23px; }
-.preview-note { font-size:11px; color:#77796d; line-height:1.6; margin:10px 2px 0; }
-.editor { margin-top:16px; }
-.editor summary { cursor:pointer; font-weight:600; font-size:14px; padding:4px 0 12px; }
-input[type="range"] { padding:0; accent-color:#98753e; }
-.color-row { display:flex; align-items:center; gap:10px; }
-input[type="color"] { width:45px; height:39px; padding:3px; }
-.footer { text-align:center; padding:20px; color:#77796d; font-size:11px; line-height:1.8; }
-@media(max-width:760px) {
-  .grid { grid-template-columns:1fr; }
-  .hero { padding-top:8px; }
-  .panel { padding:16px; }
-  .artwork { min-height:390px; padding:28px 22px; }
-  .art-title { font-size:23px; }
-  .art-body { font-size:16px; }
-  .brand h1 { font-size:18px; }
-}
-@media print {
-  body { background:white; }
-  .topbar,.hero,.editor,.toolbar,.preview-note,.footer { display:none!important; }
-  main,.grid,.panel { display:block; padding:0; margin:0; border:0; box-shadow:none; }
-  .artwork { border-radius:0; min-height:95vh; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.toolbar button { flex: 1; min-width: 90px; }
+.section { margin-top: 32px; }
+.section p { line-height: 1.9; }
+.gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.gallery div { border: 1px solid #d7c6a5; padding: 18px; text-align: center; background: var(--paper); }
+footer { margin-top: 40px; background: var(--green); color: var(--cream); text-align: center; padding: 28px 15px; line-height: 2; }
+footer a { color: #e0bd7d; }
+@media(max-width:750px) {
+  .layout { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .panel { padding: 16px; }
+  nav { gap: 12px; }
 }
 </style>
 </head>
-
 <body>
-<header class="topbar">
-  <div class="top-inner">
-    <div class="brand">
-      <div class="brand-icon">✦</div>
-      <div>
-        <h1>AI Rachna Studio</h1>
-        <p id="tagline">शब्दों को दीजिए एक खूबसूरत अंदाज़</p>
-      </div>
-    </div>
-    <select id="language" class="lang" aria-label="Language">
-      <option value="hi">हिंदी</option>
-      <option value="en">English</option>
-    </select>
+<header>
+  <div class="nav">
+    <div class="brand">❦ AI Rachna Studio</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#rachna">रचना</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+    </nav>
   </div>
 </header>
 
+<section class="hero" id="home">
+  <div class="eyebrow">THE ART OF WORDS</div>
+  <h1>आपके एहसास, खूबसूरत अल्फ़ाज़</h1>
+  <p>अपने विचारों को रचना में बदलें। शायरी, ग़ज़ल, कविता और कहानियाँ बनाइए और उन्हें खूबसूरत अंदाज़ में सजाइए।</p>
+</section>
+
 <main>
-  <section class="hero">
-    <div class="eyebrow" id="heroEyebrow">THE ART OF WORDS</div>
-    <h2 id="heroTitle">आपके एहसास, खूबसूरत अल्फ़ाज़</h2>
-    <p id="heroDesc">शायरी से कहानी तक — अपनी कल्पना को रचना में बदलें।</p>
-  </section>
-
-  <div class="grid">
+  <div class="layout" id="rachna">
     <section class="panel">
-      <h3 id="createHeading">नई रचना बनाएँ</h3>
-      <p class="sub" id="createSub">अपनी पसंद चुनें और अपने विचारों को शब्द दें।</p>
+      <h2>✦ अपनी रचना बनाएँ</h2>
+      <label for="type">रचना का प्रकार</label>
+      <select id="type">
+        <option value="शायरी">शायरी</option>
+        <option value="ग़ज़ल">ग़ज़ल</option>
+        <option value="कविता">कविता</option>
+        <option value="दोहे">दोहे</option>
+        <option value="डायलॉग">डायलॉग</option>
+        <option value="प्रेम-पत्र">प्रेम-पत्र</option>
+        <option value="कहानी">कहानी</option>
+        <option value="लेख">लेख</option>
+        <option value="रेसिपी">रेसिपी</option>
+        <option value="प्रश्न-उत्तर">प्रश्न-उत्तर</option>
+        <option value="रचनात्मक लेखन">रचनात्मक लेखन</option>
+      </select>
 
-      <div class="field">
-        <label for="type" id="typeLabel">रचना का प्रकार</label>
-        <select id="type">
-          <option value="शायरी">शायरी</option>
-          <option value="कविता">कविता</option>
-          <option value="ग़ज़ल">ग़ज़ल</option>
-          <option value="दोहे">दोहे</option>
-          <option value="डायलॉग">डायलॉग</option>
-          <option value="प्रेम-पत्र">प्रेम-पत्र</option>
-          <option value="कहानी">कहानी</option>
-          <option value="लेख">लेख</option>
-          <option value="रेसिपी">रेसिपी</option>
-          <option value="प्रश्न-उत्तर">प्रश्न-उत्तर</option>
-          <option value="रचनात्मक लेखन">कुछ और</option>
-        </select>
-      </div>
+      <label for="mood">मूड / भाव</label>
+      <select id="mood">
+        <option value="भावुक">भावुक</option>
+        <option value="दर्द भरा">दर्द भरा</option>
+        <option value="रोमांटिक">रोमांटिक</option>
+        <option value="प्रेरणादायक">प्रेरणादायक</option>
+        <option value="खुशहाल">खुशहाल</option>
+        <option value="रहस्यमय">रहस्यमय</option>
+        <option value="हास्य">हास्य</option>
+        <option value="गंभीर">गंभीर</option>
+      </select>
 
-      <div class="two">
-        <div class="field">
-          <label for="mood" id="moodLabel">भाव / मूड</label>
-          <select id="mood">
-            <option value="sad">उदास</option>
-            <option value="romantic">रोमांटिक</option>
-            <option value="hopeful">प्रेरणादायक</option>
-            <option value="happy">खुश</option>
-            <option value="deep">गहरा / दार्शनिक</option>
-            <option value="funny">मज़ेदार</option>
-            <option value="peaceful">शांत</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="length" id="lengthLabel">लंबाई</label>
-          <select id="length">
-            <option value="short">छोटी</option>
-            <option value="medium" selected>मध्यम</option>
-            <option value="long">लंबी</option>
-          </select>
-        </div>
-      </div>
+      <label for="length">रचना की लंबाई</label>
+      <select id="length">
+        <option value="छोटी">छोटी</option>
+        <option value="मध्यम" selected>मध्यम</option>
+        <option value="लंबी">लंबी</option>
+      </select>
 
-      <div class="field">
-        <label for="topic" id="topicLabel">विषय / अपना विचार</label>
-        <textarea id="topic" placeholder="जैसे: अधूरी मोहब्बत, बारिश की रात, बचपन की यादें..."></textarea>
-      </div>
-
-      <button class="btn primary generate" id="generate">✦ रचना तैयार करें</button>
-      <div class="status" id="status" role="status" aria-live="polite">अपना विषय लिखें और रचना तैयार करें।</div>
+      <label for="topic">विषय या अपने विचार</label>
+      <textarea id="topic" placeholder="जैसे: अधूरी मोहब्बत, दोस्ती, जीवन का संघर्ष..."></textarea>
+      <button class="primary" id="generate">✦ AI से रचना बनाएँ</button>
+      <div id="status" role="status">अपना विषय लिखें और रचना बनाएँ पर टैप करें।</div>
     </section>
 
-    <section class="panel preview-wrap">
-      <h3 id="previewHeading">आपकी रचना</h3>
-      <p class="sub" id="previewSub">आपकी रचना के अनुसार डिज़ाइन तैयार होगा।</p>
+    <section class="panel">
+      <h2>✦ आपकी रचना</h2>
+      <div class="artwork" id="artwork">
+        <h3 id="artTitle">आपके अल्फ़ाज़</h3>
+        <div id="result" contenteditable="true">आपकी रचना यहाँ दिखाई देगी...
 
-      <div id="artwork" class="artwork auto frame">
-        <div class="art-inner">
-          <div class="ornament">✦ ❧ ✦</div>
-          <div class="art-label" id="artLabel">AI RACHNA STUDIO</div>
-          <h2 class="art-title" id="artTitle">आपके शब्द यहाँ सजेंगे</h2>
-          <div class="art-body" id="artBody">अपनी रचना तैयार करें और उसे खूबसूरत क्लासिक अंदाज़ में देखें।</div>
-          <div class="art-footer">❦</div>
-        </div>
+आप इस जगह पर अपनी रचना को सीधे संपादित भी कर सकते हैं।</div>
       </div>
 
-      <p class="preview-note" id="previewNote">टिप: PNG डाउनलोड करने से पहले अपनी पसंद का बैकग्राउंड और फ़ॉन्ट चुनें।</p>
+      <label for="design">डिज़ाइन</label>
+      <select id="design">
+        <option value="auto">ऑटो डिज़ाइन</option>
+        <option value="paper">क्लासिक पेपर</option>
+        <option value="night">रात का अंदाज़</option>
+        <option value="green">विंटेज हरा</option>
+        <option value="rose">गुलाबी एहसास</option>
+      </select>
+
+      <div class="controls">
+        <div>
+          <label for="fontSize">अक्षर आकार</label>
+          <select id="fontSize">
+            <option value="15">छोटा</option>
+            <option value="17" selected>मध्यम</option>
+            <option value="21">बड़ा</option>
+            <option value="25">बहुत बड़ा</option>
+          </select>
+        </div>
+        <div>
+          <label for="fontFamily">फ़ॉन्ट</label>
+          <select id="fontFamily">
+            <option value="serif">क्लासिक</option>
+            <option value="sans-serif">सरल</option>
+            <option value="monospace">टाइपराइटर</option>
+          </select>
+        </div>
+      </div>
 
       <div class="toolbar">
-        <button class="btn" id="copy">कॉपी</button>
-        <button class="btn" id="downloadTxt">TXT डाउनलोड</button>
-        <button class="btn gold" id="downloadPng">PNG डाउनलोड</button>
+        <button class="secondary" id="copyBtn">कॉपी</button>
+        <button class="secondary" id="txtBtn">TXT डाउनलोड</button>
+        <button class="secondary" id="pngBtn">PNG डाउनलोड</button>
       </div>
-
-      <details class="editor" open>
-        <summary id="designSummary">✧ डिज़ाइन और सजावट</summary>
-        <div class="two">
-          <div class="field">
-            <label for="background" id="backgroundLabel">बैकग्राउंड</label>
-            <select id="background">
-              <option value="auto">Auto Design</option>
-              <option value="photo">Photo Background</option>
-              <option value="paper">Classic Paper</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="decoration" id="decorationLabel">सजावट</label>
-            <select id="decoration">
-              <option value="frame">क्लासिक बॉर्डर</option>
-              <option value="simple">सिम्पल</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="font" id="fontLabel">फ़ॉन्ट स्टाइल</label>
-          <select id="font">
-            <option value="serif">क्लासिक साहित्यिक</option>
-            <option value="sans">साफ़ और आधुनिक</option>
-            <option value="playfair">Elegant English</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="fontSize" id="sizeLabel">टेक्स्ट का आकार</label>
-          <input id="fontSize" type="range" min="13" max="25" value="17">
-        </div>
-        <div class="field">
-          <label for="textColor" id="colorLabel">टेक्स्ट का रंग</label>
-          <div class="color-row">
-            <input type="color" id="textColor" value="#fff8ec">
-            <button class="btn" id="resetColor">Auto रंग</button>
-          </div>
-        </div>
-        <div class="field">
-          <label for="editText" id="editLabel">अपनी रचना एडिट करें</label>
-          <textarea id="editText" placeholder="यहाँ अपनी रचना लिखें..."></textarea>
-          <button class="btn" id="applyText" style="width:100%;margin-top:8px">टेक्स्ट अपडेट करें</button>
-        </div>
-      </details>
     </section>
   </div>
+
+  <section class="section panel" id="gallery">
+    <h2>✦ रचना गैलरी</h2>
+    <p>अपनी पसंद की श्रेणी चुनकर शुरुआत करें।</p>
+    <div class="gallery">
+      <div>❦<p>शायरी और ग़ज़ल</p></div>
+      <div>✦<p>कविता और दोहे</p></div>
+      <div>❧<p>कहानी और लेख</p></div>
+      <div>♡<p>प्रेम-पत्र</p></div>
+      <div>✎<p>डायलॉग</p></div>
+      <div>❋<p>रचनात्मक लेखन</p></div>
+    </div>
+  </section>
+
+  <section class="section panel" id="about">
+    <h2>हमारे बारे में</h2>
+    <p>AI Rachna Studio एक रचनात्मक मंच है, जहाँ आप अपने विचारों को शब्दों और खूबसूरत डिज़ाइन में बदल सकते हैं।</p>
+    <p><strong>Developer:</strong> Subhash Yadav</p>
+    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/iamsubhash177/" target="_blank" rel="noopener">@iamsubhash177</a></p>
+    <p><strong>Email:</strong> <a href="mailto:yahu9950@gmail.com">yahu9950@gmail.com</a></p>
+  </section>
 </main>
 
-<div class="footer">AI Rachna Studio · हर एहसास के लिए एक नई रचना</div>
+<footer>
+  <div>❦ AI Rachna Studio ❦</div>
+  <div>आपके एहसास, आपके अल्फ़ाज़</div>
+  <div>© 2026 AI Rachna Studio</div>
+</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-/*
-  IMPORTANT:
-  पुराने बैकअप से अपना असली Google Apps Script /exec URL यहाँ भरें।
-  उदाहरण के तौर पर कोई काल्पनिक URL नहीं दिया गया है।
-*/
-const API_URL = "const API_URL = "https://script.google.com/macros/s/AKfycbyhPNAuNQIxXD_3lEG62kfoU8_trQ3lCNdOXVlYFeyP_AUP5XKPxHYkVmzIJWE7-qbt/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyhPNAuNQIxXD_3lEG62kfoU8_trQ3lCNdOXVlYFeyP_AUP5XKPxHYkVmzIJWE7-qbt/exec";
 
 const $ = id => document.getElementById(id);
-let currentText = "";
-let currentLanguage = "hi";
-let colorWasCustomized = false;
-
-const translations = {
-  hi: {
-    tagline:"शब्दों को दीजिए एक खूबसूरत अंदाज़",
-    eyebrow:"THE ART OF WORDS",
-    heroTitle:"आपके एहसास, खूबसूरत अल्फ़ाज़",
-    heroDesc:"शायरी से कहानी तक — अपनी कल्पना को रचना में बदलें।",
-    create:"नई रचना बनाएँ", createSub:"अपनी पसंद चुनें और अपने विचारों को शब्द दें।",
-    type:"रचना का प्रकार", mood:"भाव / मूड", length:"लंबाई", topic:"विषय / अपना विचार",
-    generate:"✦ रचना तैयार करें", preview:"आपकी रचना",
-    previewSub:"आपकी रचना के अनुसार डिज़ाइन तैयार होगा।",
-    note:"टिप: PNG डाउनलोड करने से पहले अपनी पसंद का बैकग्राउंड और फ़ॉन्ट चुनें।",
-    copy:"कॉपी", txt:"TXT डाउनलोड", png:"PNG डाउनलोड",
-    design:"✧ डिज़ाइन और सजावट", background:"बैकग्राउंड", decoration:"सजावट",
-    font:"फ़ॉन्ट स्टाइल", size:"टेक्स्ट का आकार", color:"टेक्स्ट का रंग",
-    autoColor:"Auto रंग", edit:"अपनी रचना एडिट करें", apply:"टेक्स्ट अपडेट करें",
-    placeholder:"जैसे: अधूरी मोहब्बत, बारिश की रात, बचपन की यादें...",
-    status:"अपना विषय लिखें और रचना तैयार करें।",
-    waiting:"आपकी रचना तैयार हो रही है…", done:"रचना तैयार है! अब डिज़ाइन अपनी पसंद से बदलें।",
-    noText:"पहले AI से रचना तैयार करें या एडिट बॉक्स में टेक्स्ट लिखें।",
-    copied:"रचना कॉपी हो गई।", copyFail:"कॉपी नहीं हो सकी। टेक्स्ट चुनकर कॉपी करें।",
-    apiMissing:"पहले कोड में API_URL की जगह अपने पुराने बैकअप वाला /exec URL डालें।",
-    apiError:"रचना तैयार नहीं हुई: ", imageError:"PNG डाउनलोड नहीं हो पाया। पेज रीफ़्रेश करके दोबारा कोशिश करें।",
-    empty:"कृपया विषय या विचार लिखें।", placeholderTitle:"आपके शब्द यहाँ सजेंगे",
-    placeholderBody:"अपनी रचना तैयार करें और उसे खूबसूरत क्लासिक अंदाज़ में देखें।",
-    paper:"Classic Paper", photo:"Photo Background", auto:"Auto Design",
-    classic:"क्लासिक साहित्यिक", sans:"साफ़ और आधुनिक", playfair:"Elegant English"
-  },
-  en: {
-    tagline:"Give your words a beautiful style",
-    eyebrow:"THE ART OF WORDS",
-    heroTitle:"Your feelings, beautifully expressed",
-    heroDesc:"From poetry to stories — turn imagination into writing.",
-    create:"Create something new", createSub:"Choose your style and describe your idea.",
-    type:"Writing type", mood:"Mood", length:"Length", topic:"Topic / Your idea",
-    generate:"✦ Generate writing", preview:"Your creation",
-    previewSub:"A design that suits your writing.",
-    note:"Tip: Choose a background and font before downloading your PNG.",
-    copy:"Copy", txt:"Download TXT", png:"Download PNG",
-    design:"✧ Design & Decoration", background:"Background", decoration:"Decoration",
-    font:"Font style", size:"Text size", color:"Text color",
-    autoColor:"Auto color", edit:"Edit your writing", apply:"Update text",
-    placeholder:"E.g. lost love, a rainy night, childhood memories...",
-    status:"Write a topic and generate your creation.",
-    waiting:"Creating your writing…", done:"Your writing is ready! Customize its design.",
-    noText:"Generate a creation first or type in the edit box.",
-    copied:"Text copied.", copyFail:"Could not copy. Please select and copy the text.",
-    apiMissing:"Add your original Google Apps Script /exec URL to API_URL first.",
-    apiError:"Could not generate: ", imageError:"PNG download failed. Refresh and try again.",
-    empty:"Please enter a topic or idea.", placeholderTitle:"Your words belong here",
-    placeholderBody:"Create your writing and see it in a beautiful classic style.",
-    paper:"Classic Paper", photo:"Photo Background", auto:"Auto Design",
-    classic:"Classic Literary", sans:"Clean & Modern", playfair:"Elegant English"
-  }
-};
-
-function tr(key) { return translations[currentLanguage][key] || translations.hi[key] || key; }
-
-function setLanguage(lang) {
-  currentLanguage = lang;
-  document.documentElement.lang = lang;
-  const ids = {
-    tagline:"tagline", eyebrow:"heroEyebrow", heroTitle:"heroTitle",
-    heroDesc:"heroDesc", create:"createHeading", createSub:"createSub",
-    type:"typeLabel", mood:"moodLabel", length:"lengthLabel",
-    topic:"topicLabel", preview:"previewHeading", previewSub:"previewSub",
-    note:"previewNote", design:"designSummary", background:"backgroundLabel",
-    decoration:"decorationLabel", font:"fontLabel", size:"sizeLabel",
-    color:"colorLabel", edit:"editLabel"
-  };
-  Object.entries(ids).forEach(([key,id]) => $(id).textContent = tr(key));
-  $("generate").textContent = tr("generate");
-  $("copy").textContent = tr("copy");
-  $("downloadTxt").textContent = tr("txt");
-  $("downloadPng").textContent = tr("png");
-  $("resetColor").textContent = tr("autoColor");
-  $("applyText").textContent = tr("apply");
-  $("topic").placeholder = tr("placeholder");
-  $("artTitle").textContent = currentText ? getTitle(currentText) : tr("placeholderTitle");
-  $("artBody").textContent = currentText ? getBody(currentText) : tr("placeholderBody");
-  $("status").textContent = tr("status");
-}
-
-function getTitle(text) {
-  const lines = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
-  if (!lines.length) return tr("placeholderTitle");
-  const type = $("type").value;
-  if (["कहानी","लेख","रेसिपी","प्रश्न-उत्तर","रचनात्मक लेखन"].includes(type)) {
-    return lines[0].length <= 90 ? lines[0] : type;
-  }
-  return lines[0].length <= 100 ? lines[0] : type;
-}
-
-function getBody(text) {
-  const lines = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
-  if (!lines.length) return "";
-  const title = getTitle(text);
-  if (lines[0] === title && lines.length > 1) return lines.slice(1).join("\n");
-  return lines.join("\n");
-}
-
-function autoVisual() {
-  const type = $("type").value.toLowerCase();
-  const mood = $("mood").value;
-  const topic = $("topic").value.toLowerCase();
-  const paperTypes = ["दोहे","लेख","प्रश्न-उत्तर","रेसिपी"];
-  const love = /love|romantic|प्यार|प्रेम|मोहब्बत|इश्क|रोमांस/.test(topic) || mood === "romantic";
-  const sad = /sad|rain|बारिश|उदास|दर्द|तन्हा|अधूरी|जुदाई|रात/.test(topic) || mood === "sad";
-  const nature = /nature|प्रकृति|पहाड़|जंगल|नदी|सफर|आसमान/.test(topic);
-
-  const art = $("artwork");
-  art.classList.remove("paper","photo","auto");
-  let mode = $("background").value;
-
-  if (mode === "auto") {
-    if (paperTypes.includes($("type").value)) mode = "paper";
-    else if (love || sad || nature || type === "शायरी" || type === "कविता" || type === "ग़ज़ल") mode = "photo";
-    else mode = "auto";
-  }
-
-  art.classList.add(mode);
-  if (mode === "photo") {
-    let url = "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85";
-    if (love) url = "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=85";
-    else if (sad) url = "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=85";
-    else if (nature) url = "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85";
-    art.style.backgroundImage = `url("${url}")`;
-  } else if (mode === "auto") {
-    art.style.backgroundImage = "linear-gradient(140deg,#182a2b,#3b4b40 48%,#755d42)";
-  } else {
-    art.style.backgroundImage = "";
-  }
-
-  if (!colorWasCustomized) {
-    $("textColor").value = mode === "paper" ? "#343329" : "#fff8ec";
-    art.style.setProperty("--art-ink",$("textColor").value);
-    art.style.setProperty("--art-accent",mode === "paper" ? "#a57b3f" : "#e2c68e");
-  }
-}
-
-function updatePreview() {
-  $("artLabel").textContent = $("type").value;
-  $("artTitle").textContent = currentText ? getTitle(currentText) : tr("placeholderTitle");
-  $("artBody").textContent = currentText ? getBody(currentText) : tr("placeholderBody");
-  $("artBody").classList.toggle("story",["कहानी","लेख","रेसिपी","प्रश्न-उत्तर"].includes($("type").value));
-
-  const font = $("font").value;
-  const family = font === "sans"
-    ? '"Noto Sans Devanagari", sans-serif'
-    : font === "playfair" && currentLanguage === "en"
-      ? '"Playfair Display", serif'
-      : '"Noto Serif Devanagari", serif';
-
-  $("artTitle").style.fontFamily = family;
-  $("artBody").style.fontFamily = family;
-  $("artBody").style.fontSize = $("fontSize").value + "px";
-  autoVisual();
-}
-
-$("language").addEventListener("change", e => setLanguage(e.target.value));
-["type","mood","topic","background","decoration","font","fontSize"].forEach(id => {
-  $(id).addEventListener("input", () => {
-    if (id === "decoration") $("artwork").classList.toggle("frame", $("decoration").value === "frame");
-    updatePreview();
-  });
-  $(id).addEventListener("change", updatePreview);
-});
-
-$("textColor").addEventListener("input", e => {
-  colorWasCustomized = true;
-  $("artwork").style.setProperty("--art-ink",e.target.value);
-  $("artwork").style.setProperty("--art-accent",e.target.value);
-  $("artwork").style.color = e.target.value;
-});
-$("resetColor").addEventListener("click", () => {
-  colorWasCustomized = false;
-  updatePreview();
-});
-
-$("applyText").addEventListener("click", () => {
-  currentText = $("editText").value.trim();
-  updatePreview();
-  $("status").textContent = currentText ? tr("done") : tr("empty");
-});
+const status = $("status");
+const result = $("result");
+const artTitle = $("artTitle");
+const artwork = $("artwork");
 
 $("generate").addEventListener("click", async () => {
   const topic = $("topic").value.trim();
   if (!topic) {
-    $("status").textContent = tr("empty");
+    status.textContent = "पहले अपनी रचना का विषय लिखें।";
     $("topic").focus();
     return;
   }
-  if (!API_URL.startsWith("https://script.google.com/macros/s/") || !API_URL.endsWith("/exec")) {
-    $("status").textContent = tr("apiMissing");
-    return;
-  }
 
-  const btn = $("generate");
-  btn.disabled = true;
-  $("status").textContent = tr("waiting");
+  $("generate").disabled = true;
+  $("generate").textContent = "रचना बनाई जा रही है...";
+  status.textContent = "AI से संपर्क हो रहा है। कृपया प्रतीक्षा करें।";
 
   try {
-    const payload = {
-      type: $("type").value,
-      mood: $("mood").value,
-      length: $("length").value,
-      topic: topic,
-      language: currentLanguage
-    };
-
     const response = await fetch(API_URL, {
       method: "POST",
-      body: JSON.stringify(payload)
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        type: $("type").value,
+        mood: $("mood").value,
+        length: $("length").value,
+        topic: topic
+      })
     });
 
-    if (!response.ok) throw new Error("HTTP " + response.status);
     const data = await response.json();
-    if (data.success === false) throw new Error(data.error || "API error");
+    if (!response.ok) throw new Error("सर्वर में समस्या है।");
 
-    currentText = String(data.text || data.result || data.content || "").trim();
-    if (!currentText) throw new Error("खाली उत्तर मिला।");
+    let text = "";
+    if (typeof data === "string") text = data;
+    else text = data.text || data.result || data.content || data.output || data.rachna || data.message || "";
 
-    $("editText").value = currentText;
-    updatePreview();
-    $("status").textContent = tr("done");
-  } catch (err) {
-    $("status").textContent = tr("apiError") + err.message +
-      "\nअगर API URL सही है, तो Google Apps Script deployment और API की अनुमति जाँचें।";
+    if (!text && data.choices?.[0]?.message?.content) {
+      text = data.choices[0].message.content;
+    }
+    if (!text) {
+      throw new Error(data.error || "AI से रचना नहीं मिली। Apps Script का response format जाँचना होगा।");
+    }
+
+    result.textContent = text;
+    artTitle.textContent = $("type").value;
+    applyDesign();
+    status.textContent = "आपकी रचना तैयार है! आप इसे संपादित या डाउनलोड कर सकते हैं।";
+  } catch (error) {
+    status.textContent = "रचना नहीं बन पाई: " + error.message + " — इंटरनेट और API की जाँच करें।";
   } finally {
-    btn.disabled = false;
+    $("generate").disabled = false;
+    $("generate").textContent = "✦ AI से रचना बनाएँ";
   }
 });
 
-$("copy").addEventListener("click", async () => {
-  const text = currentText || $("editText").value.trim();
-  if (!text) { $("status").textContent = tr("noText"); return; }
+function applyDesign() {
+  const design = $("design").value;
+  const themes = {
+    auto: { bg: "#f7edd7", color: "#30291f", title: "#8a682f" },
+    paper: { bg: "#fffaf0", color: "#30291f", title: "#8a682f" },
+    night: { bg: "#17251f", color: "#f5eedf", title: "#dfbd80" },
+    green: { bg: "#253a2f", color: "#f5eedf", title: "#dfbd80" },
+    rose: { bg: "#f7e4e5", color: "#4a2932", title: "#985568" }
+  };
+  const theme = themes[design] || themes.auto;
+  artwork.style.backgroundColor = theme.bg;
+  result.style.color = theme.color;
+  artTitle.style.color = theme.title;
+  result.style.fontSize = $("fontSize").value + "px";
+  result.style.fontFamily = $("fontFamily").value;
+}
+$("design").addEventListener("change", applyDesign);
+$("fontSize").addEventListener("change", applyDesign);
+$("fontFamily").addEventListener("change", applyDesign);
+
+$("copyBtn").addEventListener("click", async () => {
   try {
-    await navigator.clipboard.writeText(text);
-    $("status").textContent = tr("copied");
+    await navigator.clipboard.writeText(result.innerText);
+    status.textContent = "रचना कॉपी हो गई!";
   } catch {
-    $("editText").value = text;
-    $("editText").focus();
-    $("editText").select();
-    $("status").textContent = tr("copyFail");
+    status.textContent = "रचना को चुनकर कॉपी करें।";
   }
 });
 
-$("downloadTxt").addEventListener("click", () => {
-  const text = currentText || $("editText").value.trim();
-  if (!text) { $("status").textContent = tr("noText"); return; }
-  const blob = new Blob(["\uFEFF" + text], {type:"text/plain;charset=utf-8"});
+$("txtBtn").addEventListener("click", () => {
+  const text = artTitle.innerText + "\n\n" + result.innerText;
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "AI-Rachna-Studio.txt";
+  a.download = "meri-rachna.txt";
   a.click();
   URL.revokeObjectURL(url);
 });
 
-$("downloadPng").addEventListener("click", async () => {
-  if (!currentText) { $("status").textContent = tr("noText"); return; }
+$("pngBtn").addEventListener("click", async () => {
   if (typeof html2canvas !== "function") {
-    $("status").textContent = "PNG सुविधा लोड नहीं हुई। इंटरनेट चालू करके पेज रीफ़्रेश करें।";
+    status.textContent = "PNG सुविधा लोड नहीं हुई। इंटरनेट जाँचें।";
     return;
   }
-  const btn = $("downloadPng");
-  btn.disabled = true;
-  $("status").textContent = "PNG तैयार हो रही है…";
+  status.textContent = "PNG तैयार हो रही है...";
   try {
-    await document.fonts.ready;
-    const canvas = await html2canvas($("artwork"), {
-      scale:2, useCORS:true, allowTaint:false,
-      backgroundColor:null, logging:false
-    });
+    const canvas = await html2canvas(artwork, { scale: 2, backgroundColor: null });
     const a = document.createElement("a");
-    a.download = "AI-Rachna-Studio.png";
+    a.download = "meri-rachna.png";
     a.href = canvas.toDataURL("image/png");
     a.click();
-    $("status").textContent = "PNG डाउनलोड तैयार है।";
-  } catch (err) {
-    $("status").textContent = tr("imageError") + " " + err.message;
-  } finally {
-    btn.disabled = false;
+    status.textContent = "PNG डाउनलोड हो गई!";
+  } catch (error) {
+    status.textContent = "PNG नहीं बन पाई: " + error.message;
   }
 });
 
-setLanguage("hi");
-updatePreview();
+applyDesign();
 </script>
 </body>
-</html>
+        </html>
+  
