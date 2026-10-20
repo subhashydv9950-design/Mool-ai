@@ -777,7 +777,7 @@ document.getElementById("createButton").addEventListener("click", async function
   statusBox.textContent = "Groq AI से संपर्क हो रहा है...";
 
   try {
-    const response = await fetch("/api/chat", {
+    const response = await fetch("https://mool-n684ooifm-ai-rachna.vercel.app/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
