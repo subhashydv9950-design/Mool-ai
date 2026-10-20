@@ -717,32 +717,8 @@ document.getElementById("downloadPosterText").addEventListener("click", function
 const posterScreen = document.getElementById("posterScreen");
 const posterText = document.getElementById("posterText");
 
-document.getElementById("createButton").addEventListener("click", function() {
-  const topic = document.getElementById("topic").value.trim();
-
-  if (!topic) {
-    return;
-  }
-
-  resultText.textContent =
-    "आपका विषय: " + topic + "\n\n" +
-    "AI Rachna Studio का डेमो आउटपुट।\n\n" +
-    "अभी असली AI से रचना बनाने की सुविधा जोड़ना बाकी है।";
-
-  posterText.textContent = topic;
-
-  resultScreen.classList.add("active");
-  posterScreen.classList.add("active");
-
-  resultScreen.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-});
-
 document.getElementById("regenerateResult").addEventListener("click", function() {
-  statusBox.textContent =
-    "असली AI से नई रचना बनाने के लिए AI API और backend जोड़ना बाकी है।";
+  document.getElementById("createButton").click();
 });
 
 document.querySelectorAll("[data-tool]").forEach(function(button) {
