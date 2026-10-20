@@ -1,524 +1,321 @@
 
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10271f">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#153c2e">
 <title>AI Rachna Studio</title>
+
 <style>
 :root {
-  --bg:#10271f;
-  --gold:#d8b66c;
-  --text:#f6ecd8;
-  --card:#244637;
+  --green: #153c2e;
+  --green2: #245440;
+  --gold: #d7b66d;
+  --cream: #f8f3e8;
+  --paper: #fffdf8;
+  --text: #213b2f;
+  --muted: #6c786e;
+  --border: #e5d8bb;
 }
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 body {
-  margin:0;
-  min-height:100vh;
-  background:linear-gradient(145deg,#10271f,#244637,#0b1714);
-  color:var(--text);
-  font-family:Georgia,serif;
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
 }
-button,input,textarea,select { font:inherit; }
-button {
-  cursor:pointer;
-  padding:11px 14px;
-  margin:4px;
-  border:1px solid var(--gold);
-  border-radius:9px;
-  background:#18372b;
-  color:var(--text);
-}
-button:active { opacity:.7; }
-.primary { background:var(--gold);color:#17241b; }
+button, select, textarea, input { font: inherit; }
+button { cursor: pointer; }
 header {
-  padding:15px;
-  background:#10271f;
-  border-bottom:1px solid var(--gold);
-  position:sticky;
-  top:0;
-  z-index:5;
+  background: var(--green);
+  color: var(--cream);
+  border-bottom: 2px solid var(--gold);
 }
-nav { display:flex;flex-wrap:wrap;gap:5px;align-items:center; }
-.brand { color:var(--gold);font-size:20px;font-weight:bold; }
-main { max-width:900px;margin:auto;padding:16px; }
-.page { display:block; }
-.hidden { display:none!important; }
-.hero,.panel,.tile {
-  border:1px solid #d8b66c66;
-  border-radius:14px;
-  padding:17px;
-  margin:12px 0;
-  background:#ffffff0b;
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-.hero { text-align:center;padding:40px 16px; }
-h1 { font-size:clamp(30px,7vw,48px); }
-h2,h3 { color:var(--gold); }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
+.brand { font-size: 21px; font-weight: bold; }
+.brand span { color: var(--gold); }
+select {
+  max-width: 160px;
+  padding: 9px;
+  border: 1px solid var(--gold);
+  border-radius: 9px;
+  background: var(--cream);
+  color: var(--green);
 }
-.tile { width:100%;min-height:85px;text-align:left; }
-label { display:block;margin-top:12px; }
-input,textarea,select {
-  width:100%;
-  padding:12px;
-  margin:6px 0;
-  border-radius:8px;
-  border:1px solid var(--gold);
-  background:#10271f;
-  color:var(--text);
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 24px 16px 45px;
 }
-textarea { min-height:110px; }
-.result {
-  white-space:pre-wrap;
-  background:#fff9ed;
-  color:#26382b;
-  padding:16px;
-  border-radius:10px;
-  min-height:80px;
-  overflow-wrap:anywhere;
+.hero {
+  padding: 55px 18px;
+  text-align: center;
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 85% 10%, #d7b66d30, transparent 42%),
+    linear-gradient(135deg, #102e23, #245440);
 }
-.notice { font-size:13px;line-height:1.7; }
-footer { text-align:center;padding:25px;color:#c4cbbf; }
-canvas { width:100%;height:auto;margin-top:10px; }
+.eyebrow {
+  color: var(--gold);
+  font: 11px Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 17px 0 12px;
+  font-size: clamp(32px, 7vw, 54px);
+}
+.hero p {
+  max-width: 550px;
+  margin: 0 auto 24px;
+  line-height: 1.7;
+  color: #e9e4d8;
+}
+.primary, .secondary {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.primary {
+  background: var(--gold);
+  color: var(--green);
+  border: 1px solid var(--gold);
+}
+.secondary {
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+.section-heading { margin: 34px 0 16px; }
+.section-heading h2 { margin: 0 0 7px; font-size: 27px; }
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font: 14px/1.6 Arial, sans-serif;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.tool {
+  min-width: 0;
+  min-height: 115px;
+  padding: 16px 13px;
+  text-align: left;
+  color: var(--text);
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.tool:hover { border-color: var(--gold); }
+.tool-icon { display: block; margin-bottom: 10px; font-size: 25px; }
+.tool strong { display: block; font-size: 17px; }
+.tool small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font: 12px/1.5 Arial, sans-serif;
+}
+.more { text-align: center; margin-top: 20px; }
+.status {
+  margin-top: 18px;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--paper);
+  font: 14px/1.6 Arial, sans-serif;
+}
+.about {
+  margin-top: 42px;
+  padding: 23px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #eee6d5;
+  line-height: 1.8;
+}
+.about h2 { margin-top: 0; }
+.about a { color: var(--green); overflow-wrap: anywhere; }
+
+/* ===== PART 2 CSS STARTS HERE ===== */
+
+
+/* ===== PART 3 CSS STARTS HERE ===== */
+
+
+/* ===== PART 4 CSS STARTS HERE ===== */
+
+
+/* ===== PART 5 CSS STARTS HERE ===== */
+
+
+/* ===== PART 6 CSS STARTS HERE ===== */
+
+@media (min-width: 650px) {
+  main { padding-top: 35px; }
+  .hero { padding: 70px 25px; }
+  .tool-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 </style>
 </head>
+
 <body>
 <header>
-  <div class="brand">🏔 AI Rachna Studio</div>
-  <nav>
-    <button onclick="go('home')">⌂ Home</button>
-    <button onclick="go('writer')">✍ रचना</button>
-    <button onclick="go('photo')">🖼 फोटो</button>
-    <button onclick="go('chat')">💬 AI Chat</button>
-    <button onclick="go('study')">📚 पढ़ाई</button>
-    <button onclick="go('gallery')">🏞 गैलरी</button>
-    <button onclick="go('settings')">⚙ सेटिंग्स</button>
+  <nav class="nav">
+    <div class="brand">AI <span>Rachna</span> Studio</div>
+    <select id="outputLanguage" aria-label="Output language">
+      <option value="English">English</option>
+      <option value="Hindi">हिंदी</option>
+      <option value="Marathi">मराठी</option>
+      <option value="Urdu">اردو</option>
+      <option value="Bengali">বাংলা</option>
+      <option value="Gujarati">ગુજરાતી</option>
+      <option value="Punjabi">ਪੰਜਾਬੀ</option>
+      <option value="Tamil">தமிழ்</option>
+      <option value="Telugu">తెలుగు</option>
+    </select>
   </nav>
 </header>
 
 <main>
-<section id="home" class="page">
-  <div class="hero">
-    <h1>शब्दों की जादुई दुनिया</h1>
-    <p>अपनी कल्पना को शब्दों में बदलें।</p>
-    <button class="primary" onclick="go('writer')">रचना शुरू करें</button>
-    <button onclick="go('photo')">फोटो पर लिखें</button>
-  </div>
-  <h2>अपनी पसंद चुनें</h2>
-  <div class="grid">
-    <button class="tile" onclick="openWriter('शायरी')">🌙 शायरी</button>
-    <button class="tile" onclick="openWriter('कविता')">🪶 कविता</button>
-    <button class="tile" onclick="openWriter('ग़ज़ल')">🌹 ग़ज़ल</button>
-    <button class="tile" onclick="openWriter('गीत')">🎵 गीत</button>
-    <button class="tile" onclick="openWriter('कहानी')">📖 कहानी</button>
-    <button class="tile" onclick="openWriter('निबंध')">📝 निबंध</button>
-    <button class="tile" onclick="openWriter('कैप्शन')">📱 कैप्शन</button>
-    <button class="tile" onclick="openWriter('चुटकुले')">😄 चुटकुले</button>
-  </div>
-  <p class="notice">AI लेखन के लिए सर्वर कनेक्शन आवश्यक है।</p>
-</section>
+  <!-- ===== PART 1 HOME PAGE START ===== -->
+  <section class="hero">
+    <div class="eyebrow">A home for your imagination</div>
+    <h1>AI Rachna Studio</h1>
+    <p>Create poetry, shayari, stories and creative expressions in your chosen language.</p>
+    <button class="primary" type="button" data-tool="AI Chat">✦ Chat with AI</button>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h2>Explore Creativity</h2>
+      <p>Choose what you want to create.</p>
+    </div>
+
+    <div class="tool-grid">
+      <button class="tool" type="button" data-tool="Ideas">
+        <span class="tool-icon">✧</span><strong>Ideas</strong>
+        <small>Discover something new</small>
+      </button>
+      <button class="tool" type="button" data-tool="Shayari">
+        <span class="tool-icon">❝</span><strong>Shayari</strong>
+        <small>Express your emotions</small>
+      </button>
+      <button class="tool" type="button" data-tool="Poetry">
+        <span class="tool-icon">✒</span><strong>Poetry</strong>
+        <small>Turn feelings into verses</small>
+      </button>
+      <button class="tool" type="button" data-tool="Story">
+        <span class="tool-icon">▤</span><strong>Story</strong>
+        <small>Bring imagination alive</small>
+      </button>
+      <button class="tool" type="button" data-tool="Doha">
+        <span class="tool-icon">❋</span><strong>Doha</strong>
+        <small>Wisdom in a few words</small>
+      </button>
+      <button class="tool" type="button" data-tool="Script">
+        <span class="tool-icon">▧</span><strong>Script</strong>
+        <small>Shape your next scene</small>
+      </button>
+      <button class="tool" type="button" data-tool="Article">
+        <span class="tool-icon">▤</span><strong>Article</strong>
+        <small>Write with clarity</small>
+      </button>
+      <button class="tool" type="button" data-tool="Letter Writing">
+        <span class="tool-icon">✉</span><strong>Letter Writing</strong>
+        <small>Find the right words</small>
+      </button>
+    </div>
+
+    <div class="more">
+      <button class="secondary" type="button" data-tool="More Tools">Explore More Tools →</button>
+    </div>
+  </section>
+  <!-- ===== PART 1 HOME PAGE END ===== -->
 
 
-<section id="writer" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2 id="writerTitle">✍ रचना स्टूडियो</h2>
-  <div class="panel">
-    <label>रचना का प्रकार</label>
-    <select id="writeType">
-      <option>शायरी</option><option>कविता</option>
-      <option>ग़ज़ल</option><option>गीत</option>
-      <option>कहानी</option><option>निबंध</option>
-      <option>कैप्शन</option><option>चुटकुले</option>
-    </select>
-    <label>विषय</label>
-    <input id="topic" placeholder="जैसे दोस्ती, प्रकृति, सपने">
-    <label>भाषा</label>
-    <select id="writeLang">
-      <option>हिन्दी</option><option>English</option>
-      <option>اردو</option><option>मराठी</option>
-      <option>বাংলা</option><option>ગુજરાતી</option>
-    </select>
-    <label>मूड</label>
-    <select id="mood">
-      <option>भावुक</option><option>उदास</option>
-      <option>प्रेरणादायक</option><option>मज़ेदार</option>
-      <option>रहस्यमयी</option>
-    </select>
-    <label>अपने विचार या पूरी रचना</label>
-    <textarea id="ownText" placeholder="यहाँ अपने विचार या रचना लिखें"></textarea>
-    <button class="primary" onclick="generate()">✦ रचना बनाएँ</button>
-    <button onclick="clearWriter()">साफ़ करें</button>
-    <button onclick="copyResult()">कॉपी करें</button>
-    <button onclick="saveResult()">गैलरी में सेव करें</button>
-    <button onclick="downloadText()">TXT डाउनलोड</button>
-    <p id="writerStatus" class="notice"></p>
-  </div>
-  <div id="result" class="result">आपकी रचना यहाँ दिखाई देगी।</div>
-</section>
+  <!-- ===== PART 2 HTML STARTS HERE ===== -->
 
-<section id="photo" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2>🖼 फोटो रचना स्टूडियो</h2>
-  <div class="panel">
-    <label>फोटो चुनें</label>
-    <input id="photoFile" type="file" accept="image/*" onchange="loadPhoto(event)">
-    <label>फोटो पर लिखने के शब्द</label>
-    <textarea id="photoWords" placeholder="अपनी शायरी या टेक्स्ट लिखें"></textarea>
-    <label>टेक्स्ट का रंग</label>
-    <input id="textColor" type="color" value="#f8e7b5">
-    <label>टेक्स्ट का आकार</label>
-    <input id="textSize" type="range" min="16" max="64" value="32">
-    <label>टेक्स्ट की जगह</label>
-    <select id="textPos">
-      <option value="bottom">नीचे</option>
-      <option value="center">बीच में</option>
-      <option value="top">ऊपर</option>
-    </select>
-    <button onclick="drawPhoto()">प्रीव्यू बनाएँ</button>
-    <button onclick="downloadPhoto()">PNG डाउनलोड</button>
-    <canvas id="photoCanvas" width="900" height="900"></canvas>
-    <p class="notice">यह सुविधा फोटो पर टेक्स्ट लगाती है। यह अपने-आप नई AI तस्वीर नहीं बनाती।</p>
-  </div>
-</section>
 
-<section id="chat" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2>💬 AI Chat</h2>
-  <div class="panel">
-    <div id="chatLog" class="result"></div>
-    <label>अपना सवाल लिखें</label>
-    <textarea id="chatInput" placeholder="यहाँ सवाल लिखें"></textarea>
-    <button class="primary" onclick="sendChat()">भेजें ➤</button>
-  </div>
-</section>
+  <!-- ===== PART 3 HTML STARTS HERE ===== -->
 
-<section id="study" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2>📚 स्टडी मटेरियल</h2>
-  <div class="panel">
-    <label>विषय</label>
-    <input id="studySubject" placeholder="जैसे गणित">
-    <label>टॉपिक</label>
-    <input id="studyTopic" placeholder="जैसे Game Theory">
-    <label>क्या चाहिए?</label>
-    <select id="studyType">
-      <option>आसान नोट्स</option>
-      <option>प्रश्न और उत्तर</option>
-      <option>विस्तृत व्याख्या</option>
-      <option>महत्वपूर्ण सूत्र</option>
-    </select>
-    <button class="primary" onclick="studyGenerate()">मटेरियल बनाएँ</button>
-    <button onclick="copyText('studyResult')">कॉपी करें</button>
-  </div>
-  <div id="studyResult" class="result">स्टडी मटेरियल यहाँ दिखाई देगा।</div>
-</section>
 
-<section id="gallery" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2>🏞 मेरी गैलरी</h2>
-  <p class="notice">इस ब्राउज़र में सेव की गई रचनाएँ यहाँ दिखेंगी।</p>
-  <div id="galleryList"></div>
-</section>
+  <!-- ===== PART 4 HTML STARTS HERE ===== -->
 
-<section id="settings" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2>⚙ डिज़ाइन सेटिंग्स</h2>
-  <div class="panel">
-    <label>पेज का बैकग्राउंड</label>
-    <select id="pageBg" onchange="setPageBg(this.value)">
-      <option value="forest">Forest Green</option>
-      <option value="night">Midnight Mountain</option>
-      <option value="earth">Earth & Stone</option>
-      <option value="parchment">Classic Parchment</option>
-    </select>
-    <label>कार्ड का बैकग्राउंड</label>
-    <select onchange="document.documentElement.style.setProperty('--card',this.value)">
-      <option value="#244637">Forest Green</option>
-      <option value="#493d29">Antique Earth</option>
-      <option value="#333b42">Silver Mist</option>
-      <option value="#171717">Dark Stone</option>
-    </select>
-    <button onclick="resetTheme()">डिफ़ॉल्ट वापस करें</button>
-  </div>
-</section>
 
-<section id="about" class="page hidden">
-  <button onclick="go('home')">← Home</button>
-  <h2>✦ हमारे बारे में</h2>
-  <div class="panel">
-    <h3>AI Rachna Studio</h3>
-    <p>एक रचनात्मक प्रोजेक्ट जहाँ शब्द, विचार और तस्वीरें मिलती हैं।</p>
-    <p>Developer: Subhash Yadav</p>
-    <p>Instagram: <a href="https://www.instagram.com/iamsubhash177/" target="_blank" rel="noopener">@iamsubhash177</a></p>
-    <p>Email: <a href="mailto:yahu9950@gmail.com">yahu9950@gmail.com</a></p>
+  <!-- ===== PART 5 HTML STARTS HERE ===== -->
+
+
+  <!-- ===== PART 6 HTML STARTS HERE ===== -->
+
+
+  <!-- ===== ABOUT SECTION: KEEP BELOW ALL PARTS ===== -->
+  <section class="about" id="about">
+    <h2>About AI Rachna Studio</h2>
+    <p>A creative space for ideas, poetry, stories and visual creations.</p>
+    <p><strong>Founder &amp; Developer:</strong> Subhash Yadav</p>
+    <p><strong>Instagram:</strong>
+      <a href="https://www.instagram.com/iamsubhash177/" target="_blank" rel="noopener noreferrer">@iamsubhash177</a>
+    </p>
+    <p><strong>Email:</strong>
+      <a href="mailto:yahu9950@gmail.com">yahu9950@gmail.com</a>
+    </p>
+  </section>
+
+  <div class="status" id="status" role="status" aria-live="polite">
+    Welcome to AI Rachna Studio.
   </div>
-       </section>
- 
 </main>
-<footer>🏔 AI Rachna Studio · शब्दों से अपनी दुनिया बनाएँ</footer>
 
- 
+<footer style="padding:22px;text-align:center;background:#153c2e;color:#f8f3e8;font:12px Arial,sans-serif">
+  © <span id="year"></span> AI Rachna Studio
+</footer>
+
 <script>
-const $ = id => document.getElementById(id);
-let lastResult = "";
-let photoImage = null;
+"use strict";
 
-function go(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
-  const page = $(id);
-  if (!page) return;
-  page.classList.remove("hidden");
-  location.hash = id;
-  if (id === "gallery") renderGallery();
-  window.scrollTo({top:0, behavior:"smooth"});
-}
+/* ===== PART 1 JAVASCRIPT START ===== */
+const languageSelect = document.getElementById("outputLanguage");
+const statusBox = document.getElementById("status");
+document.getElementById("year").textContent = String(new Date().getFullYear());
 
-function openWriter(type) {
-  $("writeType").value = type;
-  $("writerTitle").textContent = "✍ " + type + " स्टूडियो";
-  go("writer");
-}
-
-function clearWriter() {
-  $("topic").value = "";
-  $("ownText").value = "";
-  $("result").textContent = "आपकी रचना यहाँ दिखाई देगी।";
-  $("writerStatus").textContent = "";
-  lastResult = "";
-}
-
-function generate() {
-  const type = $("writeType").value;
-  const topic = $("topic").value.trim();
-  const own = $("ownText").value.trim();
-
-  if (own) {
-    lastResult = own;
-    $("result").textContent = own;
-    $("writerStatus").textContent = "आपकी रचना दिखाई गई।";
-    return;
-  }
-
-  if (!topic) {
-    $("writerStatus").textContent = "पहले विषय लिखें या अपनी रचना डालें।";
-    return;
-  }
-
-  $("writerStatus").textContent =
-    "AI सर्वर कनेक्ट नहीं है। फिलहाल यह नमूना रचना है।";
-
-  const examples = {
-    "शायरी": "ख़ामोशी में भी कुछ आवाज़ें होती हैं,\nदिल की अपनी कुछ कहानियाँ होती हैं।",
-    "कविता": "नए सपनों को आँखों में सजाना है,\nहर मुश्किल के आगे बढ़ते जाना है।",
-    "ग़ज़ल": "कुछ अधूरे से ख़्वाब दिल में रहे,\nकुछ सवाल आज भी अनकहे रहे।",
-    "गीत": "चलें नए रास्तों पर, नए अरमान लेकर,\nसुबह की रोशनी और सपनों को लेकर।",
-    "कहानी": "एक दिन एक मुसाफ़िर ने नई राह चुनने का फैसला किया। उसे नहीं पता था कि आगे क्या होगा, लेकिन वह सीखने के लिए तैयार था।",
-    "निबंध": "इस विषय का हमारे जीवन में महत्वपूर्ण स्थान है। इसके विभिन्न पहलुओं को समझना और इनके बारे में विचार करना उपयोगी है।",
-    "कैप्शन": "कुछ पल, कुछ यादें और दिल के करीब एक एहसास।",
-    "चुटकुले": "दोस्त: आज इतने खुश क्यों हो?\nदूसरा: आज मेरा अलार्म भी मुझे जगाने से पहले हार मान गया!"
-  };
-
-  lastResult = "विषय: " + topic + "\n\n" +
-    (examples[type] || "हर विचार एक नई शुरुआत है।") +
-    "\n\n(यह नमूना रचना है; AI से तैयार नहीं हुई है।)";
-
-  $("result").textContent = lastResult;
-}
-
-function copyResult() {
-  copyText("result");
-}
-
-async function copyText(id) {
-  const text = $(id)?.innerText || "";
-  if (!text.trim()) return;
-  try {
-    await navigator.clipboard.writeText(text);
-    alert("कॉपी हो गया!");
-  } catch(e) {
-    const area = document.createElement("textarea");
-    area.value = text;
-    document.body.appendChild(area);
-    area.select();
-    document.execCommand("copy");
-    area.remove();
-    alert("कॉपी करने की कोशिश पूरी हुई।");
-  }
-}
-
-function saveResult() {
-  const text = $("result").innerText.trim();
-  if (!text || text === "आपकी रचना यहाँ दिखाई देगी।") {
-    alert("पहले कोई रचना तैयार करें।");
-    return;
-  }
-  try {
-    const items = JSON.parse(localStorage.getItem("rachnaGallery") || "[]");
-    items.unshift({text, date:new Date().toLocaleString("hi-IN")});
-    localStorage.setItem("rachnaGallery", JSON.stringify(items.slice(0,50)));
-    alert("गैलरी में सेव हो गया!");
-  } catch(e) {
-    alert("सेव नहीं हो पाया। ब्राउज़र स्टोरेज जाँचें।");
-  }
-}
-
-function renderGallery() {
-  const items = JSON.parse(localStorage.getItem("rachnaGallery") || "[]");
-  $("galleryList").innerHTML = "";
-  if (!items.length) {
-    $("galleryList").textContent = "अभी कोई रचना सेव नहीं है।";
-    return;
-  }
-  items.forEach(item => {
-    const box = document.createElement("div");
-    box.className = "panel";
-    const content = document.createElement("p");
-    content.style.whiteSpace = "pre-wrap";
-    content.textContent = item.text;
-    const date = document.createElement("small");
-    date.textContent = item.date;
-    box.append(content, date);
-    $("galleryList").appendChild(box);
+document.querySelectorAll("[data-tool]").forEach(function(button) {
+  button.addEventListener("click", function() {
+    statusBox.textContent =
+      button.dataset.tool + " selected. Output language: " +
+      languageSelect.value + ". Additional functionality will be added in later parts.";
   });
-}
-
-function downloadText() {
-  const text = $("result").innerText.trim();
-  if (!text) return;
-  const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "meri-rachna.txt";
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function loadPhoto(event) {
-  const file = event.target.files && event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    photoImage = new Image();
-    photoImage.onload = drawPhoto;
-    photoImage.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function drawPhoto() {
-  const canvas = $("photoCanvas");
-  const ctx = canvas.getContext("2d");
-  const words = $("photoWords").value || "";
-
-  if (photoImage) {
-    canvas.width = photoImage.naturalWidth;
-    canvas.height = photoImage.naturalHeight;
-    ctx.drawImage(photoImage, 0, 0, canvas.width, canvas.height);
-  } else {
-    canvas.width = 900;
-    canvas.height = 900;
-    ctx.fillStyle = "#244637";
-    ctx.fillRect(0, 0, 900, 900);
-    ctx.fillStyle = "#d8b66c";
-    ctx.font = "32px serif";
-    ctx.fillText("AI Rachna Studio", 40, 80);
-  }
-
-  const size = Number($("textSize").value);
-  ctx.font = size + "px serif";
-  ctx.textAlign = "center";
-  ctx.fillStyle = $("textColor").value;
-  ctx.shadowColor = "#000";
-  ctx.shadowBlur = 5;
-
-  const lines = words.split("\n");
-  const lineHeight = size * 1.5;
-  let y;
-
-  if ($("textPos").value === "top") y = lineHeight + 20;
-  else if ($("textPos").value === "center")
-    y = canvas.height / 2 - (lines.length - 1) * lineHeight / 2;
-  else y = canvas.height - 30 - (lines.length - 1) * lineHeight;
-
-  lines.forEach((line, i) => {
-    ctx.fillText(line, canvas.width / 2, y + i * lineHeight,
-      canvas.width * 0.9);
-  });
-  ctx.shadowBlur = 0;
-}
-
-function downloadPhoto() {
-  drawPhoto();
-  const a = document.createElement("a");
-  a.download = "rachna-photo.png";
-  a.href = $("photoCanvas").toDataURL("image/png");
-  a.click();
-}
-
-function sendChat() {
-  const input = $("chatInput").value.trim();
-  if (!input) {
-    alert("पहले अपना सवाल लिखें।");
-    return;
-  }
-  const p = document.createElement("p");
-  p.textContent = "आप: " + input;
-  $("chatLog").appendChild(p);
-  const answer = document.createElement("p");
-  answer.textContent =
-    "AI सर्वर अभी कनेक्ट नहीं है। इस सुविधा के लिए बैकएंड जोड़ना होगा।";
-  $("chatLog").appendChild(answer);
-  $("chatInput").value = "";
-}
-
-function studyGenerate() {
-  const subject = $("studySubject").value.trim();
-  const topic = $("studyTopic").value.trim();
-  if (!subject || !topic) {
-    $("studyResult").textContent = "विषय और टॉपिक दोनों लिखें।";
-    return;
-  }
-  $("studyResult").textContent =
-    "विषय: " + subject + "\nटॉपिक: " + topic +
-    "\n\nAI सर्वर अभी कनेक्ट नहीं है। AI नोट्स के लिए बैकएंड जोड़ना होगा।";
-}
-
-function setPageBg(value) {
-  const backgrounds = {
-    forest:"linear-gradient(145deg,#10271f,#244637,#0b1714)",
-    night:"linear-gradient(145deg,#080f24,#1d3154,#101522)",
-    earth:"linear-gradient(145deg,#493d29,#77664b,#252018)",
-    parchment:"linear-gradient(145deg,#f6ecd8,#d8c49e,#b7a17c)"
-  };
-  document.body.style.background = backgrounds[value] || backgrounds.forest;
-  document.body.style.color = value === "parchment" ? "#26382b" : "#f6ecd8";
-}
-
-function resetTheme() {
-  document.documentElement.style.setProperty("--card", "#244637");
-  $("pageBg").value = "forest";
-  setPageBg("forest");
-}
-
-function changeLanguage(value) {
-  document.documentElement.lang = value;
-}
-
-window.addEventListener("error", e => {
-  console.error("JavaScript error:", e.message);
 });
+/* ===== PART 1 JAVASCRIPT END ===== */
 
-const initial = location.hash.slice(1);
-if (initial && $(initial) && $(initial).classList.contains("page")) {
-  go(initial);
-}
+
+/* ===== PART 2 JAVASCRIPT STARTS HERE ===== */
+
+
+/* ===== PART 3 JAVASCRIPT STARTS HERE ===== */
+
+
+/* ===== PART 4 JAVASCRIPT STARTS HERE ===== */
+
+
+/* ===== PART 5 JAVASCRIPT STARTS HERE ===== */
+
+
+/* ===== PART 6 JAVASCRIPT STARTS HERE ===== */
+
 </script>
- 
 </body>
-</html>
+        </html>
+  
