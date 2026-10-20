@@ -149,19 +149,194 @@ h1 {
 .about h2 { margin-top: 0; }
 .about a { color: var(--green); overflow-wrap: anywhere; }
 
-/* ===== PART 2 CSS STARTS HERE ===== */
+.tool-screen {
+  display: none;
+  background: #fffaf0;
+  border: 1px solid #d8bd78;
+  border-radius: 16px;
+  padding: 18px;
+  margin-top: 20px;
+}
+
+.tool-screen.active {
+  display: block;
+}
+
+.tool-screen h2 {
+  color: var(--green);
+  margin-top: 0;
+}
+
+.tool-screen textarea,
+.tool-screen input,
+.tool-screen select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 8px 0 14px;
+  border: 1px solid #cdbb91;
+  border-radius: 10px;
+  font: inherit;
+  background: white;
+}
+
+.tool-screen textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.tool-screen button {
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tool-screen .secondary-btn {
+  background: #ead9ad;
+  color: #263b2b;
+}
 
 
 /* ===== PART 3 CSS STARTS HERE ===== */
 
+.tool-screen .choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.tool-screen .choice-card {
+  padding: 14px 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--text);
+  text-align: center;
+}
+
+.tool-screen .choice-card:focus,
+.tool-screen .choice-card:hover {
+  border-color: var(--gold);
+}
+
+.tool-screen .field-label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.tool-screen .hint {
+  color: var(--muted);
+  font: 13px/1.6 Arial, sans-serif;
+}
 
 /* ===== PART 4 CSS STARTS HERE ===== */
 
+.result-box {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  background: var(--paper);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.result-box h3 {
+  margin-top: 0;
+  color: var(--green);
+}
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.result-actions button {
+  flex: 1 1 120px;
+}
+
+.notice {
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 10px;
+  background: #eee6d5;
+  color: var(--text);
+  font: 13px/1.6 Arial, sans-serif;
+}
 
 /* ===== PART 5 CSS STARTS HERE ===== */
 
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.chat-message {
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.chat-message.user {
+  background: #e8efdf;
+}
+
+.tool-screen .two-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.tool-screen .hidden {
+  display: none;
+}
 
 /* ===== PART 6 CSS STARTS HERE ===== */
+
+@media (max-width: 380px) {
+  .nav {
+    align-items: flex-start;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .tool-screen {
+    padding: 13px;
+  }
+
+  .tool-screen .choice-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 650px) {
+  .tool-screen {
+    padding: 25px;
+  }
+
+  .tool-screen .two-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ===== PART 6 CSS END ===== */
+    
 
 @media (min-width: 650px) {
   main { padding-top: 35px; }
@@ -246,13 +421,104 @@ h1 {
   <!-- ===== PART 1 HOME PAGE END ===== -->
 
 
-  <!-- ===== PART 2 HTML STARTS HERE ===== -->
+  
+<!-- ===== PART 2 HTML STARTS HERE ===== -->
+
+<section class="tool-screen" id="toolScreen">
+  <button type="button" class="secondary-btn" id="backHome">← Back to Home</button>
+
+  <h2 id="toolTitle">Create with AI</h2>
+  <p class="hint">अपना विषय चुनें या लिखें और अपनी पसंद का आउटपुट तैयार करें।</p>
+
+  <label class="field-label" for="creationMode">आप क्या करना चाहते हैं?</label>
+  <div class="choice-grid">
+    <button type="button" class="choice-card" data-mode="ai">
+      ✨ AI से बनाएं
+    </button>
+    <button type="button" class="choice-card" data-mode="picture">
+      🖼️ अपनी तस्वीर पर लिखें
+    </button>
+  </div>
+
+  <div id="creationForm">
+    <label class="field-label" for="topic">विषय या अपनी कल्पना लिखें</label>
+    <textarea id="topic" placeholder="यहाँ अपना विषय लिखें..."></textarea>
+
+    <label class="field-label" for="length">रचना की लंबाई</label>
+    <select id="length">
+      <option value="Short">Short — छोटी</option>
+      <option value="Medium" selected>Medium — मध्यम</option>
+      <option value="Long">Long — लंबी</option>
+    </select>
+
+    <button type="button" id="createButton">✨ रचना तैयार करें</button>
+  </div>
+
+  <div id="pictureForm" class="hidden">
+    <label class="field-label" for="pictureText">तस्वीर पर लिखने के लिए टेक्स्ट</label>
+    <textarea id="pictureText" placeholder="अपनी शायरी या संदेश लिखें..."></textarea>
+
+    <label class="field-label" for="pictureUpload">अपनी तस्वीर चुनें</label>
+    <input type="file" id="pictureUpload" accept="image/*">
+
+    <p class="hint">तस्वीर पर टेक्स्ट लगाने की सुविधा अगले चरण में जोड़ी जाएगी।</p>
+  </div>
+</section>
+
+<!-- ===== PART 2 HTML END ===== -->
+  
 
 
-  <!-- ===== PART 3 HTML STARTS HERE ===== -->
+
+<!-- ===== PART 3 HTML STARTS HERE ===== -->
+
+<section class="tool-screen" id="resultScreen">
+  <h2>आपकी रचना</h2>
+  <p class="hint">आपकी तैयार रचना यहाँ दिखाई देगी।</p>
+
+  <div class="result-box" id="resultText">
+    अभी कोई रचना तैयार नहीं हुई है।
+  </div>
+
+  <div class="result-actions">
+    <button type="button" id="copyResult">📋 Copy Text</button>
+    <button type="button" id="downloadResult">⬇ Download Text</button>
+    <button type="button" id="regenerateResult">🔄 Try Again</button>
+  </div>
+
+  <button type="button" class="secondary-btn" id="backToTool">
+    ← वापस जाएँ
+  </button>
+</section>
+
+<!-- ===== PART 3 HTML END ===== -->
+  
 
 
-  <!-- ===== PART 4 HTML STARTS HERE ===== -->
+  
+<!-- ===== PART 4 HTML STARTS HERE ===== -->
+
+<section class="tool-screen" id="posterScreen">
+  <h2>आपकी रचना का पोस्टर</h2>
+  <p class="hint">यहाँ आपकी रचना का टेक्स्ट और डिज़ाइन दिखाई देगा।</p>
+
+  <div id="posterPreview" class="result-box">
+    <div style="text-align:center; padding:20px 8px;">
+      <p style="color:#a88742; letter-spacing:2px;">AI RACHNA STUDIO</p>
+      <div id="posterText" style="white-space:pre-wrap; font-size:22px;">
+        आपकी रचना यहाँ दिखाई देगी।
+      </div>
+    </div>
+  </div>
+
+  <div class="result-actions">
+    <button type="button" id="copyPosterText">📋 Copy Text</button>
+    <button type="button" id="downloadPosterText">⬇ Download Text</button>
+  </div>
+</section>
+
+<!-- ===== PART 4 HTML END ===== -->
+  
 
 
   <!-- ===== PART 5 HTML STARTS HERE ===== -->
@@ -287,33 +553,234 @@ h1 {
 "use strict";
 
 /* ===== PART 1 JAVASCRIPT START ===== */
+
 const languageSelect = document.getElementById("outputLanguage");
 const statusBox = document.getElementById("status");
-document.getElementById("year").textContent = String(new Date().getFullYear());
+const toolScreen = document.getElementById("toolScreen");
+const toolTitle = document.getElementById("toolTitle");
+const creationForm = document.getElementById("creationForm");
+const pictureForm = document.getElementById("pictureForm");
+
+document.getElementById("year").textContent =
+  String(new Date().getFullYear());
 
 document.querySelectorAll("[data-tool]").forEach(function(button) {
   button.addEventListener("click", function() {
+    const selectedTool = button.dataset.tool;
+
+    if (selectedTool === "More Tools") {
+      statusBox.textContent =
+        "More tools will be added in a later part.";
+      return;
+    }
+
+    toolTitle.textContent = selectedTool;
+    toolScreen.classList.add("active");
+    toolScreen.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    creationForm.classList.remove("hidden");
+    pictureForm.classList.add("hidden");
+
     statusBox.textContent =
-      button.dataset.tool + " selected. Output language: " +
-      languageSelect.value + ". Additional functionality will be added in later parts.";
+      selectedTool + " selected. Output language: " +
+      languageSelect.value + ".";
   });
 });
+
+document.getElementById("backHome").addEventListener("click", function() {
+  toolScreen.classList.remove("active");
+  statusBox.textContent = "Welcome to AI Rachna Studio.";
+});
+  
 /* ===== PART 1 JAVASCRIPT END ===== */
 
 
 /* ===== PART 2 JAVASCRIPT STARTS HERE ===== */
 
+document.querySelectorAll("[data-mode]").forEach(function(button) {
+  button.addEventListener("click", function() {
+    const mode = button.dataset.mode;
+
+    if (mode === "ai") {
+      creationForm.classList.remove("hidden");
+      pictureForm.classList.add("hidden");
+      statusBox.textContent =
+        "AI creation selected. Output language: " +
+        languageSelect.value +
+        ". Real AI generation will be connected in a later step.";
+    } else {
+      creationForm.classList.add("hidden");
+      pictureForm.classList.remove("hidden");
+      statusBox.textContent =
+        "Picture design selected. Choose an image and enter your text.";
+    }
+  });
+});
+
+document.getElementById("createButton").addEventListener("click", function() {
+  const topic = document.getElementById("topic").value.trim();
+  const length = document.getElementById("length").value;
+
+  if (!topic) {
+    statusBox.textContent = "Please enter a topic first.";
+    document.getElementById("topic").focus();
+    return;
+  }
+
+  statusBox.textContent =
+    "Your request is ready: " + topic +
+    " | Length: " + length +
+    " | Language: " + languageSelect.value +
+    ". Real AI generation will be connected later.";
+});
+
+/* ===== PART 2 JAVASCRIPT END ===== */
+      
+
 
 /* ===== PART 3 JAVASCRIPT STARTS HERE ===== */
+
+const resultScreen = document.getElementById("resultScreen");
+const resultText = document.getElementById("resultText");
+
+document.getElementById("backToTool").addEventListener("click", function() {
+  resultScreen.classList.remove("active");
+  toolScreen.classList.add("active");
+  toolScreen.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.getElementById("copyResult").addEventListener("click", async function() {
+  const text = resultText.innerText.trim();
+
+  try {
+    await navigator.clipboard.writeText(text);
+    statusBox.textContent = "Text copied successfully.";
+  } catch (error) {
+    statusBox.textContent =
+      "Copy is unavailable here. Please select and copy the text manually.";
+  }
+});
+
+document.getElementById("downloadResult").addEventListener("click", function() {
+  const text = resultText.innerText.trim();
+  const file = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(file);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "ai-rachna.txt";
+  link.click();
+
+  URL.revokeObjectURL(url);
+  statusBox.textContent = "Download requested.";
+});
+
+/* ===== PART 3 JAVASCRIPT END ===== */
+                      
+
 
 
 /* ===== PART 4 JAVASCRIPT STARTS HERE ===== */
 
+document.getElementById("copyPosterText").addEventListener("click", async function() {
+  const text = document.getElementById("posterText").innerText.trim();
+
+  try {
+    await navigator.clipboard.writeText(text);
+    statusBox.textContent = "Poster text copied.";
+  } catch (error) {
+    statusBox.textContent = "Copy unavailable. Please copy the text manually.";
+  }
+});
+
+document.getElementById("downloadPosterText").addEventListener("click", function() {
+  const text = document.getElementById("posterText").innerText.trim();
+  const file = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(file);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "ai-rachna-poster-text.txt";
+  link.click();
+  URL.revokeObjectURL(url);
+
+  statusBox.textContent = "Poster text download requested.";
+});
+
+/* ===== PART 4 JAVASCRIPT END ===== */
+  
+
+
 
 /* ===== PART 5 JAVASCRIPT STARTS HERE ===== */
 
+const posterScreen = document.getElementById("posterScreen");
+const posterText = document.getElementById("posterText");
+
+document.getElementById("createButton").addEventListener("click", function() {
+  const topic = document.getElementById("topic").value.trim();
+
+  if (!topic) {
+    return;
+  }
+
+  resultText.textContent =
+    "आपका विषय: " + topic + "\n\n" +
+    "AI Rachna Studio का डेमो आउटपुट।\n\n" +
+    "अभी असली AI से रचना बनाने की सुविधा जोड़ना बाकी है।";
+
+  posterText.textContent = topic;
+
+  resultScreen.classList.add("active");
+  posterScreen.classList.add("active");
+
+  resultScreen.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+document.getElementById("regenerateResult").addEventListener("click", function() {
+  statusBox.textContent =
+    "असली AI से नई रचना बनाने के लिए AI API और backend जोड़ना बाकी है।";
+});
+
+document.querySelectorAll("[data-tool]").forEach(function(button) {
+  button.addEventListener("click", function() {
+    resultScreen.classList.remove("active");
+    posterScreen.classList.remove("active");
+  });
+});
+
+/* ===== PART 5 JAVASCRIPT END ===== */
+  
+
+
 
 /* ===== PART 6 JAVASCRIPT STARTS HERE ===== */
+
+// वेबसाइट का शुरुआती संदेश
+statusBox.textContent = "Welcome to AI Rachna Studio!";
+
+// चुनी गई तस्वीर की जानकारी दिखाएँ
+const pictureUpload = document.getElementById("pictureUpload");
+
+pictureUpload.addEventListener("change", function() {
+  if (pictureUpload.files && pictureUpload.files.length > 0) {
+    statusBox.textContent =
+      "तस्वीर चुनी गई है: " + pictureUpload.files[0].name +
+      ". तस्वीर पर टेक्स्ट लगाने की सुविधा अभी जोड़नी बाकी है।";
+  }
+});
+
+// भाषा बदलने पर संदेश अपडेट करें
+languageSelect.addEventListener("change", function() {
+  statusBox.textContent =
+    "Output language selected: " + languageSelect.value;
+});
+
+/* ===== PART 6 JAVASCRIPT END ===== */
+  
 
 </script>
 </body>
