@@ -782,6 +782,66 @@ languageSelect.addEventListener("change", function() {
 /* ===== PART 6 JAVASCRIPT END ===== */
   
 
+/* ===== GROQ AI CONNECTION ===== */
+
+document.getElementById("createButton").addEventListener("click", async function() {
+  const topic = document.getElementById("topic").value.trim();
+  const length = document.getElementById("length").value;
+  const language = document.getElementById("outputLanguage").value;
+  const statusBox = document.getElementById("status");
+  const button = document.getElementById("createButton");
+
+  if (!topic) {
+    statusBox.textContent = "पहले अपनी रचना का विषय लिखें।";
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "⏳ AI रचना बना रहा है...";
+  statusBox.textContent = "Groq AI से संपर्क हो रहा है...";
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        topic: topic,
+        language: language,
+        length: length
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "AI से रचना नहीं बन पाई।");
+    }
+
+    document.getElementById("resultText").textContent = data.result;
+    document.getElementById("posterText").textContent = data.result;
+
+    document.getElementById("resultScreen").classList.add("active");
+    document.getElementById("posterScreen").classList.add("active");
+
+    document.getElementById("resultScreen").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    statusBox.textContent = "आपकी AI रचना तैयार है!";
+  } catch (error) {
+    statusBox.textContent =
+      "AI कनेक्शन में समस्या: " + error.message;
+  } finally {
+    button.disabled = false;
+    button.textContent = "✨ रचना तैयार करें";
+  }
+});
+
+/* ===== GROQ AI CONNECTION END ===== */
+  
 </script>
 </body>
         </html>
