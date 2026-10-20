@@ -3,531 +3,625 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Rachna Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17251f">
+<meta name="description" content="AI Rachna Studio — अपनी शायरी, कविता, कहानी और रचनाएँ बनाएँ।">
+<title>AI Rachna Studio | शब्दों की खूबसूरत दुनिया</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
 :root {
-  --gold:#f5bd68;
-  --panel:#102330;
-  --text:#fff7eb;
-  --muted:#c0cbd2;
+  --ink: #24352d;
+  --gold: #b18b4c;
+  --cream: #f8f4eb;
+  --paper: #fffdf7;
+  --muted: #77796d;
+  --line: #e7decd;
 }
-* { box-sizing:border-box }
+* { box-sizing: border-box; }
 body {
-  margin:0;
-  background:#07131d;
-  color:var(--text);
-  font-family:Georgia,"Noto Sans Devanagari",serif;
+  margin: 0;
+  color: var(--ink);
+  background: #f5f2ea;
+  font-family: "Noto Sans Devanagari", sans-serif;
 }
-header {
-  padding:16px 5%;
-  background:#091923;
-  border-bottom:1px solid #344958;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  position:sticky;
-  top:0;
-  z-index:5;
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .55; cursor: wait; }
+.topbar {
+  background: #17251f;
+  color: #fff9ed;
+  padding: 17px 20px;
+  border-bottom: 3px solid var(--gold);
 }
-.brand {font-size:25px;font-weight:bold}
-.brand span {color:var(--gold)}
-select,input,button,textarea {font:inherit}
-select,input {
-  padding:10px;
-  border:1px solid #40596a;
-  border-radius:10px;
-  background:#0b1c28;
-  color:white;
-  max-width:100%;
+.top-inner {
+  max-width: 1080px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
-.hero {
-  padding:48px 5%;
-  background:
-    linear-gradient(90deg,rgba(4,15,24,.92),rgba(4,15,24,.55)),
-    url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=85") center/cover;
-  border-bottom:2px solid #b98546;
+.brand { display:flex; align-items:center; gap:11px; }
+.brand-icon {
+  width: 43px; height: 43px;
+  display:grid; place-items:center;
+  border:1px solid #b99a62;
+  border-radius:50%;
+  color:#e4c68b; font-size:23px;
 }
-.hero small {color:var(--gold);letter-spacing:2px}
-h1 {font-size:clamp(32px,7vw,55px);margin:12px 0}
-h1 span {color:var(--gold)}
-.hero p {max-width:650px;line-height:1.8;color:#e2e7e9}
-main {max-width:1100px;margin:auto;padding:28px 4%}
-h2 {font-size:25px}
-.sub {color:var(--muted);line-height:1.7}
-.cards {
-  display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:12px;
-  margin:22px 0;
+.brand h1 { margin:0; font-family:"Playfair Display",serif; font-size:22px; }
+.brand p { margin:4px 0 0; color:#d4cbb8; font-size:11px; }
+.lang {
+  padding:9px; border:1px solid #827452; border-radius:8px;
+  background:#24352d; color:white; max-width:130px;
 }
-.card {
-  text-align:left;
-  padding:15px 12px;
-  min-height:115px;
-  border:1px solid #344958;
-  border-radius:14px;
-  background:linear-gradient(145deg,#142f3e,#0a1924);
-  color:white;
-  cursor:pointer;
+main { max-width:1080px; margin: auto; padding:24px 16px 48px; }
+.hero { text-align:center; padding:17px 8px 27px; }
+.eyebrow { color:#99753d; letter-spacing:2px; font-size:11px; font-weight:700; }
+.hero h2 {
+  font-family:"Noto Serif Devanagari",serif;
+  font-size:clamp(27px,5vw,40px);
+  margin:12px 0 8px; line-height:1.45;
 }
-.card.active,.card:hover {border-color:var(--gold)}
-.card strong,.card small {display:block}
-.card strong {margin:7px 0}
-.card small {color:var(--muted);line-height:1.5}
-.emoji {font-size:24px}
+.hero p { margin:0; color:#74766b; font-size:14px; line-height:1.8; }
+.grid { display:grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap:20px; align-items:start; }
 .panel {
-  padding:20px;
-  background:#0d202c;
-  border:1px solid #314958;
-  border-radius:17px;
-  margin:18px 0;
+  background:#fffdf8; border:1px solid var(--line);
+  border-radius:15px; padding:20px;
+  box-shadow:0 8px 25px #43351a0a;
 }
-textarea {
-  width:100%;
-  min-height:110px;
-  padding:14px;
-  border:1px solid #435e70;
-  border-radius:12px;
-  background:#07151f;
-  color:white;
-  line-height:1.8;
-  resize:vertical;
+.panel h3 { margin:0 0 6px; font-family:"Noto Serif Devanagari",serif; font-size:20px; }
+.sub { color:var(--muted); font-size:12px; line-height:1.7; margin:0 0 20px; }
+.field { margin-bottom:16px; }
+label { display:block; font-size:13px; font-weight:600; margin-bottom:7px; }
+input, select, textarea {
+  width:100%; border:1px solid #ded7c9; background:#fffefa;
+  border-radius:9px; padding:11px 12px; color:var(--ink);
+  outline:none;
 }
-button {
-  border-radius:22px;
-  padding:11px 16px;
-  cursor:pointer;
+input:focus, select:focus, textarea:focus { border-color:var(--gold); }
+textarea { resize:vertical; min-height:94px; line-height:1.7; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+.btn {
+  border:1px solid var(--gold); border-radius:9px; padding:11px 14px;
+  font-weight:600; font-size:13px; background:#fffdf8; color:var(--ink);
 }
-.primary {background:var(--gold);color:#20160b;border:0;font-weight:bold}
-.secondary {background:#173244;color:white;border:1px solid #40596a}
-.actions {display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
-#status {color:var(--gold);margin:12px 0;white-space:pre-wrap}
-#editor {display:none}
-#preview {
-  min-height:330px;
-  padding:35px 22px;
-  border:2px solid #e4bd7b;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  line-height:1.9;
-  font-size:22px;
-  background-size:cover;
-  background-position:center;
-  background-color:#152633;
-  text-shadow:0 2px 8px #000;
+.btn.primary { background:#263b30; color:#fff8e9; border-color:#263b30; }
+.btn.gold { background:#b18b4c; color:white; border-color:#b18b4c; }
+.btn:hover { filter:brightness(.97); }
+.generate { width:100%; padding:14px; font-size:15px; }
+.status { font-size:12px; color:#6e705f; line-height:1.7; margin-top:12px; white-space:pre-wrap; }
+.toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.toolbar .btn { flex:1; min-width:95px; }
+.preview-wrap { min-width:0; }
+.artwork {
+  --art-ink:#fff8ec;
+  --art-accent:#e2c68e;
+  position:relative; overflow:hidden;
+  min-height:420px; padding:32px 22px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:12px; color:var(--art-ink);
+  background-color:#26372f;
+  background-size:cover; background-position:center;
+  isolation:isolate;
 }
-#preview.paper {
-  background-image:linear-gradient(#f4e5c7,#dfc69b)!important;
-  color:#33251a!important;
-  text-shadow:none;
-  border-color:#a7834e;
+.artwork::before {
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg,#111b19a6,#111b19c9);
 }
-#preview.news {
-  background-image:repeating-linear-gradient(#f5f0df,#f5f0df 29px,#d7cbb3 30px)!important;
-  color:#222!important;
-  text-shadow:none;
-  border-color:#999;
-  font-family:Georgia,serif;
+.artwork.paper {
+  --art-ink:#343329; --art-accent:#a57b3f;
+  color:var(--art-ink);
+  background:
+    radial-gradient(ellipse at 15% 12%,#e5d5b2 0,transparent 38%),
+    radial-gradient(ellipse at 90% 90%,#eee0c2 0,transparent 40%),
+    #faf3e2;
 }
-#preview.night {
-  background-image:linear-gradient(135deg,#101b35,#482b50)!important;
-  color:#fff!important;
+.artwork.paper::before {
+  background:repeating-linear-gradient(0deg,#aa8c4510 0,#aa8c4510 1px,transparent 1px,transparent 5px);
 }
-#preview.romantic {
-  background-image:linear-gradient(135deg,#7b314b,#d18b91)!important;
-  color:#fff!important;
+.artwork.photo { background-image:url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85"); }
+.artwork.auto { background-image:linear-gradient(140deg,#182a2b,#3b4b40 48%,#755d42); }
+.artwork.frame::after {
+  content:""; position:absolute; inset:12px; border:1px solid var(--art-accent);
+  pointer-events:none; z-index:0; opacity:.8;
 }
-#preview.nature {
-  background-image:linear-gradient(135deg,#163f35,#719a68)!important;
-  color:#fff!important;
+.art-inner {
+  width:100%; max-width:560px; text-align:center;
+  position:relative; z-index:1; overflow-wrap:anywhere;
 }
-#preview.car {
-  background-image:linear-gradient(135deg,#111,#454545)!important;
-  color:#fff!important;
+.ornament { color:var(--art-accent); font-size:20px; margin:0 0 14px; }
+.art-label {
+  color:var(--art-accent); font-size:10px; font-weight:700;
+  letter-spacing:2px; margin-bottom:17px; text-transform:uppercase;
 }
-#preview.rain {
-  background-image:linear-gradient(135deg,#102b42,#4b6277)!important;
-  color:#fff!important;
+.art-title {
+  font-family:"Noto Serif Devanagari",serif;
+  font-size:26px; line-height:1.55; font-weight:700;
+  margin:0 auto 16px; white-space:pre-wrap;
 }
-#preview.sunset {
-  background-image:linear-gradient(135deg,#7a342e,#e6a35e)!important;
-  color:#fff!important;
+.art-body {
+  font-family:"Noto Serif Devanagari",serif;
+  font-size:17px; line-height:1.8; font-weight:400;
+  white-space:pre-wrap; overflow-wrap:anywhere;
 }
-#preview.diary {
-  background-image:linear-gradient(135deg,#3d2923,#8e6a4d)!important;
-  color:#fff1d9!important;
+.art-body.story { text-align:start; }
+.art-footer { color:var(--art-accent); font-size:17px; margin-top:23px; }
+.preview-note { font-size:11px; color:#77796d; line-height:1.6; margin:10px 2px 0; }
+.editor { margin-top:16px; }
+.editor summary { cursor:pointer; font-weight:600; font-size:14px; padding:4px 0 12px; }
+input[type="range"] { padding:0; accent-color:#98753e; }
+.color-row { display:flex; align-items:center; gap:10px; }
+input[type="color"] { width:45px; height:39px; padding:3px; }
+.footer { text-align:center; padding:20px; color:#77796d; font-size:11px; line-height:1.8; }
+@media(max-width:760px) {
+  .grid { grid-template-columns:1fr; }
+  .hero { padding-top:8px; }
+  .panel { padding:16px; }
+  .artwork { min-height:390px; padding:28px 22px; }
+  .art-title { font-size:23px; }
+  .art-body { font-size:16px; }
+  .brand h1 { font-size:18px; }
 }
-#preview.gradient {
-  background-image:linear-gradient(135deg,#41316f,#bd628d,#e6b16c)!important;
-  color:white!important;
-}
-.tools {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.tool {
-  padding:13px;
-  border-radius:12px;
-  background:#091923;
-  border:1px solid #344958;
-}
-.tool label {display:block;margin-bottom:9px;color:var(--gold)}
-.tool select,.tool input {width:100%}
-footer {
-  text-align:center;
-  padding:24px;
-  color:var(--muted);
-  border-top:1px solid #344958;
-  line-height:1.8;
-}
-@media(max-width:700px) {
-  .cards {grid-template-columns:repeat(2,minmax(0,1fr))}
-  .tools {grid-template-columns:1fr}
-  header {padding:12px 4%}
-  .brand {font-size:19px}
-  .hero {padding:35px 5%}
+@media print {
+  body { background:white; }
+  .topbar,.hero,.editor,.toolbar,.preview-note,.footer { display:none!important; }
+  main,.grid,.panel { display:block; padding:0; margin:0; border:0; box-shadow:none; }
+  .artwork { border-radius:0; min-height:95vh; }
 }
 </style>
 </head>
-<body>
 
-<header>
-  <div>
-    <div class="brand">✒ AI <span>Rachna</span> Studio</div>
-    <small>सोचें • लिखें • सजाएँ</small>
+<body>
+<header class="topbar">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="brand-icon">✦</div>
+      <div>
+        <h1>AI Rachna Studio</h1>
+        <p id="tagline">शब्दों को दीजिए एक खूबसूरत अंदाज़</p>
+      </div>
+    </div>
+    <select id="language" class="lang" aria-label="Language">
+      <option value="hi">हिंदी</option>
+      <option value="en">English</option>
+    </select>
   </div>
-  <select id="language" aria-label="Language">
-    <option value="hi">🇮🇳 हिंदी</option>
-    <option value="en">🇬🇧 English</option>
-  </select>
 </header>
 
-<section class="hero">
-  <small>YOUR IDEAS, BEAUTIFULLY CREATED</small>
-  <h1>AI <span>Rachna</span> Studio</h1>
-  <p id="heroText">अपनी कल्पना को शब्दों और खूबसूरत डिज़ाइन में बदलें।</p>
-</section>
-
 <main>
-  <h2 id="chooseTitle">आप क्या बनाना चाहते हैं?</h2>
-  <p class="sub" id="chooseSub">विकल्प चुनें या अपना आइडिया लिखें।</p>
+  <section class="hero">
+    <div class="eyebrow" id="heroEyebrow">THE ART OF WORDS</div>
+    <h2 id="heroTitle">आपके एहसास, खूबसूरत अल्फ़ाज़</h2>
+    <p id="heroDesc">शायरी से कहानी तक — अपनी कल्पना को रचना में बदलें।</p>
+  </section>
 
-  <div class="cards" id="cards">
-    <button class="card" data-type="शायरी" data-en="Poetry"><span class="emoji">✒️</span><strong>शायरी</strong><small>दिल की बात</small></button>
-    <button class="card" data-type="कविता" data-en="Poem"><span class="emoji">📖</span><strong>कविता</strong><small>भावनाओं की अभिव्यक्ति</small></button>
-    <button class="card" data-type="ग़ज़ल" data-en="Ghazal"><span class="emoji">🎼</span><strong>ग़ज़ल</strong><small>लफ़्ज़ों में एहसास</small></button>
-    <button class="card" data-type="शेर" data-en="Couplet"><span class="emoji">❝</span><strong>शेर</strong><small>कम शब्द, गहरी बात</small></button>
-    <button class="card" data-type="डायलॉग" data-en="Dialogue"><span class="emoji">🎭</span><strong>डायलॉग</strong><small>दमदार संवाद</small></button>
-    <button class="card" data-type="लव लेटर" data-en="Love letter"><span class="emoji">💌</span><strong>लव लेटर</strong><small>दिल से लिखें</small></button>
-    <button class="card" data-type="कहानी" data-en="Story"><span class="emoji">📚</span><strong>कहानी</strong><small>एक नई दुनिया</small></button>
-    <button class="card" data-type="रेसिपी" data-en="Recipe"><span class="emoji">🍲</span><strong>रेसिपी</strong><small>खाना बनाने की विधि</small></button>
-    <button class="card" data-type="सवाल-जवाब" data-en="Question and answer"><span class="emoji">🎓</span><strong>सवाल-जवाब</strong><small>पढ़ाई और जानकारी</small></button>
-    <button class="card" data-type="कुछ और" data-en="Anything"><span class="emoji">✨</span><strong>कुछ और</strong><small>अपना आइडिया बताएँ</small></button>
+  <div class="grid">
+    <section class="panel">
+      <h3 id="createHeading">नई रचना बनाएँ</h3>
+      <p class="sub" id="createSub">अपनी पसंद चुनें और अपने विचारों को शब्द दें।</p>
+
+      <div class="field">
+        <label for="type" id="typeLabel">रचना का प्रकार</label>
+        <select id="type">
+          <option value="शायरी">शायरी</option>
+          <option value="कविता">कविता</option>
+          <option value="ग़ज़ल">ग़ज़ल</option>
+          <option value="दोहे">दोहे</option>
+          <option value="डायलॉग">डायलॉग</option>
+          <option value="प्रेम-पत्र">प्रेम-पत्र</option>
+          <option value="कहानी">कहानी</option>
+          <option value="लेख">लेख</option>
+          <option value="रेसिपी">रेसिपी</option>
+          <option value="प्रश्न-उत्तर">प्रश्न-उत्तर</option>
+          <option value="रचनात्मक लेखन">कुछ और</option>
+        </select>
+      </div>
+
+      <div class="two">
+        <div class="field">
+          <label for="mood" id="moodLabel">भाव / मूड</label>
+          <select id="mood">
+            <option value="sad">उदास</option>
+            <option value="romantic">रोमांटिक</option>
+            <option value="hopeful">प्रेरणादायक</option>
+            <option value="happy">खुश</option>
+            <option value="deep">गहरा / दार्शनिक</option>
+            <option value="funny">मज़ेदार</option>
+            <option value="peaceful">शांत</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="length" id="lengthLabel">लंबाई</label>
+          <select id="length">
+            <option value="short">छोटी</option>
+            <option value="medium" selected>मध्यम</option>
+            <option value="long">लंबी</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="topic" id="topicLabel">विषय / अपना विचार</label>
+        <textarea id="topic" placeholder="जैसे: अधूरी मोहब्बत, बारिश की रात, बचपन की यादें..."></textarea>
+      </div>
+
+      <button class="btn primary generate" id="generate">✦ रचना तैयार करें</button>
+      <div class="status" id="status" role="status" aria-live="polite">अपना विषय लिखें और रचना तैयार करें।</div>
+    </section>
+
+    <section class="panel preview-wrap">
+      <h3 id="previewHeading">आपकी रचना</h3>
+      <p class="sub" id="previewSub">आपकी रचना के अनुसार डिज़ाइन तैयार होगा।</p>
+
+      <div id="artwork" class="artwork auto frame">
+        <div class="art-inner">
+          <div class="ornament">✦ ❧ ✦</div>
+          <div class="art-label" id="artLabel">AI RACHNA STUDIO</div>
+          <h2 class="art-title" id="artTitle">आपके शब्द यहाँ सजेंगे</h2>
+          <div class="art-body" id="artBody">अपनी रचना तैयार करें और उसे खूबसूरत क्लासिक अंदाज़ में देखें।</div>
+          <div class="art-footer">❦</div>
+        </div>
+      </div>
+
+      <p class="preview-note" id="previewNote">टिप: PNG डाउनलोड करने से पहले अपनी पसंद का बैकग्राउंड और फ़ॉन्ट चुनें।</p>
+
+      <div class="toolbar">
+        <button class="btn" id="copy">कॉपी</button>
+        <button class="btn" id="downloadTxt">TXT डाउनलोड</button>
+        <button class="btn gold" id="downloadPng">PNG डाउनलोड</button>
+      </div>
+
+      <details class="editor" open>
+        <summary id="designSummary">✧ डिज़ाइन और सजावट</summary>
+        <div class="two">
+          <div class="field">
+            <label for="background" id="backgroundLabel">बैकग्राउंड</label>
+            <select id="background">
+              <option value="auto">Auto Design</option>
+              <option value="photo">Photo Background</option>
+              <option value="paper">Classic Paper</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="decoration" id="decorationLabel">सजावट</label>
+            <select id="decoration">
+              <option value="frame">क्लासिक बॉर्डर</option>
+              <option value="simple">सिम्पल</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="font" id="fontLabel">फ़ॉन्ट स्टाइल</label>
+          <select id="font">
+            <option value="serif">क्लासिक साहित्यिक</option>
+            <option value="sans">साफ़ और आधुनिक</option>
+            <option value="playfair">Elegant English</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fontSize" id="sizeLabel">टेक्स्ट का आकार</label>
+          <input id="fontSize" type="range" min="13" max="25" value="17">
+        </div>
+        <div class="field">
+          <label for="textColor" id="colorLabel">टेक्स्ट का रंग</label>
+          <div class="color-row">
+            <input type="color" id="textColor" value="#fff8ec">
+            <button class="btn" id="resetColor">Auto रंग</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="editText" id="editLabel">अपनी रचना एडिट करें</label>
+          <textarea id="editText" placeholder="यहाँ अपनी रचना लिखें..."></textarea>
+          <button class="btn" id="applyText" style="width:100%;margin-top:8px">टेक्स्ट अपडेट करें</button>
+        </div>
+      </details>
+    </section>
   </div>
-
-  <section class="panel">
-    <h2 id="ideaTitle">✨ अपना आइडिया बताइए</h2>
-    <textarea id="idea" placeholder="जैसे: बारिश पर एक सैड शायरी लिखो..."></textarea>
-    <div class="actions">
-      <button class="primary" id="go">AI से बनाएँ →</button>
-      <button class="secondary" id="clear">साफ़ करें</button>
-    </div>
-    <div id="status" role="status"></div>
-  </section>
-
-  <section class="panel" id="editor">
-    <h2 id="editorTitle">🎨 अब अपनी रचना को डिज़ाइन करें</h2>
-    <p class="sub" id="editorSub">बैकग्राउंड, फॉन्ट और रंग बदलें। आपकी रचना वही रहेगी।</p>
-
-    <div id="preview"></div>
-
-    <div class="tools" style="margin-top:16px">
-      <div class="tool">
-        <label for="background" id="bgLabel">🖼️ बैकग्राउंड बदलें</label>
-        <select id="background">
-          <option value="rain">बारिश / Rain</option>
-          <option value="nature">नेचर / Nature</option>
-          <option value="night">रात / Night</option>
-          <option value="romantic">रोमांटिक / Romantic</option>
-          <option value="car">कार / Luxury</option>
-          <option value="sunset">सनसेट / Sunset</option>
-          <option value="gradient">कलरफुल / Colorful</option>
-          <option value="paper">कागज़ / Paper</option>
-          <option value="diary">डायरी / Diary</option>
-          <option value="news">न्यूज़पेपर / Newspaper</option>
-          <option value="photo">प्राकृतिक फोटो / Photo</option>
-        </select>
-      </div>
-      <div class="tool">
-        <label for="font" id="fontLabel">🔤 फॉन्ट बदलें</label>
-        <select id="font">
-          <option value="Georgia">Georgia Classic</option>
-          <option value="serif">Serif</option>
-          <option value="sans-serif">Modern Sans</option>
-          <option value="cursive">Cursive</option>
-          <option value="monospace">Monospace</option>
-          <option value="Noto Sans Devanagari">Noto Devanagari</option>
-        </select>
-      </div>
-      <div class="tool">
-        <label for="textColor" id="colorLabel">🎨 टेक्स्ट का रंग</label>
-        <input type="color" id="textColor" value="#ffffff">
-      </div>
-      <div class="tool">
-        <label for="fontSize" id="sizeLabel">🔎 टेक्स्ट का साइज़</label>
-        <input type="range" id="fontSize" min="16" max="40" value="22">
-      </div>
-    </div>
-
-    <div class="actions">
-      <button class="primary" id="auto">✨ Auto Design</button>
-      <button class="secondary" id="copy">📋 कॉपी</button>
-      <button class="secondary" id="txt">📄 TXT डाउनलोड</button>
-      <button class="secondary" id="png">🖼️ PNG डाउनलोड</button>
-      <button class="secondary" id="editText">✏️ रचना बदलें</button>
-    </div>
-    <p class="sub" id="pngNote">PNG डाउनलोड के लिए ब्राउज़र में इमेज रेंडरिंग लाइब्रेरी लोड होना ज़रूरी है।</p>
-  </section>
 </main>
 
-<footer>
-  <strong>✒ AI Rachna Studio</strong>
-  <div>हर आइडिया में एक नई दुनिया।</div>
-</footer>
+<div class="footer">AI Rachna Studio · हर एहसास के लिए एक नई रचना</div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbyhPNAuNQIxXD_3lEG62kfoU8_trQ3lCNdOXVlYFeyP_AUP5XKPxHYkVmzIJWE7-qbt/exec";
-let lang = "hi";
-let selectedType = "";
-let currentText = "";
+/*
+  IMPORTANT:
+  पुराने बैकअप से अपना असली Google Apps Script /exec URL यहाँ भरें।
+  उदाहरण के तौर पर कोई काल्पनिक URL नहीं दिया गया है।
+*/
+const API_URL = "PASTE_YOUR_EXISTING_GOOGLE_APPS_SCRIPT_EXEC_URL_HERE";
 
 const $ = id => document.getElementById(id);
-const messages = {
+let currentText = "";
+let currentLanguage = "hi";
+let colorWasCustomized = false;
+
+const translations = {
   hi: {
-    hero:"अपनी कल्पना को शब्दों और खूबसूरत डिज़ाइन में बदलें।",
-    choose:"आप क्या बनाना चाहते हैं?",
-    sub:"विकल्प चुनें या अपना आइडिया लिखें।",
-    idea:"✨ अपना आइडिया बताइए",
-    placeholder:"जैसे: बारिश पर एक सैड शायरी लिखो...",
-    go:"AI से बनाएँ →",clear:"साफ़ करें",
-    editor:"🎨 अब अपनी रचना को डिज़ाइन करें",
-    editorSub:"बैकग्राउंड, फॉन्ट और रंग बदलें। आपकी रचना वही रहेगी।",
-    bg:"🖼️ बैकग्राउंड बदलें",font:"🔤 फॉन्ट बदलें",
-    color:"🎨 टेक्स्ट का रंग",size:"🔎 टेक्स्ट का साइज़",
-    auto:"✨ Auto Design",copy:"📋 कॉपी",txt:"📄 TXT डाउनलोड",
-    png:"🖼️ PNG डाउनलोड",edit:"✏️ रचना बदलें",
-    empty:"पहले अपना आइडिया लिखें या कैटेगरी चुनें।",
-    loading:"AI रचना तैयार कर रहा है...",
-    ready:"रचना तैयार है! अब अपना डिज़ाइन चुनें।",
-    error:"रचना नहीं बन पाई। इंटरनेट या AI कनेक्शन जाँचें।",
-    copied:"कॉपी हो गया!",pngNote:"PNG बनाने के लिए लाइब्रेरी लोड हो रही है..."
+    tagline:"शब्दों को दीजिए एक खूबसूरत अंदाज़",
+    eyebrow:"THE ART OF WORDS",
+    heroTitle:"आपके एहसास, खूबसूरत अल्फ़ाज़",
+    heroDesc:"शायरी से कहानी तक — अपनी कल्पना को रचना में बदलें।",
+    create:"नई रचना बनाएँ", createSub:"अपनी पसंद चुनें और अपने विचारों को शब्द दें।",
+    type:"रचना का प्रकार", mood:"भाव / मूड", length:"लंबाई", topic:"विषय / अपना विचार",
+    generate:"✦ रचना तैयार करें", preview:"आपकी रचना",
+    previewSub:"आपकी रचना के अनुसार डिज़ाइन तैयार होगा।",
+    note:"टिप: PNG डाउनलोड करने से पहले अपनी पसंद का बैकग्राउंड और फ़ॉन्ट चुनें।",
+    copy:"कॉपी", txt:"TXT डाउनलोड", png:"PNG डाउनलोड",
+    design:"✧ डिज़ाइन और सजावट", background:"बैकग्राउंड", decoration:"सजावट",
+    font:"फ़ॉन्ट स्टाइल", size:"टेक्स्ट का आकार", color:"टेक्स्ट का रंग",
+    autoColor:"Auto रंग", edit:"अपनी रचना एडिट करें", apply:"टेक्स्ट अपडेट करें",
+    placeholder:"जैसे: अधूरी मोहब्बत, बारिश की रात, बचपन की यादें...",
+    status:"अपना विषय लिखें और रचना तैयार करें।",
+    waiting:"आपकी रचना तैयार हो रही है…", done:"रचना तैयार है! अब डिज़ाइन अपनी पसंद से बदलें।",
+    noText:"पहले AI से रचना तैयार करें या एडिट बॉक्स में टेक्स्ट लिखें।",
+    copied:"रचना कॉपी हो गई।", copyFail:"कॉपी नहीं हो सकी। टेक्स्ट चुनकर कॉपी करें।",
+    apiMissing:"पहले कोड में API_URL की जगह अपने पुराने बैकअप वाला /exec URL डालें।",
+    apiError:"रचना तैयार नहीं हुई: ", imageError:"PNG डाउनलोड नहीं हो पाया। पेज रीफ़्रेश करके दोबारा कोशिश करें।",
+    empty:"कृपया विषय या विचार लिखें।", placeholderTitle:"आपके शब्द यहाँ सजेंगे",
+    placeholderBody:"अपनी रचना तैयार करें और उसे खूबसूरत क्लासिक अंदाज़ में देखें।",
+    paper:"Classic Paper", photo:"Photo Background", auto:"Auto Design",
+    classic:"क्लासिक साहित्यिक", sans:"साफ़ और आधुनिक", playfair:"Elegant English"
   },
   en: {
-    hero:"Turn your imagination into words and beautiful designs.",
-    choose:"What would you like to create?",
-    sub:"Choose a category or describe your idea.",
-    idea:"✨ Tell us your idea",
-    placeholder:"For example: Write a sad poem about rain...",
-    go:"Create with AI →",clear:"Clear",
-    editor:"🎨 Design your creation",
-    editorSub:"Change the background, font and color without changing your text.",
-    bg:"🖼️ Change background",font:"🔤 Change font",
-    color:"🎨 Text color",size:"🔎 Text size",
-    auto:"✨ Auto Design",copy:"📋 Copy",txt:"📄 Download TXT",
-    png:"🖼️ Download PNG",edit:"✏️ Edit text",
-    empty:"Write your idea or choose a category first.",
-    loading:"AI is creating your content...",
-    ready:"Your creation is ready! Customize the design.",
-    error:"Could not generate. Check your internet or AI connection.",
-    copied:"Copied!",pngNote:"Loading the image rendering library..."
+    tagline:"Give your words a beautiful style",
+    eyebrow:"THE ART OF WORDS",
+    heroTitle:"Your feelings, beautifully expressed",
+    heroDesc:"From poetry to stories — turn imagination into writing.",
+    create:"Create something new", createSub:"Choose your style and describe your idea.",
+    type:"Writing type", mood:"Mood", length:"Length", topic:"Topic / Your idea",
+    generate:"✦ Generate writing", preview:"Your creation",
+    previewSub:"A design that suits your writing.",
+    note:"Tip: Choose a background and font before downloading your PNG.",
+    copy:"Copy", txt:"Download TXT", png:"Download PNG",
+    design:"✧ Design & Decoration", background:"Background", decoration:"Decoration",
+    font:"Font style", size:"Text size", color:"Text color",
+    autoColor:"Auto color", edit:"Edit your writing", apply:"Update text",
+    placeholder:"E.g. lost love, a rainy night, childhood memories...",
+    status:"Write a topic and generate your creation.",
+    waiting:"Creating your writing…", done:"Your writing is ready! Customize its design.",
+    noText:"Generate a creation first or type in the edit box.",
+    copied:"Text copied.", copyFail:"Could not copy. Please select and copy the text.",
+    apiMissing:"Add your original Google Apps Script /exec URL to API_URL first.",
+    apiError:"Could not generate: ", imageError:"PNG download failed. Refresh and try again.",
+    empty:"Please enter a topic or idea.", placeholderTitle:"Your words belong here",
+    placeholderBody:"Create your writing and see it in a beautiful classic style.",
+    paper:"Classic Paper", photo:"Photo Background", auto:"Auto Design",
+    classic:"Classic Literary", sans:"Clean & Modern", playfair:"Elegant English"
   }
 };
 
-function setLanguage(value) {
-  lang = value;
-  document.documentElement.lang = value;
-  const t = messages[value];
-  $("heroText").textContent = t.hero;
-  $("chooseTitle").textContent = t.choose;
-  $("chooseSub").textContent = t.sub;
-  $("ideaTitle").textContent = t.idea;
-  $("idea").placeholder = t.placeholder;
-  $("go").textContent = t.go;
-  $("clear").textContent = t.clear;
-  $("editorTitle").textContent = t.editor;
-  $("editorSub").textContent = t.editorSub;
-  $("bgLabel").textContent = t.bg;
-  $("fontLabel").textContent = t.font;
-  $("colorLabel").textContent = t.color;
-  $("sizeLabel").textContent = t.size;
-  $("auto").textContent = t.auto;
-  $("copy").textContent = t.copy;
-  $("txt").textContent = t.txt;
-  $("png").textContent = t.png;
-  $("editText").textContent = t.edit;
-  $("pngNote").textContent = t.pngNote;
-  document.querySelectorAll(".card").forEach(card => {
-    card.querySelector("strong").textContent =
-      value === "hi" ? card.dataset.type : card.dataset.en;
-  });
+function tr(key) { return translations[currentLanguage][key] || translations.hi[key] || key; }
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  document.documentElement.lang = lang;
+  const ids = {
+    tagline:"tagline", eyebrow:"heroEyebrow", heroTitle:"heroTitle",
+    heroDesc:"heroDesc", create:"createHeading", createSub:"createSub",
+    type:"typeLabel", mood:"moodLabel", length:"lengthLabel",
+    topic:"topicLabel", preview:"previewHeading", previewSub:"previewSub",
+    note:"previewNote", design:"designSummary", background:"backgroundLabel",
+    decoration:"decorationLabel", font:"fontLabel", size:"sizeLabel",
+    color:"colorLabel", edit:"editLabel"
+  };
+  Object.entries(ids).forEach(([key,id]) => $(id).textContent = tr(key));
+  $("generate").textContent = tr("generate");
+  $("copy").textContent = tr("copy");
+  $("downloadTxt").textContent = tr("txt");
+  $("downloadPng").textContent = tr("png");
+  $("resetColor").textContent = tr("autoColor");
+  $("applyText").textContent = tr("apply");
+  $("topic").placeholder = tr("placeholder");
+  $("artTitle").textContent = currentText ? getTitle(currentText) : tr("placeholderTitle");
+  $("artBody").textContent = currentText ? getBody(currentText) : tr("placeholderBody");
+  $("status").textContent = tr("status");
 }
-$("language").addEventListener("change", e => setLanguage(e.target.value));
 
-document.querySelectorAll(".card").forEach(card => {
-  card.addEventListener("click", () => {
-    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
-    card.classList.add("active");
-    selectedType = card.dataset.type;
-    if (!$("idea").value.trim()) {
-      $("idea").value = lang === "hi"
-        ? selectedType + " बनाकर दो।"
-        : "Create " + card.dataset.en + " for me.";
-    }
-    $("idea").focus();
-  });
-});
-
-$("clear").addEventListener("click", () => {
-  $("idea").value = "";
-  $("status").textContent = "";
-  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
-  selectedType = "";
-});
-
-$("go").addEventListener("click", async () => {
-  const topic = $("idea").value.trim();
-  if (!topic) {
-    $("status").textContent = messages[lang].empty;
-    return;
+function getTitle(text) {
+  const lines = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  if (!lines.length) return tr("placeholderTitle");
+  const type = $("type").value;
+  if (["कहानी","लेख","रेसिपी","प्रश्न-उत्तर","रचनात्मक लेखन"].includes(type)) {
+    return lines[0].length <= 90 ? lines[0] : type;
   }
-  $("go").disabled = true;
-  $("status").textContent = messages[lang].loading;
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      body: JSON.stringify({
-        type: selectedType || (lang === "hi" ? "सवाल-जवाब" : "creative writing"),
-        mood: "general",
-        length: "medium",
-        topic,
-        language: lang
-      })
-    });
-    const data = await response.json();
-    if (!data.success) throw new Error(data.error || "Request failed");
-    currentText = data.text || "";
-    $("preview").textContent = currentText;
-    $("editor").style.display = "block";
-    $("status").textContent = messages[lang].ready;
-    $("editor").scrollIntoView({behavior:"smooth",block:"start"});
-    updatePreview();
-  } catch (err) {
-    console.error(err);
-    $("status").textContent = messages[lang].error;
-  } finally {
-    $("go").disabled = false;
+  return lines[0].length <= 100 ? lines[0] : type;
+}
+
+function getBody(text) {
+  const lines = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  if (!lines.length) return "";
+  const title = getTitle(text);
+  if (lines[0] === title && lines.length > 1) return lines.slice(1).join("\n");
+  return lines.join("\n");
+}
+
+function autoVisual() {
+  const type = $("type").value.toLowerCase();
+  const mood = $("mood").value;
+  const topic = $("topic").value.toLowerCase();
+  const paperTypes = ["दोहे","लेख","प्रश्न-उत्तर","रेसिपी"];
+  const love = /love|romantic|प्यार|प्रेम|मोहब्बत|इश्क|रोमांस/.test(topic) || mood === "romantic";
+  const sad = /sad|rain|बारिश|उदास|दर्द|तन्हा|अधूरी|जुदाई|रात/.test(topic) || mood === "sad";
+  const nature = /nature|प्रकृति|पहाड़|जंगल|नदी|सफर|आसमान/.test(topic);
+
+  const art = $("artwork");
+  art.classList.remove("paper","photo","auto");
+  let mode = $("background").value;
+
+  if (mode === "auto") {
+    if (paperTypes.includes($("type").value)) mode = "paper";
+    else if (love || sad || nature || type === "शायरी" || type === "कविता" || type === "ग़ज़ल") mode = "photo";
+    else mode = "auto";
   }
-});
+
+  art.classList.add(mode);
+  if (mode === "photo") {
+    let url = "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85";
+    if (love) url = "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=85";
+    else if (sad) url = "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=85";
+    else if (nature) url = "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85";
+    art.style.backgroundImage = `url("${url}")`;
+  } else if (mode === "auto") {
+    art.style.backgroundImage = "linear-gradient(140deg,#182a2b,#3b4b40 48%,#755d42)";
+  } else {
+    art.style.backgroundImage = "";
+  }
+
+  if (!colorWasCustomized) {
+    $("textColor").value = mode === "paper" ? "#343329" : "#fff8ec";
+    art.style.setProperty("--art-ink",$("textColor").value);
+    art.style.setProperty("--art-accent",mode === "paper" ? "#a57b3f" : "#e2c68e");
+  }
+}
 
 function updatePreview() {
-  const preview = $("preview");
-  preview.textContent = currentText;
-  preview.style.fontFamily = $("font").value;
-  preview.style.fontSize = $("fontSize").value + "px";
-  preview.style.color = $("textColor").value;
-  preview.className = "";
-  const bg = $("background").value;
-  preview.classList.add(bg);
-  if (bg === "photo") {
-    preview.style.backgroundImage =
-      'linear-gradient(#0005,#0005),url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85")';
-    preview.style.color = "#ffffff";
-  } else {
-    preview.style.backgroundImage = "";
-  }
+  $("artLabel").textContent = $("type").value;
+  $("artTitle").textContent = currentText ? getTitle(currentText) : tr("placeholderTitle");
+  $("artBody").textContent = currentText ? getBody(currentText) : tr("placeholderBody");
+  $("artBody").classList.toggle("story",["कहानी","लेख","रेसिपी","प्रश्न-उत्तर"].includes($("type").value));
+
+  const font = $("font").value;
+  const family = font === "sans"
+    ? '"Noto Sans Devanagari", sans-serif'
+    : font === "playfair" && currentLanguage === "en"
+      ? '"Playfair Display", serif'
+      : '"Noto Serif Devanagari", serif';
+
+  $("artTitle").style.fontFamily = family;
+  $("artBody").style.fontFamily = family;
+  $("artBody").style.fontSize = $("fontSize").value + "px";
+  autoVisual();
 }
-["background","font","fontSize","textColor"].forEach(id => {
-  $(id).addEventListener("input", updatePreview);
+
+$("language").addEventListener("change", e => setLanguage(e.target.value));
+["type","mood","topic","background","decoration","font","fontSize"].forEach(id => {
+  $(id).addEventListener("input", () => {
+    if (id === "decoration") $("artwork").classList.toggle("frame", $("decoration").value === "frame");
+    updatePreview();
+  });
   $(id).addEventListener("change", updatePreview);
 });
 
-$("auto").addEventListener("click", () => {
-  const choices = ["rain","nature","night","romantic","sunset","gradient","paper","diary"];
-  $("background").value = choices[Math.floor(Math.random()*choices.length)];
-  const fonts = ["Georgia","serif","sans-serif","Noto Sans Devanagari"];
-  $("font").value = fonts[Math.floor(Math.random()*fonts.length)];
-  $("fontSize").value = 22 + Math.floor(Math.random()*7);
-  $("textColor").value = "#ffffff";
+$("textColor").addEventListener("input", e => {
+  colorWasCustomized = true;
+  $("artwork").style.setProperty("--art-ink",e.target.value);
+  $("artwork").style.setProperty("--art-accent",e.target.value);
+  $("artwork").style.color = e.target.value;
+});
+$("resetColor").addEventListener("click", () => {
+  colorWasCustomized = false;
   updatePreview();
 });
 
-$("editText").addEventListener("click", () => {
-  const changed = prompt(lang === "hi" ? "अपनी रचना यहाँ बदलें:" : "Edit your text:", currentText);
-  if (changed !== null) {
-    currentText = changed;
+$("applyText").addEventListener("click", () => {
+  currentText = $("editText").value.trim();
+  updatePreview();
+  $("status").textContent = currentText ? tr("done") : tr("empty");
+});
+
+$("generate").addEventListener("click", async () => {
+  const topic = $("topic").value.trim();
+  if (!topic) {
+    $("status").textContent = tr("empty");
+    $("topic").focus();
+    return;
+  }
+  if (!API_URL.startsWith("https://script.google.com/macros/s/") || !API_URL.endsWith("/exec")) {
+    $("status").textContent = tr("apiMissing");
+    return;
+  }
+
+  const btn = $("generate");
+  btn.disabled = true;
+  $("status").textContent = tr("waiting");
+
+  try {
+    const payload = {
+      type: $("type").value,
+      mood: $("mood").value,
+      length: $("length").value,
+      topic: topic,
+      language: currentLanguage
+    };
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const data = await response.json();
+    if (data.success === false) throw new Error(data.error || "API error");
+
+    currentText = String(data.text || data.result || data.content || "").trim();
+    if (!currentText) throw new Error("खाली उत्तर मिला।");
+
+    $("editText").value = currentText;
     updatePreview();
+    $("status").textContent = tr("done");
+  } catch (err) {
+    $("status").textContent = tr("apiError") + err.message +
+      "\nअगर API URL सही है, तो Google Apps Script deployment और API की अनुमति जाँचें।";
+  } finally {
+    btn.disabled = false;
   }
 });
 
 $("copy").addEventListener("click", async () => {
+  const text = currentText || $("editText").value.trim();
+  if (!text) { $("status").textContent = tr("noText"); return; }
   try {
-    await navigator.clipboard.writeText(currentText);
+    await navigator.clipboard.writeText(text);
+    $("status").textContent = tr("copied");
   } catch {
-    const area = document.createElement("textarea");
-    area.value = currentText;
-    document.body.appendChild(area);
-    area.select();
-    document.execCommand("copy");
-    area.remove();
+    $("editText").value = text;
+    $("editText").focus();
+    $("editText").select();
+    $("status").textContent = tr("copyFail");
   }
-  $("status").textContent = messages[lang].copied;
 });
 
-$("txt").addEventListener("click", () => {
-  const blob = new Blob([currentText], {type:"text/plain;charset=utf-8"});
+$("downloadTxt").addEventListener("click", () => {
+  const text = currentText || $("editText").value.trim();
+  if (!text) { $("status").textContent = tr("noText"); return; }
+  const blob = new Blob(["\uFEFF" + text], {type:"text/plain;charset=utf-8"});
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "ai-rachna.txt";
+  a.download = "AI-Rachna-Studio.txt";
   a.click();
   URL.revokeObjectURL(url);
 });
 
-$("png").addEventListener("click", async () => {
-  $("status").textContent = lang === "hi" ? "PNG तैयार हो रहा है..." : "Preparing PNG...";
+$("downloadPng").addEventListener("click", async () => {
+  if (!currentText) { $("status").textContent = tr("noText"); return; }
+  if (typeof html2canvas !== "function") {
+    $("status").textContent = "PNG सुविधा लोड नहीं हुई। इंटरनेट चालू करके पेज रीफ़्रेश करें।";
+    return;
+  }
+  const btn = $("downloadPng");
+  btn.disabled = true;
+  $("status").textContent = "PNG तैयार हो रही है…";
   try {
-    if (!window.html2canvas) {
-      await new Promise((resolve,reject) => {
-        const script = document.createElement("script");
-        script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
-    }
-    const canvas = await html2canvas($("preview"), {
-      scale:2,
-      useCORS:true,
-      backgroundColor:null
+    await document.fonts.ready;
+    const canvas = await html2canvas($("artwork"), {
+      scale:2, useCORS:true, allowTaint:false,
+      backgroundColor:null, logging:false
     });
     const a = document.createElement("a");
-    a.download = "ai-rachna.png";
+    a.download = "AI-Rachna-Studio.png";
     a.href = canvas.toDataURL("image/png");
     a.click();
-    $("status").textContent = lang === "hi" ? "PNG डाउनलोड हो गया!" : "PNG downloaded!";
+    $("status").textContent = "PNG डाउनलोड तैयार है।";
   } catch (err) {
-    console.error(err);
-    $("status").textContent = lang === "hi"
-      ? "PNG नहीं बना। इंटरनेट चालू करके दोबारा कोशिश करें।"
-      : "PNG failed. Check your internet and try again.";
+    $("status").textContent = tr("imageError") + " " + err.message;
+  } finally {
+    btn.disabled = false;
   }
 });
 
@@ -535,5 +629,4 @@ setLanguage("hi");
 updatePreview();
 </script>
 </body>
-      </html>
-  
+</html>
