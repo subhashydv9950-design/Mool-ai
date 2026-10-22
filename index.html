@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#153c2e">
-  <title>AI Rachna Studio Pro - Massive Unlimited Suite</title>
-  <!-- Google Fonts for Different Typography Styles -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Tesseract.js for OCR & jsPDF for PDF Processing -->
+  <title>AI Rachna Studio Pro - Ultimate Edition</title>
+  <!-- Google Fonts for Rich Typography Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Poppins:wght@400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tesseract.js for OCR & jsPDF for PDF Generation -->
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
@@ -35,7 +35,7 @@
       background: var(--green);
       color: var(--cream);
       border-bottom: 2px solid var(--gold);
-      padding: 10px 16px;
+      padding: 12px 16px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -47,7 +47,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    .brand { font-size: 19px; font-weight: bold; cursor: pointer; font-family: 'Cinzel', serif; }
+    .brand { font-size: 20px; font-weight: bold; cursor: pointer; font-family: 'Cinzel', serif; }
     .brand span { color: var(--gold); }
     
     main {
@@ -133,18 +133,17 @@
       margin-bottom: 12px;
     }
     
+    /* Pro Designer Photo Canvas with Dynamic Alignment & Layouts */
     .designer-canvas {
       margin-top: 20px;
       padding: 50px 30px;
       border-radius: 16px;
-      text-align: center;
       position: relative;
       box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      min-height: 340px;
+      min-height: 380px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
       background-size: cover !important;
       background-position: center !important;
       overflow: hidden;
@@ -153,7 +152,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.55);
       z-index: 1;
     }
     .designer-canvas > * { position: relative; z-index: 2; }
@@ -162,16 +161,16 @@
       font-size: 13px;
       text-transform: uppercase;
       margin-bottom: 15px;
-      color: #fff;
+      color: var(--gold);
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
       font-family: 'Cinzel', serif;
     }
     .designer-canvas .output-text-display {
-      line-height: 1.8;
-      max-width: 90%;
-      margin: 0 auto;
+      line-height: 1.9;
+      max-width: 95%;
       color: #ffffff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      white-space: pre-wrap;
     }
 
     .style-controls {
@@ -217,14 +216,14 @@
   <div id="homeView">
     <div style="text-align:center; padding: 25px 10px;">
       <h1 style="margin:0 0 8px; color:var(--green); font-family:'Cinzel',serif;">AI Rachna Studio Pro</h1>
-      <p style="color:var(--muted); margin:0; font-size:15px;">Massive Unlimited Creative Studio & Real PDF Translation Suite.</p>
+      <p style="color:var(--muted); margin:0; font-size:15px;">Advanced Creative Writing & Real PDF Translation Suite.</p>
     </div>
 
     <div class="hub-grid">
       <!-- Document & PDF Utilities Hub -->
       <div class="hub-card">
         <h3>📄 Pro PDF & Document Studio</h3>
-        <p>Upload any PDF document, select target language, and download the fully translated PDF instantly.</p>
+        <p>Upload any PDF document, select target language, and download the fully translated PDF with clean layout.</p>
         <div class="sub-tool-grid">
           <button class="sub-tool-btn" data-target="pdfTranslateView">🌐 Full PDF-to-PDF Translator</button>
           <button class="sub-tool-btn" data-target="imageOcrView">🔍 Image to Text Scanner</button>
@@ -233,32 +232,32 @@
         </div>
       </div>
 
-      <!-- Massive Creative Writing Hub -->
+      <!-- Massive Creative Writing Hub (With Shayari, Poetry, Ghazal, Story, Script, Article, Dialogues & More) -->
       <div class="hub-card">
-        <h3>✨ Massive Unlimited Creative Studio</h3>
-        <p>Generate 100% unique Shayari, Poetry, Ghazals, Stories, Scripts, and Articles with Mood Photo Backgrounds!</p>
+        <h3>✨ Ultimate Creative Studio</h3>
+        <p>Generate 100% unique Shayari, Poetry, Ghazals, Stories, Scripts, Dialogues, and Articles with Mood Backgrounds & Dynamic Layouts!</p>
         <div class="sub-tool-grid">
           <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Shayari (शायरी)">❝ Shayari Studio</button>
           <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Poetry (कविता)">✒ Poetry Studio</button>
           <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Ghazal (ग़ज़ल)">🎶 Ghazal Studio</button>
           <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Story (कहानी)">▤ Story Studio</button>
-          <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Script (स्क्रिप्ट)">▧ Script Studio</button>
-          <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Article & Letters (लेख और पत्र)">📄 Articles & Letters</button>
+          <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="Script (स्क्रिप्ट)">▧ Script & Dialogues</button>
+          <button class="sub-tool-btn" data-target="aiGeneratorView" data-tool="More Creative Options (चुटकुले और अन्य)">🌟 More Tools (Jokes & More)</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 1. FULL PDF-TO-PDF TRANSLATOR VIEW (Fully Functional) -->
+  <!-- 1. FULL PDF-TO-PDF TRANSLATOR VIEW -->
   <section class="view-screen" id="pdfTranslateView">
     <button type="button" class="secondary-btn home-trigger">← Back to Home</button>
     <h2>🌐 Full PDF Document Translator</h2>
-    <p style="color:var(--muted); font-size:13px;">Upload your PDF document, select your target language, and download the translated PDF immediately.</p>
+    <p style="color:var(--muted); font-size:13px;">Upload your PDF, select target language, and download the translated document immediately.</p>
 
     <label for="pdfSourceUpload" style="font-weight:bold;">Upload PDF File</label>
     <input type="file" id="pdfSourceUpload" accept=".pdf">
 
-    <label for="pdfTargetLang" style="font-weight:bold;">Select Target Language for Translation</label>
+    <label for="pdfTargetLang" style="font-weight:bold;">Select Target Language</label>
     <select id="pdfTargetLang">
       <option value="Hindi" selected>हिंदी (Hindi)</option>
       <option value="English">English</option>
@@ -319,21 +318,24 @@
     </div>
   </section>
 
-  <!-- 5. UNLIMITED CREATIVE WRITING & DESIGNER CANVAS VIEW -->
+  <!-- 5. ADVANCED CREATIVE STUDIO & DESIGNER CANVAS VIEW -->
   <section class="view-screen" id="aiGeneratorView">
     <button type="button" class="secondary-btn home-trigger">← Back to Home</button>
     <h2 id="activeAiToolTitle">Creative Studio</h2>
     
-    <label for="aiTopicInput" style="font-weight:bold;">Topic or Prompt (Optional - leave blank for endless automatic masterpieces)</label>
+    <label for="aiTopicInput" style="font-weight:bold;">Topic or Prompt (Optional - leave blank for random unique masterpiece)</label>
     <textarea id="aiTopicInput" placeholder="Enter topic (e.g., Zindagi, Pyaar, Rain, Lonely Night, Friendship, Safar)..."></textarea>
     
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:10px;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px;">
       <div>
-        <label for="aiLengthSelect" style="font-weight:bold;">Length / Size</label>
-        <select id="aiLengthSelect">
-          <option value="Short">Short</option>
-          <option value="Medium" selected>Medium</option>
-          <option value="Long">Long</option>
+        <label for="aiCategorySelect" style="font-weight:bold;">Category Type</label>
+        <select id="aiCategorySelect">
+          <option value="shayari" selected>❝ Shayari (शायरी)</option>
+          <option value="poetry">✒ Poetry (कविता)</option>
+          <option value="ghazal">🎶 Ghazal (ग़ज़ल)</option>
+          <option value="story">▤ Story (कहानी)</option>
+          <option value="script">▧ Script & Dialogues (संवाद)</option>
+          <option value="jokes">🌟 Jokes & Fun (चुटकुले)</option>
         </select>
       </div>
       <div>
@@ -348,22 +350,29 @@
         </select>
       </div>
       <div>
-        <label for="fontStyleSelect" style="font-weight:bold;">Typography Font Style</label>
+        <label for="fontStyleSelect" style="font-weight:bold;">Typography Font</label>
         <select id="fontStyleSelect">
-          <option value="merriweather">Classic Serif (Merriweather)</option>
-          <option value="greatvibes">Handwritten Cursive (Great Vibes)</option>
-          <option value="cinzel">Royal & Bold (Cinzel)</option>
-          <option value="poppins">Modern Clean (Poppins)</option>
+          <option value="merriweather">Classic Serif</option>
+          <option value="greatvibes">Handwritten Cursive</option>
+          <option value="cinzel">Royal & Bold</option>
+          <option value="poppins">Modern Clean</option>
+        </select>
+      </div>
+      <div>
+        <label for="textAlignmentSelect" style="font-weight:bold;">Text Alignment</label>
+        <select id="textAlignmentSelect">
+          <option value="center" selected>Center Aligned</option>
+          <option value="left">Left Aligned (Story Style)</option>
         </select>
       </div>
     </div>
 
-    <button type="button" class="action-btn" id="generateAiBtn" style="margin-top:15px; width:100%;">✨ Generate Massive Unique Creation & Design Page</button>
+    <button type="button" class="action-btn" id="generateAiBtn" style="margin-top:15px; width:100%;">✨ Generate Unique Creation & Design Page</button>
 
     <!-- Designer Photo Canvas Preview -->
     <div id="designerPosterBox" class="hidden">
       <div class="style-controls">
-        <button type="button" class="secondary-btn" id="changeMoodBtn">🖼️ Change Photo Background</button>
+        <button type="button" class="secondary-btn" id="changeMoodBtn">🖼️ Change Style & Photo</button>
         <button type="button" class="secondary-btn" id="regenerateBtn">🔄 Generate Another Unique</button>
       </div>
 
@@ -430,7 +439,7 @@ document.querySelectorAll(".home-trigger").forEach(btn => {
   btn.addEventListener("click", returnHome);
 });
 
-// 1. FULL PDF-TO-PDF TRANSLATION ENGINE (Fully Functional Processor)
+// 1. FULL PDF-TO-PDF TRANSLATION ENGINE
 document.getElementById("startPdfTranslationBtn").addEventListener("click", async function() {
   const fileInput = document.getElementById("pdfSourceUpload");
   const targetLang = document.getElementById("pdfTargetLang").value;
@@ -529,7 +538,7 @@ document.getElementById("cleanDocBtn").addEventListener("click", function() {
   document.getElementById("cleanDocResultContainer").classList.remove("hidden");
 });
 
-// 5. MASSIVE UNLIMITED MASTER DATABASE & DYNAMIC ENGINE
+// 5. CATEGORY-WISE UNLIMITED DYNAMIC MASTER ENGINE
 const moodPhotoBackgrounds = {
   rain: "url('https://images.unsplash.com/photo-1519692933481-e162a57d6721?q=80&w=1200&auto=format&fit=crop')",
   forest: "url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop')",
@@ -546,31 +555,39 @@ const fontFamilies = {
   poppins: "'Poppins', sans-serif"
 };
 
-const linePoolPart1 = [
-  "हवाओं से कह दो कि अपनी हद में रहें, हम तो खुद के अंदाज़ से बवंडर लाते हैं।",
-  "राहों में मुश्किलें तो बहुत हैं, पर हौसला हर मुश्किल को हरा देता है।",
-  "जिंदगी जीने के दो ही रास्ते हैं, एक जो पसंद है उसे हासिल करो, दूसरा जो हासिल है उसे पसंद करो।",
-  "वक्त नूर को बेनूर कर देता है, छोटे से जख्म को नासूर कर देता है।",
-  "ख्वाबों के परिंदे भी अजीब सफर में हैं, मंजिल की तलाश में हर कोई अपने घर से बेघर है।",
-  "फिजाओं में बिखर जाएंगे खुशबू बनकर, कभी पास आके तो देखो।",
-  "ना पूछो कि मेरी मंजिल कहां है, अभी तो सफर का इरादा किया है।",
-  "तितलियों के पीछे भागने से अच्छा है, फूलों की तरह खिलना सीखो।"
-];
+// Category pools to ensure stories look like stories and shayari looks like shayari
+const contentPools = {
+  shayari: [
+    "हवाओं से कह दो कि अपनी हद में रहें, हम तो खुद के अंदाज़ से बवंडर लाते हैं।",
+    "राहों में मुश्किलें तो बहुत हैं, पर हौसला हर मुश्किल को हरा देता है।",
+    "वक्त नूर को बेनूर कर देता है, छोटे से जख्म को नासूर कर देता है।",
+    "फिजाओं में बिखर जाएंगे खुशबू बनकर, कभी पास आके तो देखो।"
+  ],
+  poetry: [
+    "लिख रहा हूँ एक नई दास्तान इस कागज़ पर,\nजहाँ हर लफ्ज़ में सिर्फ तुम्हारा ही असर है।\nबदलते मौसम ने सिखाई यह बात हमें,\nहर परछाई का अपना एक अलग सफर है।"
+  ],
+  ghazal: [
+    "तेरी महफ़िल से उठे तो किसी को खबर न हुई,\nहम तो खुद से भी बेखबर होकर चल दिए।\nरास्ते में मिले जितने भी दर्द-ए-दिल के साथी,\nसबको अपना बना कर हम आगे बढ़ लिए।"
+  ],
+  story: [
+    "एक छोटे से शहर में एक पुरानी घड़ी की दुकान थी। दुकानदार बूढ़ा हो चुका था, लेकिन उसकी बनाई घड़ियाँ कभी समय से पीछे नहीं होती थीं। एक दिन एक अनजान लड़का आया और बोला, 'मुझे वो घड़ी चाहिए जो बीता हुआ वक्त वापस ला सके।' बूढ़े ने मुस्कुराकर कहा, 'वक्त वापस नहीं आता बेटा, पर उसे खूबसूरत जरूर बनाया जा सकता है।'"
+  ],
+  script: [
+    "SCENE 1: INT. CAFE - NIGHT\n\nROHIT (25)\n(हाथ में कॉफी का कप थामे हुए, खिड़की से बाहर बारिश को देखते हुए)\nकभी-कभी चुप रहना ही सबसे बड़ा जवाब होता है राहुल।\n\nRAHUL (26)\n(धीमी आवाज में)\nपर हर खामोशी को कमजोरी समझ लेना भी तो भूल है दोस्त।"
+  ],
+  jokes: [
+    "संता: यार, डॉक्टर ने मुझे सुबह 4 किलोमीटर वॉक करने को कहा है।\nबंता: तो फिर जाते क्यों नहीं?\nसंता: सुबह 4 बजे कौन सा डॉक्टर देखने जाता है कि मैं वॉक कर रहा हूँ या सो रहा हूँ!"
+  ]
+};
 
-const linePoolPart2 = [
-  "ना हारूंगा हौसला उम्र भर, यह मैंने किसी और से नहीं, खुद से वादा किया है।",
-  "लोग खुद तुम्हारे पास चले आएंगे जब तुम्हारी महक फैलेगी।",
-  "समंदर बहता है तो किनारा ढूँढता है, इंसान जीता है तो उम्मीद ढूँढता है।",
-  "हर पन्ने पर नाम तुम्हारा लिख दूं, अगर हवाएं गवाही दें।",
-  "सफलता एक दिन में नहीं मिलती, लेकिन ठान लो तो एक दिन जरूर मिलती है।"
-];
-
-let generatedHistoryCache = [];
+let userHistoryCache = [];
 
 document.getElementById("generateAiBtn").addEventListener("click", async function() {
   let topic = document.getElementById("aiTopicInput").value.trim();
+  const category = document.getElementById("aiCategorySelect").value;
   const selectedMood = document.getElementById("bgMoodSelect").value;
   const selectedFont = document.getElementById("fontStyleSelect").value;
+  const alignment = document.getElementById("textAlignmentSelect").value;
   const btn = this;
 
   btn.disabled = true;
@@ -580,33 +597,28 @@ document.getElementById("generateAiBtn").addEventListener("click", async functio
     const response = await fetch("https://mool-n684ooifm-ai-rachna.vercel.app/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic: topic || "Deep emotions and life journey", language: "Hindi", length: "Medium" })
+      body: JSON.stringify({ topic: topic || category, language: "Hindi", length: "Medium" })
     });
 
     const data = await response.json();
     if (!response.ok) throw new Error("AI offline");
 
     let result = data.result;
-    if (generatedHistoryCache.includes(result)) {
-      result = result + "\n\n(✨ Unique Edition #" + (generatedHistoryCache.length + 1) + ")";
-    }
-    generatedHistoryCache.push(result);
-    renderDesignerPoster(result, selectedMood, selectedFont);
-
+    renderDesignerPoster(result, selectedMood, selectedFont, alignment);
   } catch (err) {
-    const partA = linePoolPart1[Math.floor(Math.random() * linePoolPart1.length)];
-    const partB = linePoolPart2[Math.floor(Math.random() * linePoolPart2.length)];
-    let craftedText = partA + "\n" + partB + "\n\n✨ (Unique Masterpiece #" + (generatedHistoryCache.length + 1) + (topic ? " - " + topic : "") + ")";
-
-    generatedHistoryCache.push(craftedText);
-    renderDesignerPoster(craftedText, selectedMood, selectedFont);
+    const list = contentPools[category] || contentPools.shayari;
+    let craftedText = list[Math.floor(Math.random() * list.length)];
+    if (topic) {
+      craftedText = "विषय: " + topic + "\n\n" + craftedText;
+    }
+    renderDesignerPoster(craftedText, selectedMood, selectedFont, alignment);
   } finally {
     btn.disabled = false;
-    btn.textContent = "✨ Generate Massive Unique Creation & Design Page";
+    btn.textContent = "✨ Generate Unique Creation & Design Page";
   }
 });
 
-function renderDesignerPoster(text, moodKey, fontKey) {
+function renderDesignerPoster(text, moodKey, fontKey, align) {
   const box = document.getElementById("designerPosterBox");
   const canvas = document.getElementById("canvasThemeBox");
   const content = document.getElementById("canvasTextContent");
@@ -616,7 +628,8 @@ function renderDesignerPoster(text, moodKey, fontKey) {
 
   canvas.style.background = bgImage;
   content.style.fontFamily = fontFamily;
-  content.style.fontSize = fontKey === 'greatvibes' ? '30px' : '21px';
+  content.style.textAlign = align;
+  content.style.fontSize = fontKey === 'greatvibes' ? '28px' : '20px';
   content.textContent = text;
 
   box.classList.remove("hidden");
@@ -627,7 +640,12 @@ document.getElementById("changeMoodBtn").addEventListener("click", function() {
   const moods = Object.keys(moodPhotoBackgrounds);
   const randomMood = moods[Math.floor(Math.random() * moods.length)];
   document.getElementById("bgMoodSelect").value = randomMood;
-  renderDesignerPoster(document.getElementById("canvasTextContent").textContent, randomMood, document.getElementById("fontStyleSelect").value);
+  
+  const fonts = Object.keys(fontFamilies);
+  const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+  document.getElementById("fontStyleSelect").value = randomFont;
+
+  renderDesignerPoster(document.getElementById("canvasTextContent").textContent, randomMood, randomFont, document.getElementById("textAlignmentSelect").value);
 });
 
 document.getElementById("regenerateBtn").addEventListener("click", function() {
